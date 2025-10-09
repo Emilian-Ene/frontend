@@ -2,7 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveAllChangesBtn = document.getElementById("saveAllChanges");
     const deleteAccountBtn = document.getElementById("deleteAccountBtn");
     const passwordChangeForm = document.getElementById("passwordChangeForm");
-    const token = localStorage.getItem("token");
+    // Get token from both localStorage and sessionStorage
+    const getAuthToken = () => {
+        return localStorage.getItem("token") || sessionStorage.getItem("token");
+    };
+    const token = getAuthToken();
 
     // --- Utility Functions ---
     const showMessageBox = (message, type, duration = 3000) => {
@@ -16,6 +20,21 @@ document.addEventListener("DOMContentLoaded", () => {
             el.classList.add("translate-x-full", "opacity-0");
         }, duration);
     };
+
+    // Function to clear user-specific localStorage data
+    function clearUserSpecificData() {
+        // Get all localStorage keys
+        const keys = Object.keys(localStorage);
+        
+        // Remove all keys that contain user-specific data patterns
+        keys.forEach(key => {
+            if (key.includes('tradingJournalSettings_') || 
+                key.includes('tradingJournalTrades_') ||
+                key.includes('_user_')) {
+                localStorage.removeItem(key);
+            }
+        });
+    }
 
     const showConfirmModal = (message) => {
         return new Promise((resolve) => {
@@ -184,7 +203,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     headers,
                 });
                 if (res.ok) {
+                    // Clear all authentication tokens
                     localStorage.removeItem("token");
+                    sessionStorage.removeItem("token");
+                    localStorage.removeItem("rememberMe");
+                    localStorage.removeItem("savedEmail");
+                    
+                    // Clear all user-specific dashboard settings and trades
+                    clearUserSpecificData();
+                    
                     window.location.href = "index.html";
                 } else {
                     showMessageBox("Failed to delete account.", "error");
@@ -298,4 +325,332 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    // --- Live Clock Functionality ---
+    let clockInterval;
+    
+    function updateClock() {
+        const now = new Date();
+        const timezoneSelect = document.getElementById('timezone');
+        const selectedTimezone = timezoneSelect ? timezoneSelect.value : 'UTC';
+        
+        // Map common timezone values to valid timezone identifiers
+        const timezoneMap = {
+            'Autodetected': Intl.DateTimeFormat().resolvedOptions().timeZone,
+            'UTC': 'UTC',
+            'Europe - London (GMT)': 'Europe/London',           // GMT
+            // Major Trading Hubs
+            'America - New_York (EST)': 'America/New_York',        // Eastern Standard Time (US)
+            'America - Chicago (CST)': 'America/Chicago',         // Central Standard Time (US)
+            'America - Denver (MST)': 'America/Denver',          // Mountain Standard Time (US)
+            'America - Los_Angeles (PST)': 'America/Los_Angeles',     // Pacific Standard Time (US)
+            'Europe - Paris (CET)': 'Europe/Paris',            // Central European Time
+            'Asia - Tokyo (JST)': 'Asia/Tokyo',              // Japan Standard Time
+            'Australia - Sydney (AEST)': 'Australia/Sydney',       // Australian Eastern Standard Time
+            'Asia - Hong_Kong (HKT)': 'Asia/Hong_Kong',          // Hong Kong Time
+            'Asia - Singapore (SGT)': 'Asia/Singapore',          // Singapore Time
+            // Additional Popular Timezones
+            'Asia - Kolkata (IST)': 'Asia/Kolkata',            // India Standard Time
+            'Africa - Johannesburg (CAT)': 'Africa/Johannesburg',     // Central Africa Time
+            'America - Sao_Paulo (BRT)': 'America/Sao_Paulo',       // Brazil Time
+            'America - Buenos_Aires (ART)': 'America/Argentina/Buenos_Aires', // Argentina Time
+            'Pacific - Auckland (NZST)': 'Pacific/Auckland',       // New Zealand Standard Time
+            'America - Halifax (AST)': 'America/Halifax',         // Atlantic Standard Time
+            'Europe - Moscow (MSK)': 'Europe/Moscow',           // Moscow Standard Time
+            'Asia - Dubai (GST)': 'Asia/Dubai',              // Gulf Standard Time
+            'Asia - Seoul (KST)': 'Asia/Seoul',              // Korea Standard Time
+            'Asia - Jakarta (WIB)': 'Asia/Jakarta'             // Western Indonesian Time
+        };
+        
+        const actualTimezone = timezoneMap[selectedTimezone] || selectedTimezone || 'UTC';
+        
+        try {
+            // Format time according to selected timezone
+            const timeFormatter = new Intl.DateTimeFormat('en-US', {
+                timeZone: actualTimezone,
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            const dateFormatter = new Intl.DateTimeFormat('en-US', {
+                timeZone: actualTimezone,
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+            
+            const timeString = timeFormatter.format(now);
+            const dateString = dateFormatter.format(now);
+            
+            // Update clock display
+            const clockElement = document.getElementById('digitalClock');
+            const dateElement = document.getElementById('currentDate');
+            const timezoneElement = document.getElementById('currentTimezone');
+            
+            if (clockElement) clockElement.textContent = timeString;
+            if (dateElement) dateElement.textContent = dateString;
+            if (timezoneElement) timezoneElement.textContent = selectedTimezone;
+            
+        } catch (error) {
+            console.warn('Error updating clock:', error);
+            // Fallback to local time
+            const timeString = now.toLocaleTimeString('en-US', { hour12: false });
+            const dateString = now.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+            
+            const clockElement = document.getElementById('digitalClock');
+            const dateElement = document.getElementById('currentDate');
+            
+            if (clockElement) clockElement.textContent = timeString;
+            if (dateElement) dateElement.textContent = dateString;
+        }
+    }
+    
+    function initializeClock() {
+        // Use enhanced clock function that respects timezone selector
+        updateEnhancedClock();
+        
+        // Update every second with enhanced clock
+        clockInterval = setInterval(updateEnhancedClock, 1000);
+        
+        // Update when timezone changes
+        const timezoneSelect = document.getElementById('timezone');
+        if (timezoneSelect) {
+            timezoneSelect.addEventListener('change', updateEnhancedClock);
+        }
+    }
+    
+    // Initialize clock when page loads
+    initializeClock();
+    
+    // Cleanup interval when page unloads
+    window.addEventListener('beforeunload', () => {
+        if (clockInterval) {
+            clearInterval(clockInterval);
+        }
+    });
+
+    // === Weather and Enhanced Clock Functionality ===
+    
+    // Weather configuration
+    let isManualLocation = false;
+    let manualLocationName = 'London, England'; // Default location set to London
+    
+    // Enhanced clock functionality that respects timezone selector
+    function updateEnhancedClock() {
+        const now = new Date();
+        const timezoneSelect = document.getElementById('timezone');
+        const selectedTimezone = timezoneSelect ? timezoneSelect.value : 'Autodetected';
+        
+        // Map common timezone values to valid timezone identifiers
+        const timezoneMap = {
+            'Autodetected': Intl.DateTimeFormat().resolvedOptions().timeZone,
+            'UTC': 'UTC',
+            'Europe - London (GMT)': 'Europe/London',
+            // Major Trading Hubs
+            'America - New_York (EST)': 'America/New_York',
+            'America - Chicago (CST)': 'America/Chicago',
+            'America - Denver (MST)': 'America/Denver',
+            'America - Los_Angeles (PST)': 'America/Los_Angeles',
+            'Europe - Paris (CET)': 'Europe/Paris',
+            'Asia - Tokyo (JST)': 'Asia/Tokyo',
+            'Australia - Sydney (AEST)': 'Australia/Sydney',
+            'Asia - Hong_Kong (HKT)': 'Asia/Hong_Kong',
+            'Asia - Singapore (SGT)': 'Asia/Singapore',
+            // Additional Popular Timezones
+            'Asia - Kolkata (IST)': 'Asia/Kolkata',
+            'Africa - Johannesburg (CAT)': 'Africa/Johannesburg',
+            'America - Sao_Paulo (BRT)': 'America/Sao_Paulo',
+            'America - Buenos_Aires (ART)': 'America/Argentina/Buenos_Aires',
+            'Pacific - Auckland (NZST)': 'Pacific/Auckland',
+            'America - Halifax (AST)': 'America/Halifax',
+            'Europe - Moscow (MSK)': 'Europe/Moscow',
+            'Asia - Dubai (GST)': 'Asia/Dubai',
+            'Asia - Seoul (KST)': 'Asia/Seoul',
+            'Asia - Jakarta (WIB)': 'Asia/Jakarta'
+        };
+        
+        const actualTimezone = timezoneMap[selectedTimezone] || selectedTimezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+        
+        try {
+            // Format time according to selected timezone
+            const timeFormatter = new Intl.DateTimeFormat('en-US', {
+                timeZone: actualTimezone,
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            const dateFormatter = new Intl.DateTimeFormat('en-US', {
+                timeZone: actualTimezone,
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+            
+            const timeString = timeFormatter.format(now);
+            const dateString = dateFormatter.format(now);
+            
+            // Update clock display elements
+            const clockElement = document.getElementById('digitalClock');
+            const dateElement = document.getElementById('currentDate');
+            const timezoneElement = document.getElementById('currentTimezone');
+            
+            if (clockElement) clockElement.textContent = timeString;
+            if (dateElement) dateElement.textContent = dateString;
+            
+            // Update timezone display with proper formatting
+            if (timezoneElement) {
+                // Show the selected timezone name for user clarity
+                timezoneElement.textContent = selectedTimezone === 'Autodetected' 
+                    ? actualTimezone.replace('_', ' ') 
+                    : selectedTimezone;
+            }
+            
+        } catch (error) {
+            console.warn('Error updating enhanced clock:', error);
+            // Fallback to local time
+            const timeString = now.toLocaleTimeString('en-US', { 
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            const dateString = now.toLocaleDateString('en-US', { 
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+            
+            const clockElement = document.getElementById('digitalClock');
+            const dateElement = document.getElementById('currentDate');
+            const timezoneElement = document.getElementById('currentTimezone');
+            
+            if (clockElement) clockElement.textContent = timeString;
+            if (dateElement) dateElement.textContent = dateString;
+            if (timezoneElement) {
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                timezoneElement.textContent = timezone.replace('_', ' ');
+            }
+        }
+    }
+
+    // Fetch weather for specified location (default: London)
+    async function fetchWeatherForLocation() {
+        const locationElement = document.getElementById('weatherLocation');
+        const conditionElement = document.getElementById('weatherCondition');
+        const tempElement = document.getElementById('currentTemp');
+        const iconElement = document.getElementById('weatherIcon');
+        const changeBtn = document.getElementById('changeLocationBtn');
+        
+        if (locationElement) locationElement.textContent = 'Loading...';
+        if (conditionElement) conditionElement.textContent = 'Getting weather...';
+        
+        try {
+            const weatherUrl = `https://wttr.in/${encodeURIComponent(manualLocationName)}?format=j1`;
+            const response = await fetch(weatherUrl);
+            const weatherData = await response.json();
+            
+            if (weatherData && weatherData.current_condition && weatherData.current_condition[0]) {
+                const current = weatherData.current_condition[0];
+                const location = weatherData.nearest_area[0];
+                
+                const temperature = current.temp_C;
+                const condition = current.weatherDesc[0].value;
+                const locationName = `${location.areaName[0].value}, ${location.country[0].value}`;
+                
+                const weatherIcons = {
+                    'sunny': '☀️', 'clear': '☀️', 'partly cloudy': '⛅',
+                    'cloudy': '☁️', 'overcast': '☁️', 'rain': '🌧️',
+                    'light rain': '🌦️', 'heavy rain': '🌧️', 'snow': '🌨️',
+                    'fog': '🌫️', 'thunderstorm': '⛈️'
+                };
+                
+                const icon = weatherIcons[condition.toLowerCase()] || '🌤️';
+                
+                if (tempElement) tempElement.textContent = temperature + '°C';
+                if (conditionElement) conditionElement.textContent = condition;
+                if (locationElement) locationElement.textContent = locationName;
+                if (iconElement) iconElement.textContent = icon;
+                if (changeBtn) changeBtn.style.display = 'block';
+            } else {
+                throw new Error('Invalid weather data');
+            }
+        } catch (error) {
+            console.error('Error fetching weather:', error);
+            if (locationElement) locationElement.textContent = 'London, England';
+            if (conditionElement) conditionElement.textContent = 'Weather unavailable';
+            if (tempElement) tempElement.textContent = '15°C';
+            if (iconElement) iconElement.textContent = '🌤️';
+            if (changeBtn) changeBtn.style.display = 'block';
+        }
+    }
+
+    // Initialize weather and enhanced clock
+    function initializeWeatherAndClock() {
+        // Clock is already initialized by initializeClock() function above
+        // Just add timezone change listener for immediate updates
+        const timezoneSelect = document.getElementById('timezone');
+        if (timezoneSelect) {
+            // Remove any existing listener first
+            timezoneSelect.removeEventListener('change', updateEnhancedClock);
+            // Add the listener
+            timezoneSelect.addEventListener('change', updateEnhancedClock);
+        }
+        
+        // Set default location to London and fetch weather
+        fetchWeatherForLocation();
+        
+        // Refresh weather every 10 minutes
+        setInterval(() => {
+            fetchWeatherForLocation();
+        }, 600000);
+        
+        // Manual location controls
+        const changeLocationBtn = document.getElementById('changeLocationBtn');
+        const locationInput = document.getElementById('locationInput');
+        const manualLocationInput = document.getElementById('manualLocation');
+        const updateLocationBtn = document.getElementById('updateLocationBtn');
+        const cancelLocationBtn = document.getElementById('cancelLocationBtn');
+        
+        if (changeLocationBtn) {
+            changeLocationBtn.addEventListener('click', function() {
+                if (locationInput) {
+                    locationInput.classList.remove('hidden');
+                    if (manualLocationInput) {
+                        manualLocationInput.value = manualLocationName;
+                        manualLocationInput.focus();
+                    }
+                }
+            });
+        }
+        
+        if (updateLocationBtn) {
+            updateLocationBtn.addEventListener('click', function() {
+                if (manualLocationInput) {
+                    const newLocation = manualLocationInput.value.trim();
+                    if (newLocation) {
+                        manualLocationName = newLocation;
+                        isManualLocation = true;
+                        fetchWeatherForLocation();
+                        if (locationInput) locationInput.classList.add('hidden');
+                    }
+                }
+            });
+        }
+        
+        if (cancelLocationBtn) {
+            cancelLocationBtn.addEventListener('click', function() {
+                if (locationInput) locationInput.classList.add('hidden');
+            });
+        }
+    }
+    
+    // Initialize weather and clock functionality
+    initializeWeatherAndClock();
 });

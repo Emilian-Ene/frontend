@@ -1,7 +1,13 @@
 const userMenuButton = document.getElementById("userMenuButton");
 const userMenu = document.getElementById("userMenu");
 const logoutButton = document.getElementById("logoutButton");
-const token = localStorage.getItem("token");
+
+// Check for token in both localStorage (remember me) and sessionStorage (session only)
+const getAuthToken = () => {
+    return localStorage.getItem("token") || sessionStorage.getItem("token");
+};
+
+const token = getAuthToken();
 
 const updateUserDisplay = (user) => {
     if (!user) return;
@@ -57,7 +63,9 @@ const fetchUserData = async () => {
         });
 
         if (!res.ok) {
+            // Clear tokens from both storage types
             localStorage.removeItem("token");
+            sessionStorage.removeItem("token");
             window.location.href = "login.html";
             return;
         }
@@ -73,7 +81,9 @@ const fetchUserData = async () => {
 
     } catch (err) {
         console.error("Failed to fetch user data for header:", err);
+        // Clear tokens from both storage types
         localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         window.location.href = "login.html";
     }
 };
@@ -87,8 +97,32 @@ if (userMenuButton) {
 
 if (logoutButton) {
     logoutButton.addEventListener("click", () => {
+        // Clear tokens from both storage types
         localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
+        // Also clear remember me data
+        localStorage.removeItem("rememberMe");
+        localStorage.removeItem("savedEmail");
+        
+        // DO NOT clear user settings on logout - only on account deletion
+        // User should get their settings back when they log in again
+        
         window.location.href = "login.html";
+    });
+}
+
+// Function to clear user-specific localStorage data
+function clearUserSpecificData() {
+    // Get all localStorage keys
+    const keys = Object.keys(localStorage);
+    
+    // Remove all keys that contain user-specific data patterns
+    keys.forEach(key => {
+        if (key.includes('tradingJournalSettings_') || 
+            key.includes('tradingJournalTrades_') ||
+            key.includes('_user_')) {
+            localStorage.removeItem(key);
+        }
     });
 }
 

@@ -9,7 +9,17 @@ document.addEventListener('DOMContentLoaded', function () {
   for (let i = 0; i < 14; i++) {
     const candle = document.createElement('div');
     candle.className = 'candlestick' + (i % 2 === 0 ? ' red' : '');
-    candle.style.left = (10 + Math.random() * 80) + 'vw';
+    
+    // Divide the horizontal space (from 5vw to 95vw) into slots to prevent overlapping
+    const totalSlots = 14;
+    const slotWidth = (95 - 5) / totalSlots; // 90vw divided by 14 slots = ~6.43vw per slot
+    const leftPosition = 5 + (i * slotWidth) + (Math.random() * (slotWidth - 2)); // -2 for padding
+    candle.style.left = leftPosition + 'vw';
+    
+    // Add slight vertical offset for visual variety while maintaining animation
+    const verticalOffset = (Math.random() - 0.5) * 10; // Random offset between -5px and +5px
+    candle.style.transform = `translateX(0) translateY(${verticalOffset}px)`;
+    
     candle.style.animationDelay = (Math.random() * 7) + 's';
     // Candle body height
     const bodyHeight = 24 + Math.random() * 36;
@@ -36,11 +46,17 @@ document.addEventListener('DOMContentLoaded', function () {
   for (let i = 0; i < 6; i++) {
     const line = document.createElement('div');
     line.className = 'trendline';
-    // Divide the vertical space (from 20vh to 80vh) into 6 slots.
-    // Place one trendline randomly within each slot to prevent them from overlapping.
-    const slotHeight = (80 - 20) / 6; // = 10vh per slot
-    const topPosition = 20 + (i * slotHeight) + (Math.random() * (slotHeight - 2)); // -2 for padding
+    // Divide the vertical space (from 15vh to 85vh) into 6 slots for better distribution
+    // Place one trendline within each slot to prevent overlapping
+    const totalSlots = 6;
+    const slotHeight = (85 - 15) / totalSlots; // = 11.67vh per slot
+    const topPosition = 15 + (i * slotHeight) + (Math.random() * (slotHeight - 3)); // -3 for padding
     line.style.top = topPosition + 'vh';
+    
+    // Add slight horizontal starting position variation for more natural movement
+    const horizontalOffset = (Math.random() - 0.5) * 20; // Random offset between -10px and +10px
+    line.style.transform = `translateX(${horizontalOffset}px)`;
+    
     line.style.animationDelay = (Math.random() * 10) + 's';
     bg.appendChild(line);
     trendlines.push(line);
@@ -138,7 +154,9 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(res => res.json())
     .then(data => {
       if (data.token) {
+        // For Google Sign-In, always use localStorage (remember me behavior)
         localStorage.setItem('token', data.token);
+        localStorage.setItem('rememberMe', 'true');
         window.location.href = 'dashboard.html';
       } else {
         loginMessage.style.color = '#ef4444';
@@ -169,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loginMessage.textContent = '';
     const email = loginForm.email.value.trim();
     const password = loginForm.password.value;
+    const rememberMe = document.getElementById('remember').checked;
 
     if (!email || !password) {
       loginMessage.textContent = 'Please enter both email and password.';
@@ -188,7 +207,23 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
         loginMessage.style.color = '#22c55e';
         loginMessage.textContent = 'Login successful! Redirecting...';
-        localStorage.setItem('token', data.token);
+        
+        // Handle remember me functionality
+        if (rememberMe) {
+          // Store token in localStorage for persistent login
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('rememberMe', 'true');
+          // Also save email for convenience (optional)
+          localStorage.setItem('savedEmail', email);
+        } else {
+          // Store token in sessionStorage for session-only login
+          sessionStorage.setItem('token', data.token);
+          // Clear any previously saved remember me data
+          localStorage.removeItem('token');
+          localStorage.removeItem('rememberMe');
+          localStorage.removeItem('savedEmail');
+        }
+        
         setTimeout(() => {
           window.location.href = 'dashboard.html';
         }, 1200);
@@ -281,4 +316,25 @@ document.addEventListener('DOMContentLoaded', function () {
         cardContainer.classList.remove('is-flipped-forgot');
     }, 2000);
   });
+
+  // Restore saved credentials when page loads
+  function restoreSavedCredentials() {
+    const savedEmail = localStorage.getItem('savedEmail');
+    const rememberMe = localStorage.getItem('rememberMe');
+    
+    if (savedEmail && rememberMe === 'true') {
+      const emailInput = document.getElementById('email');
+      const rememberCheckbox = document.getElementById('remember');
+      
+      if (emailInput) {
+        emailInput.value = savedEmail;
+      }
+      if (rememberCheckbox) {
+        rememberCheckbox.checked = true;
+      }
+    }
+  }
+
+  // Call restore function when page loads
+  restoreSavedCredentials();
 });

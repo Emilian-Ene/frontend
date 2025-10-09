@@ -3,24 +3,119 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Profile • Trading Outcome Probability Calculator</title>
+    <meta name="description" content="TOPC User Profile - Manage your trading probability calculator account settings, view trading history, and customize your dashboard preferences." />
+    <meta name="keywords" content="TOPC profile, user account settings, trading dashboard, probability calculator preferences, account management, trading history" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="author" content="TOPC - Trading Outcome Probability Calculator" />
+    
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    
+    <!-- Performance hints -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#0f172a" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://topc.com/my-profile.html" />
+    <meta property="og:title" content="My Profile • TOPC - Trading Outcome Probability Calculator" />
+    <meta property="og:description" content="Manage your TOPC account settings and trading probability calculator preferences. Access your personalized dashboard and trading history." />
+    <meta property="og:image" content="https://topc.com/assets/topc-profile-social.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://topc.com/my-profile.html" />
+    <meta property="twitter:title" content="My Profile • TOPC - Trading Outcome Probability Calculator" />
+    <meta property="twitter:description" content="Manage your TOPC account settings and trading probability calculator preferences. Access your personalized dashboard and trading history." />
+    <meta property="twitter:image" content="https://topc.com/assets/topc-profile-social.jpg" />
+    
+    <link rel="canonical" href="https://topc.com/my-profile.html" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" />
+    <link rel="preload" href="css/my-profile.css" as="style" />
+    
+    <title>My Profile • TOPC - Trading Outcome Probability Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "User Profile Dashboard",
+      "description": "Personal account management dashboard for TOPC trading probability calculator users.",
+      "url": "https://topc.com/my-profile.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "TOPC - Trading Outcome Probability Calculator",
+        "url": "https://topc.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "TOPC - Trading Outcome Probability Calculator",
+        "url": "https://topc.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://topc.com/assets/topc-logo.png"
+        }
+      },
+      "mainEntity": {
+        "@type": "ProfilePage",
+        "name": "User Profile",
+        "description": "Personal dashboard for managing TOPC account settings and trading preferences"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://topc.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Dashboard",
+            "item": "https://topc.com/dashboard.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "My Profile",
+            "item": "https://topc.com/my-profile.html"
+          }
+        ]
+      },
+      "potentialAction": {
+        "@type": "UpdateAction",
+        "object": {
+          "@type": "UserAccount",
+          "name": "User Profile Settings"
+        }
+      }
+    }
+    </script>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/my-profile.css">
     <link rel="stylesheet" href="css/brand-strip.css" />
 </head>
 
-<body class="text-slate-300">
+<body class="text-slate-300" itemscope itemtype="https://schema.org/ProfilePage">
     <!-- Site Header (same as app) -->
-    <header class="sticky top-0 z-50 bg-slate-800/95 backdrop-blur border-b border-slate-700/80">
+    <header class="sticky top-0 z-50 bg-slate-800/95 backdrop-blur border-b border-slate-700/80" role="banner">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="h-14 flex items-center gap-6">
           <!-- Brand -->
-          <a href="index.html" class="flex items-center gap-2 shrink-0">
+          <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Return to TOPC homepage">
             <svg class="w-10 h-10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <defs>
                 <linearGradient id="goldChevronAbout" x1="14" y1="12" x2="20" y2="12" gradientUnits="userSpaceOnUse">
@@ -42,15 +137,13 @@
               </g>
             </svg>
             <span class="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">TOPC</span>
-            <span class="ml-1 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">10</span>
-            <span class="ml-1 text-[10px] uppercase tracking-wide text-slate-400">Years</span>
           </a>
 
           <!-- Primary Nav (desktop) -->
-          <nav class="nav-desktop hidden xl:flex items-center gap-8 text-sm font-semibold text-slate-300">
+          <nav class="nav-desktop hidden xl:flex items-center gap-8 text-sm font-semibold text-slate-300" role="navigation" aria-label="Main navigation">
             <a href="faq.html" class="hover:text-white">FAQ</a>
             <a href="testimonials.html" class="hover:text-white">Testimonials</a>
-            <a href="index.html" class="hover:text-white flex items-center gap-1">Trading</a>
+           
             <a href="about.html" class="hover:text-white flex items-center gap-1">About us</a>
           </nav>
 
@@ -76,10 +169,11 @@
                             <i class="fas fa-user-circle w-5 text-center"></i>
                             <span>My Profile</span>
                         </a>
-                        <a href="billing.html" class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-700 rounded-md">
+                        <!-- Billing temporarily disabled for free app -->
+                        <!-- <a href="billing.html" class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-700 rounded-md">
                             <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
                             <span>Billing</span>
-                        </a>
+                        </a> -->
                     </nav>
                     <div class="p-2 border-t border-slate-700">
                         <button id="logoutButton" class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-red-600/50 rounded-md">
@@ -107,8 +201,12 @@
       <nav class="px-4 py-3 flex flex-col gap-4 text-base font-semibold text-slate-200">
         <a href="faq.html" class="py-1">FAQ</a>
         <a href="testimonials.html" class="py-1">Testimonials</a>
-        <a href="index.html" class="flex items-center justify-between py-1">Trading <i class="fa-solid fa-chevron-right text-xs opacity-70"></i></a>
         <a href="about.html" class="flex items-center justify-between py-1">About us <i class="fa-solid fa-chevron-right text-xs opacity-70"></i></a>
+        <a href="index.html" class="flex items-center justify-between py-1">Home <i class="fa-solid fa-chevron-right text-xs opacity-70"></i></a>
+        <a href="cookie-policy.html" class="py-1">Cookies</a>
+        <a href="imprint.html" class="py-1">Imprint</a>
+        <a href="terms.html" class="py-1">Terms & Conditions</a>
+        <a href="privacy.html" class="py-1">Privacy Policy</a>
         <div class="py-2 border-t border-slate-700/80"></div>
         <div class="pt-2">
           <a href="dashboard.html" class="inline-flex w-full items-center justify-center rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold h-11">Client Area</a>
@@ -116,138 +214,347 @@
       </nav>
     </aside>
 
-    <main class="max-w-4xl mx-auto p-4 md:p-6 lg:p-8">
-        <header class="mb-8">
-            <h1 class="text-4xl font-extrabold text-white tracking-tight mb-4">Profile</h1>
-            <nav class="profile-tabs">
-                <a href="#" class="tab-item active" data-tab="personal">Personal Information</a>
-                <a href="#" class="tab-item" data-tab="account">Account Information</a>
-                <a href="#" class="tab-item" data-tab="security">Security</a>
-            </nav>
-        </header>
 
-        <div id="incompleteProfileNotice" class="hidden profile-notice">
-            <i class="fas fa-exclamation-triangle"></i>
+    <!-- Promo bar -->
+    <div class="bg-[#2b2b2b] text-amber-300 text-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-8 flex items-center gap-3">
+        <i class="fa-solid fa-bolt"></i>
+        <span class="text-amber-300/90">Special</span>
+        <span class="text-slate-200">TOPC Celebrates 2 Years</span>
+        <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
+        <p class="uppercase tracking-widest text-emerald-400 font-bold text-xs">Trusted by traders worldwide</p>
+        <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
+         <p class="uppercase tracking-widest text-emerald-400 font-bold text-xs">Free Trading Tools</p>
+        
+      </div>
+    </div>
+
+    <main class="max-w-6xl mx-auto p-4 md:p-6 lg:p-8" role="main" itemprop="mainContentOfPage">
+        <!-- Clock & Weather Widget - Flex Layout -->
+        <div class="mb-8">
+            <div class="w-full bg-slate-800/50 backdrop-blur-sm rounded-xl shadow-lg border border-slate-700 p-6">
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <!-- Clock Section (Left) -->
+                    <div class="flex-1">
+                        <!-- Time Section -->
+                        <div class="mb-6">
+                            <i class="fas fa-clock text-3xl text-blue-400 mb-3" aria-hidden="true"></i>
+                            <h3 class="text-lg font-bold text-white">Local Time</h3>
+                        </div>
+                        
+                        <!-- Digital Clock Display -->
+                        <div class="mb-6">
+                            <div id="digitalClock" class="text-2xl font-mono font-bold text-blue-300 mb-1">
+                                --:--:--
+                            </div>
+                            <div id="currentDate" class="text-sm text-slate-400">
+                                Loading...
+                            </div>
+                        </div>
+                        
+                        <!-- Timezone Display -->
+                        <div class="bg-slate-700/50 rounded-lg p-3 border border-slate-600">
+                            <div class="text-xs text-slate-400 mb-1">TIMEZONE</div>
+                            <div id="currentTimezone" class="text-sm font-semibold text-white">
+                                GMT
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Weather Section (Right) -->
+                    <div class="flex-1">
+                        <div class="weather-widget">
+                            <div class="flex items-center justify-center lg:justify-start gap-2 mb-3">
+                                <i class="fas fa-cloud-sun text-2xl text-amber-400" aria-hidden="true"></i>
+                                <h3 class="text-lg font-bold text-white">Weather</h3>
+                            </div>
+                            
+                            <!-- Weather Display -->
+                            <div id="weatherInfo" class="space-y-3">
+                                <div class="bg-slate-700/50 rounded-lg p-3 border border-slate-600">
+                                    <div class="text-xs text-slate-400 mb-1">CURRENT</div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div id="currentTemp" class="weather-temp text-xl font-bold text-white">--°</div>
+                                            <div id="weatherCondition" class="text-xs text-slate-400">Loading...</div>
+                                        </div>
+                                        <div id="weatherIcon" class="text-2xl">🌤️</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-slate-700/50 rounded-lg p-3 border border-slate-600">
+                                    <div class="text-xs text-slate-400 mb-2">LOCATION</div>
+                                    <div id="weatherLocation" class="text-sm font-semibold text-white">Auto-detecting...</div>
+                                    <button id="changeLocationBtn" class="mt-2 text-xs text-blue-400 hover:text-blue-300 underline" style="display: none;">Change location</button>
+                                    <div id="locationInput" class="mt-2 hidden">
+                                        <input type="text" id="manualLocation" placeholder="Enter city name" class="w-full text-xs p-2 bg-slate-600 border border-slate-500 rounded text-white placeholder-slate-400">
+                                        <div class="flex gap-2 mt-2">
+                                            <button id="updateLocationBtn" class="text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-white">Update</button>
+                                            <button id="cancelLocationBtn" class="text-xs px-3 py-1 bg-slate-600 hover:bg-slate-500 rounded text-white">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Info - Centered at Bottom -->
+                <div class="text-center mt-6 pt-4 border-t border-slate-700">
+                    <div class="text-xs text-slate-400 space-y-1">
+                        <div>Updates every minute</div>
+                        <div>Based on your location</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Content - Full Width -->
+        <div class="w-full">
+            <header class="mb-8" role="banner">
+                <h1 class="text-4xl font-extrabold text-white tracking-tight mb-4" itemprop="name">Profile</h1>
+                <nav class="profile-tabs" role="tablist" aria-label="Profile sections">
+                    <a href="#" class="tab-item active" data-tab="personal" role="tab" aria-selected="true" aria-controls="personal" tabindex="0">Personal Information</a>
+                    <a href="#" class="tab-item" data-tab="account" role="tab" aria-selected="false" aria-controls="account" tabindex="-1">Account Information</a>
+                    <a href="#" class="tab-item" data-tab="security" role="tab" aria-selected="false" aria-controls="security" tabindex="-1">Security</a>
+                </nav>
+            </header>
+
+        <div id="incompleteProfileNotice" class="hidden profile-notice" role="alert" aria-live="polite">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
             <span>Your account details are incomplete. Please fill in all fields.</span>
         </div>
 
-        <div class="profile-container">
-            <div id="personal" class="tab-content active">
+        <div class="profile-container" role="main">
+            <div id="personal" class="tab-content active" role="tabpanel" aria-labelledby="personal-tab">
                 <!-- User Info Header -->
-                <section class="profile-section user-info-header">
-                    <div class="flex items-center gap-4">
-                        <div id="profilePageUserInitials" class="w-16 h-16 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center text-2xl font-bold">IE</div>
+                <section class="profile-section user-info-header" aria-labelledby="user-info-heading">
+                    <div class="flex items-center gap-4" itemscope itemtype="https://schema.org/Person">
+                        <div id="profilePageUserInitials" class="w-16 h-16 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center text-2xl font-bold" role="img" aria-label="User profile picture">IE</div>
                         <div>
-                            <h2 id="profilePageUsername" class="text-xl font-bold text-white flex items-center">
+                            <h2 id="profilePageUsername" class="text-xl font-bold text-white flex items-center" itemprop="name">
                                 Ionut Emilian Ene
                             </h2>
-                            <p class="text-sm text-slate-400">ionutemilianene@gmail.com</p>
+                            <p class="text-sm text-slate-400" itemprop="email">ionutemilianene@gmail.com</p>
                         </div>
                     </div>
                 </section>
 
                 <!-- Client Information -->
-                <section class="profile-section">
-                    <h2 class="section-title">Client</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <section class="profile-section" aria-labelledby="client-info-heading">
+                    <h2 class="section-title" id="client-info-heading">Client</h2>
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" role="form" aria-label="Client information form">
                         <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" class="form-input" value="Ionut Emilian">
+                            <label for="firstName" class="form-label">First Name <span class="required" aria-label="required">*</span></label>
+                            <input type="text" id="firstName" name="firstName" class="form-input" value="Ionut Emilian" required aria-describedby="firstName-help">
+                            <div id="firstName-help" class="sr-only">Enter your first name</div>
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" class="form-input" value="Ene">
+                            <label for="lastName" class="form-label">Last Name <span class="required" aria-label="required">*</span></label>
+                            <input type="text" id="lastName" name="lastName" class="form-input" value="Ene" required aria-describedby="lastName-help">
+                            <div id="lastName-help" class="sr-only">Enter your last name</div>
                         </div>
                         <div class="form-group">
-                            <label for="title">Title</label>
-                            <select id="title" name="title" class="form-input">
+                            <label for="title" class="form-label">Title</label>
+                            <select id="title" name="title" class="form-input" aria-describedby="title-help">
                                 <option>Mr.</option>
                                 <option>Mrs.</option>
                                 <option>Ms.</option>
                             </select>
+                            <div id="title-help" class="sr-only">Select your preferred title</div>
                         </div>
-                    </div>
+                    </form>
                 </section>
 
                 <!-- Contact Info -->
-                <section class="profile-section">
-                    <h2 class="section-title">Contact Info</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <section class="profile-section" aria-labelledby="contact-info-heading">
+                    <h2 class="section-title" id="contact-info-heading">Contact Info</h2>
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" role="form" aria-label="Contact information form">
                         <div class="form-group">
-                            <label for="contactPhone">Contact Phone</label>
-                            <input type="tel" id="contactPhone" name="contactPhone" class="form-input" value="+447713357219">
+                            <label for="contactPhone" class="form-label">Contact Phone</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" class="form-input" value="+447713357219" aria-describedby="phone-help">
+                            <div id="phone-help" class="sr-only">Enter your phone number with country code</div>
                         </div>
                         <div class="form-group">
-                            <label for="email">E-mail address</label>
-                            <input type="email" id="email" name="email" class="form-input" value="ionutemilianene@gmail.com" disabled>
+                            <label for="email" class="form-label">E-mail address</label>
+                            <input type="email" id="email" name="email" class="form-input" value="ionutemilianene@gmail.com" disabled aria-describedby="email-help">
+                            <div id="email-help" class="sr-only">Email address cannot be changed</div>
                         </div>
                         <div class="form-group">
-                            <label for="country">Country of residence</label>
-                            <select id="country" name="country" class="form-input">
+                            <label for="country" class="form-label">Country of residence <span class="required" aria-label="required">*</span></label>
+                            <select id="country" name="country" class="form-input" required aria-describedby="country-help">
+                                <option value="">Select a country</option>
+                                <option>Albania</option>
+                                <option>Argentina</option>
+                                <option>Armenia</option>
+                                <option>Australia</option>
+                                <option>Austria</option>
+                                <option>Azerbaijan</option>
+                                <option>Belarus</option>
+                                <option>Belgium</option>
+                                <option>Bosnia and Herzegovina</option>
+                                <option>Brazil</option>
+                                <option>Bulgaria</option>
+                                <option>Canada</option>
+                                <option>Chile</option>
+                                <option>China</option>
+                                <option>Colombia</option>
+                                <option>Croatia</option>
+                                <option>Cyprus</option>
+                                <option>Czech Republic</option>
+                                <option>Denmark</option>
+                                <option>Egypt</option>
+                                <option>Estonia</option>
+                                <option>Finland</option>
+                                <option>France</option>
+                                <option>Georgia</option>
+                                <option>Germany</option>
+                                <option>Greece</option>
+                                <option>Hong Kong</option>
+                                <option>Hungary</option>
+                                <option>Iceland</option>
+                                <option>India</option>
+                                <option>Indonesia</option>
+                                <option>Ireland</option>
+                                <option>Israel</option>
+                                <option>Italy</option>
+                                <option>Japan</option>
+                                <option>Kazakhstan</option>
+                                <option>Kenya</option>
+                                <option>Kuwait</option>
+                                <option>Latvia</option>
+                                <option>Lithuania</option>
+                                <option>Luxembourg</option>
+                                <option>Malaysia</option>
+                                <option>Malta</option>
+                                <option>Mexico</option>
+                                <option>Moldova</option>
+                                <option>Montenegro</option>
+                                <option>Morocco</option>
+                                <option>Netherlands</option>
+                                <option>New Zealand</option>
+                                <option>Nigeria</option>
+                                <option>North Macedonia</option>
+                                <option>Norway</option>
+                                <option>Peru</option>
+                                <option>Philippines</option>
+                                <option>Poland</option>
+                                <option>Portugal</option>
+                                <option>Qatar</option>
+                                <option>Romania</option>
+                                <option>Russia</option>
+                                <option>Saudi Arabia</option>
+                                <option>Serbia</option>
+                                <option>Singapore</option>
+                                <option>Slovakia</option>
+                                <option>Slovenia</option>
+                                <option>South Africa</option>
+                                <option>South Korea</option>
+                                <option>Spain</option>
+                                <option>Sweden</option>
+                                <option>Switzerland</option>
+                                <option>Taiwan</option>
+                                <option>Thailand</option>
+                                <option>Turkey</option>
+                                <option>Ukraine</option>
+                                <option>United Arab Emirates</option>
                                 <option>United Kingdom</option>
                                 <option>United States</option>
-                                <option>Romania</option>
+                                <option>Uruguay</option>
+                                <option>Venezuela</option>
+                                <option>Vietnam</option>
                             </select>
+                            <div id="country-help" class="sr-only">Select your country of residence</div>
                         </div>
                         <div></div> <!-- Spacer -->
                         <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" name="city" class="form-input" value="Newark">
+                            <label for="city" class="form-label">City <span class="required" aria-label="required">*</span></label>
+                            <input type="text" id="city" name="city" class="form-input" value="Newark" required aria-describedby="city-help">
+                            <div id="city-help" class="sr-only">Enter your city name</div>
                         </div>
                         <div class="form-group">
-                            <label for="street">Street</label>
-                            <input type="text" id="street" name="street" class="form-input" value="5 Avro Road">
+                            <label for="street" class="form-label">Street Address <span class="required" aria-label="required">*</span></label>
+                            <input type="text" id="street" name="street" class="form-input" value="5 Avro Road" required aria-describedby="street-help">
+                            <div id="street-help" class="sr-only">Enter your street address</div>
                         </div>
                         <div class="form-group">
-                            <label for="postalCode">Postal Code</label>
-                            <input type="text" id="postalCode" name="postalCode" class="form-input" value="NG24 5BF">
+                            <label for="postalCode" class="form-label">Postal Code <span class="required" aria-label="required">*</span></label>
+                            <input type="text" id="postalCode" name="postalCode" class="form-input" value="NG24 5BF" required aria-describedby="postal-help">
+                            <div id="postal-help" class="sr-only">Enter your postal code</div>
                         </div>
-                    </div>
+                    </form>
                 </section>
             </div>
 
-            <div id="account" class="tab-content">
+            <div id="account" class="tab-content" role="tabpanel" aria-labelledby="account-tab">
                 <!-- Account Information -->
-                <section class="profile-section">
-                    <h2 class="section-title">Account Information</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <section class="profile-section" aria-labelledby="account-settings-heading">
+                    <h2 class="section-title" id="account-settings-heading">Account Information</h2>
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-6" role="form" aria-label="Account settings form">
                         <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="username" class="form-input" value="ionutemilianene@gmail.com" disabled>
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" id="username" name="username" class="form-input" value="ionutemilianene@gmail.com" disabled aria-describedby="username-help">
+                            <div id="username-help" class="sr-only">Username cannot be changed</div>
                         </div>
                         <div class="form-group">
-                            <label for="language">Language</label>
-                            <input type="text" id="language" name="language" class="form-input" value="English" disabled>
+                            <label for="language" class="form-label">Language</label>
+                            <input type="text" id="language" name="language" class="form-input" value="English" disabled aria-describedby="language-help">
+                            <div id="language-help" class="sr-only">Language is automatically detected</div>
                         </div>
                         <div class="form-group">
-                            <label for="timezone">Time Zone</label>
-                            <select id="timezone" name="timezone" class="form-input">
+                            <label for="timezone" class="form-label">Time Zone</label>
+                            <select id="timezone" name="timezone" class="form-input" aria-describedby="timezone-help">
                                 <option>Autodetected</option>
                                 <option>UTC</option>
-                                <option>GMT</option>
+                                <option>Europe - London (GMT)</option>
+                                <!-- Major Trading Hubs -->
+                                <option>America - New_York (EST)</option>
+                                <option>America - Chicago (CST)</option>
+                                <option>America - Denver (MST)</option>
+                                <option>America - Los_Angeles (PST)</option>
+                                <option>Europe - Paris (CET)</option>
+                                <option>Asia - Tokyo (JST)</option>
+                                <option>Australia - Sydney (AEST)</option>
+                                <option>Asia - Hong_Kong (HKT)</option>
+                                <option>Asia - Singapore (SGT)</option>
+                                <!-- Additional Popular Timezones -->
+                                <option>Asia - Kolkata (IST)</option>
+                                <option>Africa - Johannesburg (CAT)</option>
+                                <option>America - Sao_Paulo (BRT)</option>
+                                <option>America - Buenos_Aires (ART)</option>
+                                <option>Pacific - Auckland (NZST)</option>
+                                <option>America - Halifax (AST)</option>
+                                <option>Europe - Moscow (MSK)</option>
+                                <option>Asia - Dubai (GST)</option>
+                                <option>Asia - Seoul (KST)</option>
+                                <option>Asia - Jakarta (WIB)</option>
                             </select>
+                            <div id="timezone-help" class="sr-only">Select your preferred timezone for trading</div>
                         </div>
-                    </div>
+                    </form>
                 </section>
             </div>
 
-            <div id="security" class="tab-content">
+            <div id="security" class="tab-content" role="tabpanel" aria-labelledby="security-tab">
                 <!-- AI Trading Coach -->
-        <section class="profile-section">
-          <h2 class="section-title">AI Trading Coach</h2>
-          <p class="text-slate-400 mb-4">Get personalized feedback on your trading performance. Provide your Google AI (Gemini) API key to begin.</p>
-          <form id="aiKeyForm">
-            <div class="form-group">
-              <label for="googleAiKey">Google AI API Key</label>
-              <div class="relative">
-                <input type="password" id="googleAiKey" name="googleAiKey" class="form-input pr-10" autocomplete="off">
-                <button type="button" class="pw-toggle-btn absolute inset-y-0 right-0 px-3 flex items-center text-slate-400 hover:text-slate-200" data-target="googleAiKey" aria-label="Show API key"><i class="fa-regular fa-eye"></i></button>
-              </div>
-            </div>
-            <div class="flex items-center gap-4">
-              <button type="submit" class="btn btn-primary">Save API Key</button>
-              <button type="button" id="deleteApiKeyBtn" class="btn btn-danger">Delete API Key</button>
-            </div>
+                <section class="profile-section" aria-labelledby="ai-coach-heading">
+                    <h2 class="section-title" id="ai-coach-heading">AI Trading Coach</h2>
+                    <p class="text-slate-400 mb-4">Get personalized feedback on your trading performance. Provide your Google AI (Gemini) API key to begin.</p>
+                    <form id="aiKeyForm" role="form" aria-label="AI trading coach setup">
+                        <div class="form-group">
+                            <label for="googleAiKey" class="form-label">Google AI API Key <span class="required" aria-label="required">*</span></label>
+                            <div class="relative">
+                                <input type="password" id="googleAiKey" name="googleAiKey" class="form-input pr-10" autocomplete="off" aria-describedby="api-key-help">
+                                <button type="button" class="pw-toggle-btn absolute inset-y-0 right-0 px-3 flex items-center text-slate-400 hover:text-slate-200" data-target="googleAiKey" aria-label="Show API key">
+                                    <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div id="api-key-help" class="sr-only">Enter your Google AI API key for personalized trading insights</div>
+                        </div>
+                        <div class="flex items-center gap-4" role="group" aria-label="API key actions">
+                            <button type="submit" class="btn btn-primary">Save API Key</button>
+                            <button type="button" id="deleteApiKeyBtn" class="btn btn-danger">Delete API Key</button>
+                        </div>
           </form>
         </section>
 
@@ -295,7 +602,7 @@
             <div class="flex justify-end mt-4">
                 <button id="saveAllChanges" class="btn btn-primary">Save All Changes</button>
             </div>
-        </div>
+        </div> <!-- Close profile content -->
     </main>
 
     <div id="messageBox"></div>
@@ -336,37 +643,65 @@
     <!-- Footer (same as home) -->
     <footer class="border-t border-slate-800 bg-slate-900/90 text-slate-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <!-- Top: App + Newsletter -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <!-- Top: All Buttons + Newsletter -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start text-center">
           <div>
-            <h4 class="text-sm font-bold tracking-wide text-slate-400">DOWNLOAD OUR APP TO YOUR DEVICE</h4>
-            <div class="mt-4 flex gap-4 flex-wrap">
-              <a href="#" class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400">
+            <h4 class="text-sm font-bold tracking-wide text-slate-400 mb-4">
+              DOWNLOAD OUR TOPC APP TO YOUR DEVICE & SUPPORT DEVELOPMENT
+            </h4>
+            <div class="flex gap-4 flex-wrap justify-center">
+              <a
+                href="#"
+                class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400"
+              >
                 <i class="fab fa-apple text-2xl"></i>
                 <div class="leading-tight">
                   <div class="text-[10px] text-slate-400">Download on the</div>
                   <div class="text-sm font-semibold">App Store</div>
                 </div>
               </a>
-              <a href="#" class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400">
+              <a
+                href="#"
+                class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400"
+              >
                 <i class="fab fa-google-play text-xl"></i>
                 <div class="leading-tight">
                   <div class="text-[10px] text-slate-400">Download on</div>
                   <div class="text-sm font-semibold">Google Play</div>
                 </div>
               </a>
+              <a
+                href="https://www.paypal.com/donate/?hosted_button_id=UMH6455D8JHR2"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-semibold px-4 h-12 transition-colors"
+              >
+                <i class="fas fa-heart text-red-500"></i>
+                <span>Donate via PayPal</span>
+              </a>
             </div>
+            <p class="text-xs text-slate-400 mt-3">Help us keep TOPC free for everyone • Every contribution matters!</p>
           </div>
           <div>
-            <h4 class="text-sm font-bold tracking-wide text-slate-400">STAY UPDATED WITH OUR NEWSLETTER!</h4>
-            <div class="mt-4 flex gap-3">
-              <input type="email" placeholder="Email" class="flex-1 h-12 rounded-md bg-slate-800 border border-slate-700 px-4 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              <button class="h-12 px-5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold">SUBSCRIBE</button>
+            <h4 class="text-sm font-bold tracking-wide text-slate-400">
+              STAY UPDATED WITH OUR NEWSLETTER!
+            </h4>
+            <div class="mt-4 flex gap-3 justify-center">
+              <input
+                type="email"
+                placeholder="Email"
+                class="flex-1 max-w-xs h-12 rounded-md bg-slate-800 border border-slate-700 px-4 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                class="h-12 px-5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold"
+              >
+                SUBSCRIBE
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Payment options -->
+        <!-- Payment options
         <div class="mt-10">
           <h4 class="text-sm font-bold tracking-wide text-slate-400">PAYMENT OPTIONS</h4>
           <div class="mt-5 flex flex-wrap items-center gap-x-10 gap-y-4 text-2xl">
@@ -378,7 +713,7 @@
             <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-solid fa-credit-card"></i> Maestro</span>
             <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-solid fa-wallet"></i> Skrill</span>
           </div>
-        </div>
+        </div> -->
 
         <!-- Legal links -->
         <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm">

@@ -240,3 +240,77 @@
 .footer-copyright p {
     margin: 0.25rem 0;
 }
+
+/* Accessibility Improvements */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.required {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.form-label {
+    display: block;
+    font-weight: 500;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+}
+
+/* Focus improvements */
+.form-input:focus,
+.btn:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.tab-item:focus {
+    outline: none;
+    color: #ffffff;
+    border-bottom-color: #3b82f6;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .text-slate-400 {
+        color: #cbd5e1 !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Clock and Weather Widget Styles */
+.widget-container {
+    min-width: 280px;
+    max-width: 320px;
+}
+
+.weather-widget {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.weather-temp {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+}

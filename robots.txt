@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://topc.com/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1
+
+# Disallow certain areas if needed (currently allowing all)
+# Disallow: /admin/
+# Disallow: /api/
+# Disallow: /backend/
+
+# Allow specific important pages
+Allow: /dashboard.html
+Allow: /about.html
+Allow: /faq.html
+Allow: /testimonials.html
+Allow: /login.html

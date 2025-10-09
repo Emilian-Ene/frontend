@@ -13,7 +13,11 @@
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
 
     // Hide login button if user is logged in
-    const token = localStorage.getItem("token");
+    // Get token from both localStorage and sessionStorage
+    const getAuthToken = () => {
+        return localStorage.getItem("token") || sessionStorage.getItem("token");
+    };
+    const token = getAuthToken();
     if (token) {
         const loginLinks = document.querySelectorAll('a[href="login.html"]');
         loginLinks.forEach(link => link.style.display = 'none');

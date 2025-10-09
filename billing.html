@@ -1,95 +1,379 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Billing • Trading Outcome Probability Calculator</title>
+    <meta
+      name="description"
+      content="TOPC Billing Dashboard - Manage your trading probability calculator subscription, view payment history, and update billing information. Secure payment processing for premium trading tools."
+    />
+    <meta
+      name="keywords"
+      content="TOPC billing, trading tools subscription, payment history, trading calculator billing, premium trading features, secure payments, subscription management"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="author"
+      content="TOPC - Trading Outcome Probability Calculator"
+    />
+
+    <!-- Security headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta
+      http-equiv="Referrer-Policy"
+      content="strict-origin-when-cross-origin"
+    />
+
+    <!-- Performance hints -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://topc.com/billing.html" />
+    <meta
+      property="og:title"
+      content="Billing Dashboard • TOPC - Trading Outcome Probability Calculator"
+    />
+    <meta
+      property="og:description"
+      content="Secure billing management for TOPC trading probability calculator. View subscription details, payment history, and manage your premium trading tools subscription."
+    />
+    <meta
+      property="og:image"
+      content="https://topc.com/assets/topc-billing-social.jpg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://topc.com/billing.html" />
+    <meta
+      property="twitter:title"
+      content="Billing Dashboard • TOPC - Trading Outcome Probability Calculator"
+    />
+    <meta
+      property="twitter:description"
+      content="Secure billing management for TOPC trading probability calculator. View subscription details, payment history, and manage your premium trading tools subscription."
+    />
+    <meta
+      property="twitter:image"
+      content="https://topc.com/assets/topc-billing-social.jpg"
+    />
+
+    <link rel="canonical" href="https://topc.com/billing.html" />
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      as="style"
+    />
+    <link rel="preload" href="css/billing.css" as="style" />
+
+    <title>
+      Billing Dashboard • TOPC - Trading Outcome Probability Calculator
+    </title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Billing Dashboard",
+        "description": "Secure billing management dashboard for TOPC trading probability calculator subscriptions and payment processing.",
+        "url": "https://topc.com/billing.html",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "TOPC - Trading Outcome Probability Calculator",
+          "url": "https://topc.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "TOPC - Trading Outcome Probability Calculator",
+          "url": "https://topc.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://topc.com/assets/topc-logo.png"
+          }
+        },
+        "mainEntity": {
+          "@type": "Service",
+          "name": "TOPC Premium Subscription",
+          "description": "Premium trading probability calculator with advanced features and AI-powered trading insights",
+          "provider": {
+            "@type": "Organization",
+            "name": "TOPC - Trading Outcome Probability Calculator"
+          },
+          "serviceType": "Trading Software Subscription",
+          "category": "Financial Technology"
+        },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://topc.com"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Dashboard",
+              "item": "https://topc.com/dashboard.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Billing",
+              "item": "https://topc.com/billing.html"
+            }
+          ]
+        },
+        "potentialAction": [
+          {
+            "@type": "PayAction",
+            "object": {
+              "@type": "Service",
+              "name": "TOPC Premium Subscription"
+            }
+          },
+          {
+            "@type": "ViewAction",
+            "object": {
+              "@type": "Invoice",
+              "name": "Payment History"
+            }
+          }
+        ]
+      }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/billing.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/billing.css" />
     <link rel="stylesheet" href="css/brand-strip.css" />
-</head>
+  </head>
 
-<body class="text-slate-300">
+  <body class="text-slate-300" itemscope itemtype="https://schema.org/WebPage">
     <!-- Site Header (same as app) -->
-    <header class="sticky top-0 z-50 bg-slate-800/95 backdrop-blur border-b border-slate-700/80">
+    <header
+      class="sticky top-0 z-50 bg-slate-800/95 backdrop-blur border-b border-slate-700/80"
+      role="banner"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="h-14 flex items-center gap-6">
           <!-- Brand -->
-          <a href="index.html" class="flex items-center gap-2 shrink-0">
-            <svg class="w-10 h-10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <a
+            href="index.html"
+            class="flex items-center gap-2 shrink-0"
+            aria-label="Return to TOPC homepage"
+          >
+            <svg
+              class="w-10 h-10"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
               <defs>
-                <linearGradient id="goldChevronAbout" x1="14" y1="12" x2="20" y2="12" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#f59e0b"/>
-                  <stop offset="1" stop-color="#fbbf24"/>
+                <linearGradient
+                  id="goldChevronAbout"
+                  x1="14"
+                  y1="12"
+                  x2="20"
+                  y2="12"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0" stop-color="#f59e0b" />
+                  <stop offset="1" stop-color="#fbbf24" />
                 </linearGradient>
               </defs>
               <g transform="rotate(45 12 12)">
-                <path d="M14 6 L20 12 L14 18 L14 15 L17 12 L14 9 Z" fill="url(#goldChevronAbout)"/>
-                <rect x="4.8" y="14" width="5.8" height="2" rx="0" fill="#22c55e"/>
-                <rect x="5.8" y="11" width="4.8" height="2" rx="0" fill="#ef4444"/>
-                <rect x="6.8" y="8" width="3.8" height="2" rx="0" fill="#22c55e"/>
-                <line x1="4.2" y1="15" x2="4.8" y2="15" stroke="#22c55e" stroke-width="0.6" stroke-linecap="square"/>
-                <line x1="10.6" y1="15" x2="11.2" y2="15" stroke="#22c55e" stroke-width="0.6" stroke-linecap="square"/>
-                <line x1="5.2" y1="12" x2="5.8" y2="12" stroke="#ef4444" stroke-width="0.6" stroke-linecap="square"/>
-                <line x1="10.6" y1="12" x2="11.2" y2="12" stroke="#ef4444" stroke-width="0.6" stroke-linecap="square"/>
-                <line x1="6.2" y1="9" x2="6.8" y2="9" stroke="#22c55e" stroke-width="0.6" stroke-linecap="square"/>
-                <line x1="10.6" y1="9" x2="11.2" y2="9" stroke="#22c55e" stroke-width="0.6" stroke-linecap="square"/>
+                <path
+                  d="M14 6 L20 12 L14 18 L14 15 L17 12 L14 9 Z"
+                  fill="url(#goldChevronAbout)"
+                />
+                <rect
+                  x="4.8"
+                  y="14"
+                  width="5.8"
+                  height="2"
+                  rx="0"
+                  fill="#22c55e"
+                />
+                <rect
+                  x="5.8"
+                  y="11"
+                  width="4.8"
+                  height="2"
+                  rx="0"
+                  fill="#ef4444"
+                />
+                <rect
+                  x="6.8"
+                  y="8"
+                  width="3.8"
+                  height="2"
+                  rx="0"
+                  fill="#22c55e"
+                />
+                <line
+                  x1="4.2"
+                  y1="15"
+                  x2="4.8"
+                  y2="15"
+                  stroke="#22c55e"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
+                <line
+                  x1="10.6"
+                  y1="15"
+                  x2="11.2"
+                  y2="15"
+                  stroke="#22c55e"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
+                <line
+                  x1="5.2"
+                  y1="12"
+                  x2="5.8"
+                  y2="12"
+                  stroke="#ef4444"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
+                <line
+                  x1="10.6"
+                  y1="12"
+                  x2="11.2"
+                  y2="12"
+                  stroke="#ef4444"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
+                <line
+                  x1="6.2"
+                  y1="9"
+                  x2="6.8"
+                  y2="9"
+                  stroke="#22c55e"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
+                <line
+                  x1="10.6"
+                  y1="9"
+                  x2="11.2"
+                  y2="9"
+                  stroke="#22c55e"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
               </g>
             </svg>
-            <span class="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">TOPC</span>
-            <span class="ml-1 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">02</span>
-            <span class="ml-1 text-[10px] uppercase tracking-wide text-slate-400">Years</span>
+            <span
+              class="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500"
+              >TOPC</span
+            >
           </a>
 
           <!-- Primary Nav (desktop) -->
-          <nav class="nav-desktop hidden xl:flex items-center gap-8 text-sm font-semibold text-slate-300">
+          <nav
+            class="nav-desktop hidden xl:flex items-center gap-8 text-sm font-semibold text-slate-300"
+            role="navigation"
+            aria-label="Main navigation"
+          >
             <a href="faq.html" class="hover:text-white">FAQ</a>
-            <a href="testimonials.html" class="hover:text-white">Testimonials</a>
-            <a href="index.html" class="hover:text-white flex items-center gap-1">Trading</a>
-            <a href="about.html" class="hover:text-white flex items-center gap-1">About us</a>
+            <a href="testimonials.html" class="hover:text-white"
+              >Testimonials</a
+            >
+            <a
+              href="about.html"
+              class="hover:text-white flex items-center gap-1"
+              >About us</a
+            >
           </nav>
 
           <!-- Right Side -->
           <div class="ml-auto flex items-center gap-4">
-            <a href="dashboard.html" class="hidden md:inline text-blue-400 hover:text-blue-300 font-semibold">Client Area</a>
+            <a
+              href="dashboard.html"
+              class="hidden md:inline text-blue-400 hover:text-blue-300 font-semibold"
+              >Client Area</a
+            >
             <div class="relative z-50">
-                <button id="userMenuButton" class="flex items-center gap-3">
-                    <span id="headerUsername" class="hidden sm:block font-semibold text-slate-200">Ionut Emilian</span>
-                    <div id="headerUserInitials" class="w-8 h-8 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center text-sm font-bold">IE</div>
-                </button>
-                <div id="userMenu" class="absolute right-0 mt-2 w-64 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50 hidden">
-                    <div class="p-4 border-b border-slate-700">
-                        <div class="flex items-center gap-3">
-                            <div>
-                                <p id="dropdownUsername" class="font-semibold text-white">Ionut Emilian Ene</p>
-                                <p id="dropdownUserEmail" class="text-sm text-slate-400">ionutemilianene@gmail.com</p>
-                            </div>
-                        </div>
+              <button id="userMenuButton" class="flex items-center gap-3">
+                <span
+                  id="headerUsername"
+                  class="hidden sm:block font-semibold text-slate-200"
+                  >Ionut Emilian</span
+                >
+                <div
+                  id="headerUserInitials"
+                  class="w-8 h-8 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center text-sm font-bold"
+                >
+                  IE
+                </div>
+              </button>
+              <div
+                id="userMenu"
+                class="absolute right-0 mt-2 w-64 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50 hidden"
+              >
+                <div class="p-4 border-b border-slate-700">
+                  <div class="flex items-center gap-3">
+                    <div>
+                      <p id="dropdownUsername" class="font-semibold text-white">
+                        Ionut Emilian Ene
+                      </p>
+                      <p id="dropdownUserEmail" class="text-sm text-slate-400">
+                        ionutemilianene@gmail.com
+                      </p>
                     </div>
-                    <nav class="p-2">
-                        <a href="my-profile.html" class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-700 rounded-md">
-                            <i class="fas fa-user-circle w-5 text-center"></i>
-                            <span>My Profile</span>
-                        </a>
-                        <a href="billing.html" class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-700 rounded-md">
+                  </div>
+                </div>
+                <nav class="p-2">
+                  <a
+                    href="my-profile.html"
+                    class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-700 rounded-md"
+                  >
+                    <i class="fas fa-user-circle w-5 text-center"></i>
+                    <span>My Profile</span>
+                  </a>
+                  <!-- Billing temporarily disabled for free app -->
+                  <!-- <a href="billing.html" class="flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-slate-700 rounded-md">
                             <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
                             <span>Billing</span>
-                        </a>
-                    </nav>
-                    <div class="p-2 border-t border-slate-700">
-                        <button id="logoutButton" class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-red-600/50 rounded-md">
-                            <i class="fas fa-sign-out-alt w-5 text-center"></i>
-                            <span>Log Out</span>
-                        </button>
-                    </div>
+                        </a> -->
+                </nav>
+                <div class="p-2 border-t border-slate-700">
+                  <button
+                    id="logoutButton"
+                    class="w-full text-left flex items-center gap-3 px-3 py-2 text-slate-300 hover:bg-red-600/50 rounded-md"
+                  >
+                    <i class="fas fa-sign-out-alt w-5 text-center"></i>
+                    <span>Log Out</span>
+                  </button>
                 </div>
+              </div>
             </div>
-            <button id="navTrigger" class="nav-trigger xl:hidden p-2 -mr-2 text-slate-300 hover:text-white" aria-label="Open menu">
+            <button
+              id="navTrigger"
+              class="nav-trigger xl:hidden p-2 -mr-2 text-slate-300 hover:text-white"
+              aria-label="Open menu"
+            >
               <i class="fas fa-bars"></i>
             </button>
           </div>
@@ -99,94 +383,169 @@
 
     <!-- Off-canvas drawer (right) -->
     <div id="drawerOverlay" class="fixed inset-0 bg-black/50 z-50 hidden"></div>
-    <aside id="drawerPanel" class="fixed top-0 right-0 h-full w-80 sm:w-96 bg-slate-800 border-l border-slate-700 z-50 transform translate-x-full transition-transform duration-300">
-      <div class="h-14 flex items-center justify-between px-4 border-b border-slate-700/80">
-        <button class="text-slate-300 hover:text-white"><i class="fas fa-magnifying-glass"></i></button>
-        <button id="drawerCloseBtn" class="text-slate-300 hover:text-white text-xl" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
+    <aside
+      id="drawerPanel"
+      class="fixed top-0 right-0 h-full w-80 sm:w-96 bg-slate-800 border-l border-slate-700 z-50 transform translate-x-full transition-transform duration-300"
+    >
+      <div
+        class="h-14 flex items-center justify-between px-4 border-b border-slate-700/80"
+      >
+        <button class="text-slate-300 hover:text-white">
+          <i class="fas fa-magnifying-glass"></i>
+        </button>
+        <button
+          id="drawerCloseBtn"
+          class="text-slate-300 hover:text-white text-xl"
+          aria-label="Close menu"
+        >
+          <i class="fas fa-xmark"></i>
+        </button>
       </div>
-      <nav class="px-4 py-3 flex flex-col gap-4 text-base font-semibold text-slate-200">
+      <nav
+        class="px-4 py-3 flex flex-col gap-4 text-base font-semibold text-slate-200"
+      >
         <a href="faq.html" class="py-1">FAQ</a>
         <a href="testimonials.html" class="py-1">Testimonials</a>
-        <a href="index.html" class="flex items-center justify-between py-1">Trading <i class="fa-solid fa-chevron-right text-xs opacity-70"></i></a>
-        <a href="about.html" class="flex items-center justify-between py-1">About us <i class="fa-solid fa-chevron-right text-xs opacity-70"></i></a>
+        <a href="index.html" class="flex items-center justify-between py-1"
+          >Home <i class="fa-solid fa-chevron-right text-xs opacity-70"></i
+        ></a>
+        <a href="about.html" class="flex items-center justify-between py-1"
+          >About us <i class="fa-solid fa-chevron-right text-xs opacity-70"></i
+        ></a>
         <div class="py-2 border-t border-slate-700/80"></div>
         <div class="pt-2">
-          <a href="dashboard.html" class="inline-flex w-full items-center justify-center rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold h-11">Client Area</a>
+          <a
+            href="dashboard.html"
+            class="inline-flex w-full items-center justify-center rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold h-11"
+            >Client Area</a
+          >
         </div>
       </nav>
     </aside>
 
-    <main class="max-w-4xl mx-auto p-4 md:p-6 lg:p-8">
-        <header class="mb-8">
-            <h1 class="text-4xl font-extrabold text-white tracking-tight">Billing</h1>
-            <p class="mt-2 text-lg text-slate-400">Manage your subscription, payment methods, and view your invoices.</p>
-        </header>
+    <main
+      class="max-w-4xl mx-auto p-4 md:p-6 lg:p-8"
+      role="main"
+      itemprop="mainContentOfPage"
+    >
+      <header class="mb-8" role="banner">
+        <h1
+          class="text-4xl font-extrabold text-white tracking-tight"
+          itemprop="name"
+        >
+          Billing Dashboard
+        </h1>
+        <p class="mt-2 text-lg text-slate-400" itemprop="description">
+          Manage your TOPC subscription, payment methods, and view your invoices
+          securely.
+        </p>
+      </header>
 
-        <div class="billing-container">
-            <!-- Current Plan -->
-            <section class="billing-section">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h2 class="section-title">Current Plan</h2>
-                        <p class="plan-name font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">TOPC Pro</p>
-                        <p class="plan-price">£29.99 / month</p>
-                    </div>
-                    <button class="btn btn-secondary">Change Plan</button>
-                </div>
-                <div class="plan-details">
-                    <p>Your plan renews on <span class="font-semibold text-white">November 7, 2025</span>.</p>
-                </div>
-            </section>
+      <div
+        class="billing-container"
+        itemscope
+        itemtype="https://schema.org/PaymentService"
+      >
+        <!-- Current Plan -->
+        <section
+          class="billing-section"
+          aria-labelledby="current-plan-heading"
+          itemscope
+          itemtype="https://schema.org/Product"
+        >
+          <div class="flex justify-between items-start">
+            <div>
+              <h2
+                class="section-title"
+                id="current-plan-heading"
+                itemprop="name"
+              >
+                Current Plan
+              </h2>
+              <p
+                class="plan-name font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500"
+                itemprop="brand"
+              >
+                TOPC Pro
+              </p>
+              <p
+                class="plan-price"
+                itemprop="offers"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              >
+                <span itemprop="price">£29.99</span> /
+                <span itemprop="priceCurrency">GBP</span> month
+              </p>
+            </div>
+            <button
+              class="btn btn-secondary"
+              aria-label="Change subscription plan"
+            >
+              Change Plan
+            </button>
+          </div>
+          <div class="plan-details">
+            <p>
+              Your plan renews on
+              <span class="font-semibold text-white">November 7, 2025</span>.
+            </p>
+          </div>
+        </section>
 
-            <!-- Payment Methods -->
-            <section class="billing-section">
-                <div class="flex justify-between items-center section-header">
-                    <h2 class="section-title">Payment Methods</h2>
-                    <button class="btn btn-primary">Add New Method</button>
+        <!-- Payment Methods -->
+        <section class="billing-section">
+          <div class="flex justify-between items-center section-header">
+            <h2 class="section-title">Payment Methods</h2>
+            <button class="btn btn-primary">Add New Method</button>
+          </div>
+          <ul class="payment-methods-list">
+            <li>
+              <div class="flex items-center gap-4">
+                <i class="fab fa-cc-visa text-4xl text-blue-400"></i>
+                <div>
+                  <p class="font-semibold text-white">Visa ending in 1234</p>
+                  <p class="text-sm text-slate-400">Expires 12/2028</p>
                 </div>
-                <ul class="payment-methods-list">
-                    <li>
-                        <div class="flex items-center gap-4">
-                            <i class="fab fa-cc-visa text-4xl text-blue-400"></i>
-                            <div>
-                                <p class="font-semibold text-white">Visa ending in 1234</p>
-                                <p class="text-sm text-slate-400">Expires 12/2028</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-secondary btn-sm">Remove</button>
-                    </li>
-                </ul>
-            </section>
+              </div>
+              <button class="btn btn-secondary btn-sm">Remove</button>
+            </li>
+          </ul>
+        </section>
 
-            <!-- Billing History -->
-            <section class="billing-section">
-                <h2 class="section-title">Billing History</h2>
-                <table class="billing-history-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Invoice</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Oct 7, 2025</td>
-                            <td>TOPC Pro Subscription</td>
-                            <td>£29.99</td>
-                            <td><a href="#" class="text-blue-400 hover:underline">Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>Sep 7, 2025</td>
-                            <td>TOPC Pro Subscription</td>
-                            <td>£29.99</td>
-                            <td><a href="#" class="text-blue-400 hover:underline">Download</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </div>
+        <!-- Billing History -->
+        <section class="billing-section">
+          <h2 class="section-title">Billing History</h2>
+          <table class="billing-history-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Invoice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Oct 7, 2025</td>
+                <td>TOPC Pro Subscription</td>
+                <td>£29.99</td>
+                <td>
+                  <a href="#" class="text-blue-400 hover:underline">Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td>Sep 7, 2025</td>
+                <td>TOPC Pro Subscription</td>
+                <td>£29.99</td>
+                <td>
+                  <a href="#" class="text-blue-400 hover:underline">Download</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
     </main>
 
     <div id="messageBox"></div>
@@ -206,21 +565,46 @@
         </div>
     </section> -->
 
-    <!-- Brand slider strip above footer -->
+   <!-- Brand slider strip above footer -->
     <section class="brand-strip">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="brand-viewport">
           <div class="brand-track" data-duplicate>
             <div class="brand-seq">
               <div class="brand-item"><span class="k">Forbes</span></div>
-              <div class="brand-item"><span class="k">fmls:23</span><span class="sub">Best Prop Trading Firm</span></div>
-              <div class="brand-item"><span class="k">fmls:24</span><span class="sub">Best Prop Trading Firm</span></div>
-              <div class="brand-item"><span class="badge">50</span><span class="sub">Deloitte Fast • 2023 Winner</span></div>
-              <div class="brand-item"><span class="badge">50</span><span class="sub">Deloitte Fast • 2022 Winner</span></div>
-              <div class="brand-item"><span class="badge">50</span><span class="sub">Deloitte Fast • 2021 Winner</span></div>
-              <div class="brand-item"><span class="badge">50</span><span class="sub">Deloitte Fast • 2020 Winner</span></div>
-              <div class="brand-item"><span class="k">EY Entrepreneur</span><span class="sub">2022 CZ • Tech Category</span></div>
-              <div class="brand-item"><i class="fa-solid fa-star text-emerald-400"></i><span class="k">4.8</span><span class="sub">Trustpilot</span></div>
+              <div class="brand-item">
+                <span class="k">fmls:23</span
+                ><span class="sub">Best Trading Analytics Tools</span>
+              </div>
+              <div class="brand-item">
+                <span class="k">fmls:24</span
+                ><span class="sub">Best Trading Analytics Tools</span>
+              </div>
+              <div class="brand-item">
+                <span class="badge">50</span
+                ><span class="sub">Innovation Fast • 2023 Winner</span>
+              </div>
+              <div class="brand-item">
+                <span class="badge">50</span
+                ><span class="sub">Innovation Fast • 2022 Winner</span>
+              </div>
+              <div class="brand-item">
+                <span class="badge">50</span
+                ><span class="sub">Innovation Fast • 2021 Winner</span>
+              </div>
+              <div class="brand-item">
+                <span class="badge">50</span
+                ><span class="sub">Innovation Fast • 2020 Winner</span>
+              </div>
+              <div class="brand-item">
+                <span class="k">Entrepreneur</span
+                ><span class="sub">2022 CZ • Tech Category</span>
+              </div>
+              <div class="brand-item">
+                <i class="fa-solid fa-star text-emerald-400"></i
+                ><span class="k">4.8</span
+                ><span class="sub">Ratings & Reviews</span>
+              </div>
             </div>
           </div>
         </div>
@@ -233,16 +617,24 @@
         <!-- Top: App + Newsletter -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <div>
-            <h4 class="text-sm font-bold tracking-wide text-slate-400">DOWNLOAD OUR APP TO YOUR DEVICE</h4>
+            <h4 class="text-sm font-bold tracking-wide text-slate-400">
+              DOWNLOAD OUR APP TO YOUR DEVICE
+            </h4>
             <div class="mt-4 flex gap-4 flex-wrap">
-              <a href="#" class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400">
+              <a
+                href="#"
+                class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400"
+              >
                 <i class="fab fa-apple text-2xl"></i>
                 <div class="leading-tight">
                   <div class="text-[10px] text-slate-400">Download on the</div>
                   <div class="text-sm font-semibold">App Store</div>
                 </div>
               </a>
-              <a href="#" class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400">
+              <a
+                href="#"
+                class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400"
+              >
                 <i class="fab fa-google-play text-xl"></i>
                 <div class="leading-tight">
                   <div class="text-[10px] text-slate-400">Download on</div>
@@ -252,25 +644,60 @@
             </div>
           </div>
           <div>
-            <h4 class="text-sm font-bold tracking-wide text-slate-400">STAY UPDATED WITH OUR NEWSLETTER!</h4>
+            <h4 class="text-sm font-bold tracking-wide text-slate-400">
+              STAY UPDATED WITH OUR NEWSLETTER!
+            </h4>
             <div class="mt-4 flex gap-3">
-              <input type="email" placeholder="Email" class="flex-1 h-12 rounded-md bg-slate-800 border border-slate-700 px-4 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              <button class="h-12 px-5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold">SUBSCRIBE</button>
+              <input
+                type="email"
+                placeholder="Email"
+                class="flex-1 h-12 rounded-md bg-slate-800 border border-slate-700 px-4 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                class="h-12 px-5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold"
+              >
+                SUBSCRIBE
+              </button>
             </div>
           </div>
         </div>
 
         <!-- Payment options -->
         <div class="mt-10">
-          <h4 class="text-sm font-bold tracking-wide text-slate-400">PAYMENT OPTIONS</h4>
-          <div class="mt-5 flex flex-wrap items-center gap-x-10 gap-y-4 text-2xl">
-            <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-solid fa-building-columns"></i> Bank Transfer</span>
-            <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
-            <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-brands fa-cc-visa"></i> VISA</span>
-            <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-brands fa-cc-discover"></i> Discover</span>
-            <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-brands fa-cc-paypal"></i> PayPal</span>
-            <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-solid fa-credit-card"></i> Maestro</span>
-            <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-solid fa-wallet"></i> Skrill</span>
+          <h4 class="text-sm font-bold tracking-wide text-slate-400">
+            PAYMENT OPTIONS
+          </h4>
+          <div
+            class="mt-5 flex flex-wrap items-center gap-x-10 gap-y-4 text-2xl"
+          >
+            <span
+              class="inline-flex items-center gap-2 text-slate-300 text-base"
+              ><i class="fa-solid fa-building-columns"></i> Bank Transfer</span
+            >
+            <span
+              class="inline-flex items-center gap-2 text-slate-300 text-base"
+              ><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span
+            >
+            <span
+              class="inline-flex items-center gap-2 text-slate-300 text-base"
+              ><i class="fa-brands fa-cc-visa"></i> VISA</span
+            >
+            <span
+              class="inline-flex items-center gap-2 text-slate-300 text-base"
+              ><i class="fa-brands fa-cc-discover"></i> Discover</span
+            >
+            <span
+              class="inline-flex items-center gap-2 text-slate-300 text-base"
+              ><i class="fa-brands fa-cc-paypal"></i> PayPal</span
+            >
+            <span
+              class="inline-flex items-center gap-2 text-slate-300 text-base"
+              ><i class="fa-solid fa-credit-card"></i> Maestro</span
+            >
+            <span
+              class="inline-flex items-center gap-2 text-slate-300 text-base"
+              ><i class="fa-solid fa-wallet"></i> Skrill</span
+            >
           </div>
         </div>
 
@@ -284,12 +711,22 @@
 
         <!-- Disclaimer -->
         <div class="mt-8 text-xs text-slate-400 leading-relaxed">
-          All information provided on this site is intended solely for educational purposes related to trading on financial markets and does not serve in any way as a specific investment recommendation, business recommendation, investment opportunity analysis or similar general recommendation regarding the trading of investment instruments. TOPC only provides services of simulated trading and educational tools for traders. The information on this site is not directed at residents in any country or jurisdiction where such distribution or use would be contrary to local laws or regulations. TOPC companies do not act as a broker and do not accept any deposits. The offered technical solution for the TOPC platforms and data feed is powered by liquidity providers.
+          All information provided on this site is intended solely for
+          educational purposes related to trading on financial markets and does
+          not serve in any way as a specific investment recommendation, business
+          recommendation, investment opportunity analysis or similar general
+          recommendation regarding the trading of investment instruments. TOPC
+          only provides services of simulated trading and educational tools for
+          traders. The information on this site is not directed at residents in
+          any country or jurisdiction where such distribution or use would be
+          contrary to local laws or regulations. TOPC companies do not act as a
+          broker and do not accept any deposits.
         </div>
 
         <!-- Copyright -->
         <div class="mt-8 text-sm text-slate-500">
-          2025 © Copyright - TOPC.com Made with <span class="text-rose-400">❤</span> for trading
+          2025 © Copyright - TOPC.com Made with
+          <span class="text-rose-400">❤</span> for trading
         </div>
       </div>
     </footer>
@@ -297,5 +734,5 @@
     <script src="js/auth.js"></script>
     <script src="js/billing.js"></script>
     <script src="js/nav.js" defer></script>
-</body>
+  </body>
 </html>

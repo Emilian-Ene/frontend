@@ -3,7 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home • Grow & Monetize Your Demo Trading</title>
+
+    <!-- SEO Meta Tags -->
+    <title>
+      TOPC - Free Professional Trading Tools & Analytics | Risk Management
+    </title>
+    <meta
+      name="description"
+      content="Access professional-grade trading tools for free. Advanced risk analytics, SQN calculations, Monte Carlo simulations, and AI-powered insights used by prop firms and institutional traders."
+    />
+    <meta
+      name="keywords"
+      content="trading tools, risk management, trading analytics, SQN, Monte Carlo simulation, trading journal, prop trading, VaR calculation, trading metrics"
+    />
+    <meta name="author" content="TOPC" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta
+      property="og:title"
+      content="TOPC - Free Professional Trading Tools & Analytics"
+    />
+    <meta
+      property="og:description"
+      content="Access the same advanced trading metrics used by prop firms - completely free. Risk analytics, performance tracking, and AI insights."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://topc.com" />
+    <meta
+      property="og:image"
+      content="https://topc.com/images/topc-og-image.jpg"
+    />
+    <meta property="og:site_name" content="TOPC" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="TOPC - Free Professional Trading Tools & Analytics"
+    />
+    <meta
+      name="twitter:description"
+      content="Access advanced trading metrics used by prop firms - completely free."
+    />
+    <meta
+      name="twitter:image"
+      content="https://topc.com/images/topc-twitter-card.jpg"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://topc.com" />
+
+    <!-- Sitemap for Search Engines -->
+    <link
+      rel="sitemap"
+      type="application/xml"
+      title="Sitemap"
+      href="/sitemap.xml"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -18,63 +80,213 @@
 
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="css/brand-strip.css" />
-    
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "TOPC - Trading Outcome Probability Calculator",
+        "description": "Professional-grade trading tools and analytics platform offering free risk management, performance analytics, and AI-powered insights for traders.",
+        "url": "https://topc.com",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free access to professional trading tools"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "TOPC",
+          "url": "https://topc.com"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "3000",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "featureList": [
+          "Risk of Ruin Calculations",
+          "VaR (Value at Risk) Analysis",
+          "SQN (System Quality Number)",
+          "Monte Carlo Simulations",
+          "Trading Journal",
+          "AI-Powered Insights",
+          "Multi-timezone Support",
+          "Performance Analytics"
+        ]
+      }
+    </script>
   </head>
-  <body class="text-slate-300 bg-slate-900" style="font-family: 'Inter', sans-serif;">
+  <body
+    class="text-slate-300 bg-slate-900"
+    style="font-family: 'Inter', sans-serif"
+  >
     <!-- Site Header (same as app) -->
-    <header class="sticky top-0 z-50 bg-slate-800/95 backdrop-blur border-b border-slate-700/80">
+    <header
+      class="sticky top-0 z-50 bg-slate-800/95 backdrop-blur border-b border-slate-700/80"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="h-14 flex items-center gap-6">
           <!-- Brand -->
           <a href="index.html" class="flex items-center gap-2 shrink-0">
             <!-- Geometric mark with colored bars; horizontal wicks on all bars; right chevron gold -->
-            <svg class="w-10 h-10" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg
+              class="w-10 h-10"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
               <defs>
-                <linearGradient id="goldChevron" x1="14" y1="12" x2="20" y2="12" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#f59e0b"/>
-                  <stop offset="1" stop-color="#fbbf24"/>
+                <linearGradient
+                  id="goldChevron"
+                  x1="14"
+                  y1="12"
+                  x2="20"
+                  y2="12"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0" stop-color="#f59e0b" />
+                  <stop offset="1" stop-color="#fbbf24" />
                 </linearGradient>
               </defs>
               <g transform="rotate(45 12 12)">
                 <!-- Right chevron (gold) -->
-                <path d="M14 6 L20 12 L14 18 L14 15 L17 12 L14 9 Z" fill="url(#goldChevron)"/>
+                <path
+                  d="M14 6 L20 12 L14 18 L14 15 L17 12 L14 9 Z"
+                  fill="url(#goldChevron)"
+                />
                 <!-- Left ascending bars (square corners) -->
-                <rect x="4.8" y="14" width="5.8" height="2" rx="0" fill="#22c55e"/>
-                <rect x="5.8" y="11" width="4.8" height="2" rx="0" fill="#ef4444"/>
-                <rect x="6.8" y="8" width="3.8" height="2" rx="0" fill="#22c55e"/>
+                <rect
+                  x="4.8"
+                  y="14"
+                  width="5.8"
+                  height="2"
+                  rx="0"
+                  fill="#22c55e"
+                />
+                <rect
+                  x="5.8"
+                  y="11"
+                  width="4.8"
+                  height="2"
+                  rx="0"
+                  fill="#ef4444"
+                />
+                <rect
+                  x="6.8"
+                  y="8"
+                  width="3.8"
+                  height="2"
+                  rx="0"
+                  fill="#22c55e"
+                />
                 <!-- Horizontal wicks (left/right) for each bar - thinner with square ends -->
                 <!-- Bottom green bar center y=15, edges x=[4.8,10.6] -->
-                <line x1="4.2" y1="15" x2="4.8" y2="15" stroke="#22c55e" stroke-width="0.6" stroke-linecap="square"/>
-                <line x1="10.6" y1="15" x2="11.2" y2="15" stroke="#22c55e" stroke-width="0.6" stroke-linecap="square"/>
+                <line
+                  x1="4.2"
+                  y1="15"
+                  x2="4.8"
+                  y2="15"
+                  stroke="#22c55e"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
+                <line
+                  x1="10.6"
+                  y1="15"
+                  x2="11.2"
+                  y2="15"
+                  stroke="#22c55e"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
                 <!-- Middle red bar center y=12, edges x=[5.8,10.6] -->
-                <line x1="5.2" y1="12" x2="10.8" y2="12" stroke="#ef4444" stroke-width="0.6" stroke-linecap="square"/>
-                <line x1="10.6" y1="12" x2="15.2" y2="12" stroke="#ef4444" stroke-width="0.6" stroke-linecap="square"/>
+                <line
+                  x1="5.2"
+                  y1="12"
+                  x2="10.8"
+                  y2="12"
+                  stroke="#ef4444"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
+                <line
+                  x1="10.6"
+                  y1="12"
+                  x2="15.2"
+                  y2="12"
+                  stroke="#ef4444"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
                 <!-- Top green bar center y=9, edges x=[6.8,10.6] -->
-                <line x1="6.2" y1="9" x2="6.8" y2="9" stroke="#22c55e" stroke-width="0.6" stroke-linecap="square"/>
-                <line x1="10.6" y1="9" x2="11.2" y2="9" stroke="#22c55e" stroke-width="0.6" stroke-linecap="square"/>
+                <line
+                  x1="6.2"
+                  y1="9"
+                  x2="6.8"
+                  y2="9"
+                  stroke="#22c55e"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
+                <line
+                  x1="10.6"
+                  y1="9"
+                  x2="11.2"
+                  y2="9"
+                  stroke="#22c55e"
+                  stroke-width="0.6"
+                  stroke-linecap="square"
+                />
               </g>
             </svg>
-            <span class="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">TOPC</span>
-            <span class="ml-1 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">10</span>
-            <span class="ml-1 text-[10px] uppercase tracking-wide text-slate-400">Years</span>
+            <span
+              class="font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500"
+              >TOPC</span
+            >
           </a>
 
           <!-- Primary Nav (desktop) -->
-          <nav class="nav-desktop hidden xl:flex items-center gap-8 text-sm font-semibold text-slate-300">
+          <nav
+            class="nav-desktop hidden xl:flex items-center gap-8 text-sm font-semibold text-slate-300"
+          >
             <a href="faq.html" class="hover:text-white">FAQ</a>
-            <a href="testimonials.html" class="hover:text-white">Testimonials</a>
-            <a href="index.html" class="hover:text-white flex items-center gap-1">Trading</a>
-            <a href="about.html" class="hover:text-white flex items-center gap-1">About us</a>
-            <a href="login.html" class="hover:text-white">Login</a>
+            <a href="testimonials.html" class="hover:text-white"
+              >Testimonials</a
+            >
+
+            <a
+              href="about.html"
+              class="hover:text-white flex items-center gap-1"
+              >About us</a
+            >
+            <!-- <a href="login.html" class="hover:text-white">Login</a> -->
           </nav>
 
           <!-- Right Side -->
           <div class="ml-auto flex items-center gap-4">
-            <a href="dashboard.html" class="hidden md:inline text-blue-400 hover:text-blue-300 font-semibold">Client Area</a>
+            <a
+              href="dashboard.html"
+              class="hidden md:inline text-blue-400 hover:text-blue-300 font-semibold"
+              >Client Area</a
+            >
             <!-- User name hidden on Home page -->
             <!-- <span class="font-semibold text-slate-200">Ionut Emilian</span> -->
-            <div class="w-8 h-8 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center text-sm font-bold hidden">IE</div>
-            <button id="navTrigger" class="nav-trigger xl:hidden p-2 -mr-2 text-slate-300 hover:text-white" aria-label="Open menu">
+            <div
+              class="w-8 h-8 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center text-sm font-bold hidden"
+            >
+              IE
+            </div>
+            <button
+              id="navTrigger"
+              class="nav-trigger xl:hidden p-2 -mr-2 text-slate-300 hover:text-white"
+              aria-label="Open menu"
+            >
               <i class="fas fa-bars"></i>
             </button>
           </div>
@@ -84,30 +296,103 @@
 
     <!-- Off-canvas drawer (right) -->
     <div id="drawerOverlay" class="fixed inset-0 bg-black/50 z-50 hidden"></div>
-    <aside id="drawerPanel" class="fixed top-0 right-0 h-full w-80 sm:w-96 bg-slate-800 border-l border-slate-700 z-50 transform translate-x-full transition-transform duration-300">
-      <div class="h-14 flex items-center justify-between px-4 border-b border-slate-700/80">
-        <button class="text-slate-300 hover:text-white"><i class="fas fa-magnifying-glass"></i></button>
-        <button id="drawerCloseBtn" class="text-slate-300 hover:text-white text-xl" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
+    <aside
+      id="drawerPanel"
+      class="fixed top-0 right-0 h-full w-80 sm:w-96 bg-slate-800 border-l border-slate-700 z-50 transform translate-x-full transition-transform duration-300"
+    >
+      <div
+        class="h-14 flex items-center justify-between px-4 border-b border-slate-700/80"
+      >
+        <button class="text-slate-300 hover:text-white">
+          <i class="fas fa-magnifying-glass"></i>
+        </button>
+        <button
+          id="drawerCloseBtn"
+          class="text-slate-300 hover:text-white text-xl"
+          aria-label="Close menu"
+        >
+          <i class="fas fa-xmark"></i>
+        </button>
       </div>
-      <nav class="px-4 py-3 flex flex-col gap-4 text-base font-semibold text-slate-200">
+      <nav
+        class="px-4 py-3 flex flex-col gap-4 text-base font-semibold text-slate-200"
+      >
         <a href="faq.html" class="py-1">FAQ</a>
         <a href="testimonials.html" class="py-1">Testimonials</a>
-        <a href="index.html" class="flex items-center justify-between py-1">Trading <i class="fa-solid fa-chevron-right text-xs opacity-70"></i></a>
-        <a href="about.html" class="flex items-center justify-between py-1">About us <i class="fa-solid fa-chevron-right text-xs opacity-70"></i></a>
+        <a href="about.html" class="flex items-center justify-between py-1"
+          >About us <i class="fa-solid fa-chevron-right text-xs opacity-70"></i
+        ></a>
+        <a href="index.html" class="flex items-center justify-between py-1"
+          >Home <i class="fa-solid fa-chevron-right text-xs opacity-70"></i
+        ></a>
+        <a href="cookie-policy.html" class="py-1">Cookies</a>
+        <a href="imprint.html" class="py-1">Imprint</a>
+        <a href="terms.html" class="py-1">Terms & Conditions</a>
+        <a href="privacy.html" class="py-1">Privacy Policy</a>
         <div class="py-2 border-t border-slate-700/80"></div>
         <div class="pt-2">
-          <a href="#" class="inline-flex w-full items-center justify-center rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold h-11">Client Area</a>
+          <a
+            href="#"
+            class="inline-flex w-full items-center justify-center rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold h-11"
+            >Client Area</a
+          >
         </div>
       </nav>
     </aside>
 
+    <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener nofollow" target="_blank"><span class="blue-text"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500 Index"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "US 100 Cash CFD"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR to USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
+    }
+  ],
+  "colorTheme": "dark",
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": true,
+  "showSymbolLogo": true,
+  "displayMode": "regular"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+
     <!-- Promo bar -->
     <div class="bg-[#2b2b2b] text-amber-300 text-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-8 flex items-center gap-3">
-        <i class="fa-solid fa-bolt"></i>
-        <span class="text-amber-300/90">Special Deal</span>
-        <span class="text-slate-200">FTMO Celebrates 10 Years</span>
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-8 flex items-center gap-3"
+      >
+        <i class="fa-solid fa-gift"></i>
+        <span class="text-emerald-400 font-bold">100% FREE</span>
+        <span class="text-slate-200"
+          >Professional Trading Tools & Analytics</span
+        >
         <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
+        <span class="text-amber-300 font-bold">No Hidden Fees</span>
+        <i class="fa-solid fa-chevron-right text-xs opacity-70"></i>
+        <span class="text-emerald-400 font-bold">Used by Prop Firms</span>
       </div>
     </div>
 
@@ -115,11 +400,21 @@
     <section class="relative">
       <div class="absolute inset-0 bg-slate-900">
         <picture>
-          <source srcset="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1920&q=80" media="(min-width: 1024px)" />
-          <source srcset="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1280&q=80" media="(min-width: 640px)" />
+          <source
+            srcset="
+              https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1920&q=80
+            "
+            media="(min-width: 1024px)"
+          />
+          <source
+            srcset="
+              https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1280&q=80
+            "
+            media="(min-width: 640px)"
+          />
           <img
             src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80"
-            alt="Trading background"
+            alt="Professional trading platform dashboard with charts and analytics - TOPC trading tools"
             class="w-full h-full object-cover"
             loading="eager"
             onerror="this.style.display='none'"
@@ -127,23 +422,40 @@
         </picture>
         <div class="absolute inset-0 bg-slate-900/80"></div>
       </div>
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 sm:pt-16 sm:pb-24">
+      <div
+        class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 sm:pt-16 sm:pb-24"
+      >
         <div class="flex items-center gap-3 text-slate-300 text-sm">
           <span class="text-green-400 font-semibold">Excellent</span>
           <span class="flex items-center gap-1 text-emerald-400">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+            ><i class="fa-solid fa-star"></i>
           </span>
-          <a href="#" class="underline text-slate-300/90">Trustpilot</a>
+          <a href="#" class="underline text-slate-300/90">Ratings & Reviews</a>
         </div>
-        <h1 class="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight">
-          GROW & MONETIZE<br class="hidden sm:block" />YOUR DEMO TRADING
+        <h1
+          class="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight"
+        >
+          GROW & MONETIZE<br class="hidden sm:block" />YOUR TRADING SKILLS
         </h1>
         <p class="mt-6 text-slate-300 max-w-3xl text-base sm:text-lg">
-          Master your trading skills on our simulated trading platform, improve your trading on a demo FTMO Account with up to $200,000 and get a reward of up to 90% of your simulated profits.
+          Master your trading skills on our advanced trading platform. Improve
+          your performance with TOPC analytics that have processed over 100,000
+          trades.
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href="#" class="inline-flex items-center justify-center px-5 h-11 rounded-md bg-blue-600 hover:bg-blue-700 font-bold text-white">FTMO Challenge</a>
-          <a href="#" class="inline-flex items-center justify-center px-5 h-11 rounded-md border border-slate-500 hover:border-slate-400 text-white">Free Trial</a>
+          <a
+            href="dashboard.html"
+            class="inline-flex items-center justify-center px-5 h-11 rounded-md bg-blue-600 hover:bg-blue-700 font-bold text-white"
+            rel="noopener"
+            >Start Free Analytics</a
+          >
+          <a
+            href="#professional-tools"
+            class="inline-flex items-center justify-center px-5 h-11 rounded-md border border-slate-500 hover:border-slate-400 text-white"
+            >View Trading Tools</a
+          >
         </div>
       </div>
     </section>
@@ -151,18 +463,35 @@
     <!-- PROMO CARD -->
     <section class="relative z-10 -mt-10 pb-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="rounded-xl border border-slate-700 bg-slate-800/80 overflow-hidden shadow-lg">
+        <div
+          class="rounded-xl border border-slate-700 bg-slate-800/80 overflow-hidden shadow-lg"
+        >
           <div class="grid grid-cols-1 md:grid-cols-2">
             <div class="p-6 sm:p-8">
-              <div class="inline-flex items-center gap-2 rounded-md bg-amber-500/20 text-amber-300 px-3 py-1 text-sm font-bold -ml-1 mb-3">
-                <span class="-rotate-12">-19%</span>
+              <div
+                class="inline-flex items-center gap-2 rounded-md bg-amber-500/20 text-amber-300 px-3 py-1 text-sm font-bold -ml-1 mb-3"
+              >
+                <span class="-rotate-12">100%</span>
               </div>
-              <h3 class="text-xl sm:text-2xl font-extrabold text-white">Celebrate 10 years of FTMO with $100K FTMO Challenge</h3>
-              <p class="mt-2 text-slate-300 text-sm sm:text-base">Better price. Better chance to show your trading edge.</p>
-              <a href="#" class="mt-4 inline-flex items-center justify-center px-4 h-10 rounded-md bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold">Claim Discount</a>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-white">
+                Celebrate 2 years of TOPC with 100K+ analyzed trades
+              </h3>
+              <p class="mt-2 text-slate-300 text-sm sm:text-base">
+                A better chance to show your trading edge.
+              </p>
+              <a
+                href="dashboard.html"
+                class="mt-4 inline-flex items-center justify-center px-4 h-10 rounded-md bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold"
+                rel="noopener"
+                >Claim your free account now</a
+              >
             </div>
             <div class="hidden md:block relative min-h-[220px]">
-              <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=1200&auto=format&fit=crop" alt="Promo" class="absolute inset-0 w-full h-full object-cover opacity-70" />
+              <img
+                src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=1200&auto=format&fit=crop"
+                alt="TOPC trading analytics celebrating 2 years with advanced trading tools and performance metrics"
+                class="absolute inset-0 w-full h-full object-cover opacity-70"
+              />
             </div>
           </div>
         </div>
@@ -174,20 +503,162 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div class="p-4">
-            <p class="text-3xl font-extrabold text-white">3M+</p>
+            <p class="text-3xl font-extrabold text-white">3K+</p>
             <p class="text-slate-400 text-sm">Customers worldwide</p>
           </div>
           <div class="p-4">
             <p class="text-3xl font-extrabold text-white">4.8/5</p>
-            <p class="text-slate-400 text-sm">Trustpilot</p>
+            <p class="text-slate-400 text-sm">Ratings & Reviews</p>
           </div>
           <div class="p-4">
-            <p class="text-3xl font-extrabold text-white">$450M+</p>
-            <p class="text-slate-400 text-sm">Paid in rewards</p>
+            <p class="text-3xl font-extrabold text-white">100K+</p>
+            <p class="text-slate-400 text-sm">Analyzed trades</p>
           </div>
           <div class="p-4">
-            <p class="text-3xl font-extrabold text-white">140+</p>
+            <p class="text-3xl font-extrabold text-white">14+</p>
             <p class="text-slate-400 text-sm">Countries served</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL TRADING TOOLS -->
+    <section id="professional-tools" class="py-16 bg-slate-800/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center mb-12">
+          <div
+            class="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 text-emerald-300 px-4 py-2 text-sm font-bold mb-4"
+          >
+            <i class="fa-solid fa-gift"></i>
+            <span>100% FREE</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+            Professional-Grade Trading Tools
+          </h2>
+          <p class="text-slate-300 text-lg max-w-3xl mx-auto">
+            Access the same advanced metrics and analytics used by prop trading
+            firms and institutional traders - completely free.
+          </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Risk Management -->
+          <div
+            class="bg-slate-800/80 border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-colors"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-red-500/20 rounded-lg flex items-center justify-center"
+              >
+                <i class="fa-solid fa-shield-halved text-red-400"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">Risk Analytics</h3>
+            </div>
+            <ul class="space-y-2 text-slate-300">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>Risk of Ruin calculations</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>VaR (Value at Risk) limits</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>Maximum Drawdown tracking</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>Recovery Factor analysis</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Performance Metrics -->
+          <div
+            class="bg-slate-800/80 border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-colors"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center"
+              >
+                <i class="fa-solid fa-chart-line text-blue-400"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">
+                Performance Analytics
+              </h3>
+            </div>
+            <ul class="space-y-2 text-slate-300">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>SQN (System Quality Number)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>Streak Z-Score analysis</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>R-multiple tracking</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>Win/Loss ratio analysis</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Advanced Features -->
+          <div
+            class="bg-slate-800/80 border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-colors"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center"
+              >
+                <i class="fa-solid fa-brain text-purple-400"></i>
+              </div>
+              <h3 class="text-xl font-bold text-white">Advanced Tools</h3>
+            </div>
+            <ul class="space-y-2 text-slate-300">
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>Monte Carlo simulations</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>Fat-tail risk modeling</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>AI-powered insights</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fa-solid fa-check text-emerald-400 text-sm"></i>
+                <span>Multi-timezone support</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <div
+            class="inline-flex items-center gap-4 bg-slate-800/80 border border-slate-700 rounded-xl p-6"
+          >
+            <div class="flex items-center gap-2 text-emerald-400">
+              <i class="fa-solid fa-star"></i>
+              <span class="font-bold">Professional Grade</span>
+            </div>
+            <div class="w-px h-8 bg-slate-600"></div>
+            <div class="flex items-center gap-2 text-blue-400">
+              <i class="fa-solid fa-infinity"></i>
+              <span class="font-bold">Always Free</span>
+            </div>
+            <div class="w-px h-8 bg-slate-600"></div>
+            <div class="flex items-center gap-2 text-purple-400">
+              <i class="fa-solid fa-users"></i>
+              <span class="font-bold">Used by Pros</span>
+            </div>
           </div>
         </div>
       </div>
@@ -200,14 +671,39 @@
           <div class="brand-track" data-duplicate>
             <div class="brand-seq">
               <div class="brand-item"><span class="k">Forbes</span></div>
-              <div class="brand-item"><span class="k">fmls:23</span><span class="sub">Best Prop Trading Firm</span></div>
-              <div class="brand-item"><span class="k">fmls:24</span><span class="sub">Best Prop Trading Firm</span></div>
-              <div class="brand-item"><span class="badge">50</span><span class="sub">Deloitte Fast • 2023 Winner</span></div>
-              <div class="brand-item"><span class="badge">50</span><span class="sub">Deloitte Fast • 2022 Winner</span></div>
-              <div class="brand-item"><span class="badge">50</span><span class="sub">Deloitte Fast • 2021 Winner</span></div>
-              <div class="brand-item"><span class="badge">50</span><span class="sub">Deloitte Fast • 2020 Winner</span></div>
-              <div class="brand-item"><span class="k">EY Entrepreneur</span><span class="sub">2022 CZ • Tech Category</span></div>
-              <div class="brand-item"><i class="fa-solid fa-star text-emerald-400"></i><span class="k">4.8</span><span class="sub">Trustpilot</span></div>
+              <div class="brand-item">
+                <span class="k">fmls:23</span
+                ><span class="sub">Best Trading Analytics Tools</span>
+              </div>
+              <div class="brand-item">
+                <span class="k">fmls:24</span
+                ><span class="sub">Best Trading Analytics Tools</span>
+              </div>
+              <div class="brand-item">
+                <span class="badge">50</span
+                ><span class="sub">Innovation Fast • 2023 Winner</span>
+              </div>
+              <div class="brand-item">
+                <span class="badge">50</span
+                ><span class="sub">Innovation Fast • 2022 Winner</span>
+              </div>
+              <div class="brand-item">
+                <span class="badge">50</span
+                ><span class="sub">Innovation Fast • 2021 Winner</span>
+              </div>
+              <div class="brand-item">
+                <span class="badge">50</span
+                ><span class="sub">Innovation Fast • 2020 Winner</span>
+              </div>
+              <div class="brand-item">
+                <span class="k">Entrepreneur</span
+                ><span class="sub">2022 CZ • Tech Category</span>
+              </div>
+              <div class="brand-item">
+                <i class="fa-solid fa-star text-emerald-400"></i
+                ><span class="k">4.8</span
+                ><span class="sub">Ratings & Reviews</span>
+              </div>
             </div>
           </div>
         </div>
@@ -216,37 +712,69 @@
 
     <footer class="border-t border-slate-800 bg-slate-900/90 text-slate-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <!-- Top: App + Newsletter -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <!-- Top: All Buttons + Newsletter -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start text-center"
+        >
           <div>
-            <h4 class="text-sm font-bold tracking-wide text-slate-400">DOWNLOAD OUR FTMO APP TO YOUR DEVICE</h4>
-            <div class="mt-4 flex gap-4 flex-wrap">
-              <a href="#" class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400">
+            <h4 class="text-sm font-bold tracking-wide text-slate-400 mb-4">
+              DOWNLOAD OUR TOPC APP TO YOUR DEVICE & SUPPORT DEVELOPMENT
+            </h4>
+            <div class="flex gap-4 flex-wrap justify-center">
+              <a
+                href="#"
+                class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400"
+              >
                 <i class="fab fa-apple text-2xl"></i>
                 <div class="leading-tight">
                   <div class="text-[10px] text-slate-400">Download on the</div>
                   <div class="text-sm font-semibold">App Store</div>
                 </div>
               </a>
-              <a href="#" class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400">
+              <a
+                href="#"
+                class="inline-flex items-center gap-3 rounded-md border border-slate-600 px-4 h-12 hover:border-slate-400"
+              >
                 <i class="fab fa-google-play text-xl"></i>
                 <div class="leading-tight">
                   <div class="text-[10px] text-slate-400">Download on</div>
                   <div class="text-sm font-semibold">Google Play</div>
                 </div>
               </a>
+              <a
+                href="https://www.paypal.com/donate/?hosted_button_id=UMH6455D8JHR2"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-semibold px-4 h-12 transition-colors"
+              >
+                <i class="fas fa-heart text-red-500"></i>
+                <span>Donate via PayPal</span>
+              </a>
             </div>
+            <p class="text-xs text-slate-400 mt-3">
+              Help us keep TOPC free for everyone • Every contribution matters!
+            </p>
           </div>
           <div>
-            <h4 class="text-sm font-bold tracking-wide text-slate-400">STAY UPDATED WITH OUR NEWSLETTER!</h4>
-            <div class="mt-4 flex gap-3">
-              <input type="email" placeholder="Email" class="flex-1 h-12 rounded-md bg-slate-800 border border-slate-700 px-4 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              <button class="h-12 px-5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold">SUBSCRIBE</button>
+            <h4 class="text-sm font-bold tracking-wide text-slate-400">
+              STAY UPDATED WITH OUR NEWSLETTER!
+            </h4>
+            <div class="mt-4 flex gap-3 justify-center">
+              <input
+                type="email"
+                placeholder="Email"
+                class="flex-1 max-w-xs h-12 rounded-md bg-slate-800 border border-slate-700 px-4 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                class="h-12 px-5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold"
+              >
+                SUBSCRIBE
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Payment options -->
+        <!-- Payment options
         <div class="mt-10">
           <h4 class="text-sm font-bold tracking-wide text-slate-400">PAYMENT OPTIONS</h4>
           <div class="mt-5 flex flex-wrap items-center gap-x-10 gap-y-4 text-2xl">
@@ -258,7 +786,7 @@
             <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-solid fa-credit-card"></i> Maestro</span>
             <span class="inline-flex items-center gap-2 text-slate-300 text-base"><i class="fa-solid fa-wallet"></i> Skrill</span>
           </div>
-        </div>
+        </div> -->
 
         <!-- Legal links -->
         <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm">
@@ -270,19 +798,250 @@
 
         <!-- Disclaimer -->
         <div class="mt-8 text-xs text-slate-400 leading-relaxed">
-          All information provided on this site is intended solely for educational purposes related to trading on financial markets and does not serve in any way as a specific investment recommendation, business recommendation, investment opportunity analysis or similar general recommendation regarding the trading of investment instruments. FTMO only provides services of simulated trading and educational tools for traders. The information on this site is not directed at residents in any country or jurisdiction where such distribution or use would be contrary to local laws or regulations. FTMO companies do not act as a broker and do not accept any deposits. The offered technical solution for the FTMO platforms and data feed is powered by liquidity providers.
+          All information provided on this site is intended solely for
+          educational purposes related to trading on financial markets and does
+          not serve in any way as a specific investment recommendation, business
+          recommendation, investment opportunity analysis or similar general
+          recommendation regarding the trading of investment instruments. TOPC
+          only provides services of simulated trading and educational tools for
+          traders. The information on this site is not directed at residents in
+          any country or jurisdiction where such distribution or use would be
+          contrary to local laws or regulations. TOPC companies do not act as a
+          broker and do not accept any deposits.
         </div>
 
         <!-- Copyright -->
         <div class="mt-8 text-sm text-slate-500">
-          2025 © Copyright - FTMO.com Made with <span class="text-rose-400">❤</span> for trading
+          2025 © Copyright - TOPC.com Made with
+          <span class="text-rose-400">❤</span> for trading
         </div>
       </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsentBanner" class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur text-white p-4 z-50 border-t border-slate-700 hidden">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex-1">
+            <p class="text-sm text-slate-300">
+              This site uses tracking technologies. You may opt in or opt out of the use of these technologies.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button id="cookieDeny" class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+              Deny
+            </button>
+            <button id="cookieAcceptAll" class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+              Accept all
+            </button>
+            <button id="cookieSettings" class="px-4 py-2 text-sm font-medium bg-slate-600 hover:bg-slate-500 rounded-md transition-colors">
+              Consent Settings
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cookie Consent Settings Modal -->
+    <div id="cookieSettingsModal" class="fixed inset-0 bg-black/50 backdrop-blur z-[60] hidden">
+      <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-slate-800 rounded-lg shadow-2xl border border-slate-700 w-full max-w-md">
+          <!-- Modal Header -->
+          <div class="p-6 border-b border-slate-700">
+            <h2 class="text-xl font-bold text-white">Your Privacy</h2>
+            <p class="text-sm text-slate-400 mt-2">
+              This site uses tracking technologies. You may opt in or opt out of the use of these technologies.
+            </p>
+          </div>
+          
+          <!-- Modal Body -->
+          <div class="p-6 space-y-4">
+            <!-- Essential -->
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-white font-medium">Essential</h3>
+              </div>
+              <div class="relative">
+                <input type="checkbox" id="cookieEssential" checked disabled class="sr-only">
+                <div class="w-11 h-6 bg-slate-600 rounded-full relative">
+                  <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-slate-400 rounded-full transform translate-x-5 transition-transform"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Marketing -->
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-white font-medium">Marketing</h3>
+              </div>
+              <div class="relative">
+                <input type="checkbox" id="cookieMarketing" class="sr-only cookie-toggle">
+                <label for="cookieMarketing" class="w-11 h-6 bg-slate-600 rounded-full relative block cursor-pointer">
+                  <div class="cookie-toggle-dot absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transform transition-transform"></div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Analytics -->
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-white font-medium">Analytics</h3>
+              </div>
+              <div class="relative">
+                <input type="checkbox" id="cookieAnalytics" class="sr-only cookie-toggle">
+                <label for="cookieAnalytics" class="w-11 h-6 bg-slate-600 rounded-full relative block cursor-pointer">
+                  <div class="cookie-toggle-dot absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transform transition-transform"></div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Functional -->
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-white font-medium">Functional</h3>
+              </div>
+              <div class="relative">
+                <input type="checkbox" id="cookieFunctional" class="sr-only cookie-toggle">
+                <label for="cookieFunctional" class="w-11 h-6 bg-slate-600 rounded-full relative block cursor-pointer">
+                  <div class="cookie-toggle-dot absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transform transition-transform"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="p-6 border-t border-slate-700">
+            <div class="flex flex-wrap gap-3 justify-between items-center">
+              <div class="flex gap-2">
+                <button id="cookieModalDeny" class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                  Deny
+                </button>
+                <button id="cookieModalAcceptAll" class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                  Accept all
+                </button>
+              </div>
+              <button id="cookieSave" class="px-6 py-2 text-sm font-medium bg-slate-600 hover:bg-slate-500 rounded-md transition-colors">
+                Save
+              </button>
+            </div>
+            <div class="mt-3 text-xs text-slate-400">
+              Read how we handle your data in our <a href="privacy.html" class="text-blue-400 hover:text-blue-300 underline">Privacy Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Drawer script centralized -->
     <script src="js/nav.js" defer></script>
     <script src="./js/dashboard.js" defer></script>
     <script src="js/brand-strip.js" defer></script>
+    
+    <!-- Cookie Consent Script -->
+    <script>
+      // Cookie consent functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const banner = document.getElementById('cookieConsentBanner');
+        const modal = document.getElementById('cookieSettingsModal');
+        
+        // Check if consent has already been given
+        if (!localStorage.getItem('cookieConsent')) {
+          setTimeout(() => {
+            banner.classList.remove('hidden');
+          }, 2000); // Show after 2 seconds
+        }
+
+        // Banner buttons
+        document.getElementById('cookieDeny').addEventListener('click', function() {
+          saveCookieConsent('denied');
+          banner.classList.add('hidden');
+        });
+
+        document.getElementById('cookieAcceptAll').addEventListener('click', function() {
+          saveCookieConsent('all');
+          banner.classList.add('hidden');
+        });
+
+        document.getElementById('cookieSettings').addEventListener('click', function() {
+          banner.classList.add('hidden');
+          modal.classList.remove('hidden');
+        });
+
+        // Modal buttons
+        document.getElementById('cookieModalDeny').addEventListener('click', function() {
+          saveCookieConsent('denied');
+          modal.classList.add('hidden');
+        });
+
+        document.getElementById('cookieModalAcceptAll').addEventListener('click', function() {
+          // Enable all toggles
+          document.querySelectorAll('.cookie-toggle').forEach(toggle => {
+            toggle.checked = true;
+            updateToggleVisual(toggle);
+          });
+          saveCookieConsent('all');
+          modal.classList.add('hidden');
+        });
+
+        document.getElementById('cookieSave').addEventListener('click', function() {
+          const preferences = {
+            essential: true, // Always true
+            marketing: document.getElementById('cookieMarketing').checked,
+            analytics: document.getElementById('cookieAnalytics').checked,
+            functional: document.getElementById('cookieFunctional').checked
+          };
+          saveCookieConsent('custom', preferences);
+          modal.classList.add('hidden');
+        });
+
+        // Toggle functionality
+        document.querySelectorAll('.cookie-toggle').forEach(toggle => {
+          toggle.addEventListener('change', function() {
+            updateToggleVisual(this);
+          });
+        });
+
+        function updateToggleVisual(toggle) {
+          const dot = toggle.nextElementSibling.querySelector('.cookie-toggle-dot');
+          if (toggle.checked) {
+            dot.style.transform = 'translateX(1.25rem)';
+            toggle.nextElementSibling.style.backgroundColor = '#3b82f6';
+          } else {
+            dot.style.transform = 'translateX(0)';
+            toggle.nextElementSibling.style.backgroundColor = '#475569';
+          }
+        }
+
+        function saveCookieConsent(type, preferences = null) {
+          const consent = {
+            type: type,
+            timestamp: new Date().toISOString(),
+            preferences: preferences
+          };
+          localStorage.setItem('cookieConsent', JSON.stringify(consent));
+          
+          // Here you can add your tracking code based on consent
+          if (type === 'all' || (preferences && preferences.analytics)) {
+            // Enable analytics tracking
+            console.log('Analytics enabled');
+          }
+          if (type === 'all' || (preferences && preferences.marketing)) {
+            // Enable marketing tracking
+            console.log('Marketing enabled');
+          }
+          if (type === 'all' || (preferences && preferences.functional)) {
+            // Enable functional cookies
+            console.log('Functional cookies enabled');
+          }
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.classList.add('hidden');
+          }
+        });
+      });
+    </script>
   </body>
 </html>

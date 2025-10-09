@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const token = localStorage.getItem("token");
+    // Get token from both localStorage and sessionStorage
+    const getAuthToken = () => {
+        return localStorage.getItem("token") || sessionStorage.getItem("token");
+    };
+    const token = getAuthToken();
 
     const headers = {
         "x-auth-token": token,

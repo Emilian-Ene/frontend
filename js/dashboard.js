@@ -1,6 +1,31 @@
 // --- Constants ---
-      const TRADES_STORAGE_KEY = "tradingJournalTrades_v20";
-      const SETTINGS_STORAGE_KEY = "tradingJournalSettings_v20";
+      // Base storage keys - will be made user-specific
+      const BASE_TRADES_KEY = "tradingJournalTrades_v20";
+      const BASE_SETTINGS_KEY = "tradingJournalSettings_v20";
+      
+      // Function to get user-specific storage keys
+      function getUserSpecificKey(baseKey) {
+        // Use a simple hash of the token to create user-specific keys
+        const getAuthToken = () => {
+          return localStorage.getItem("token") || sessionStorage.getItem("token");
+        };
+        const token = getAuthToken();
+        if (token) {
+          // Create a simple hash from the token for user identification
+          const userHash = btoa(token).slice(0, 8); // Simple hash for user identification
+          return `${baseKey}_user_${userHash}`;
+        }
+        return baseKey; // Fallback to generic key if no token
+      }
+      
+      // Dynamic storage keys that update based on current user
+      function getTradesStorageKey() {
+        return getUserSpecificKey(BASE_TRADES_KEY);
+      }
+      
+      function getSettingsStorageKey() {
+        return getUserSpecificKey(BASE_SETTINGS_KEY);
+      }
   // Removed client persistence of AI key for security (backend proxy handles key)
 
       // --- State Variables ---
@@ -76,7 +101,27 @@
         )}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
       };
 
-      const saveAppData = () => {
+      // Update database connection status indicator
+      const updateConnectionStatus = () => {
+        const statusDot = document.getElementById("dbStatusDot");
+        const statusText = document.getElementById("dbStatusText");
+        
+        if (!statusDot || !statusText) return;
+        
+        // Since users can only access dashboard when logged in, they should always be connected to database
+        // Show connection status based on whether tradeService is available and has token
+        if (window.tradeService && window.tradeService.isAuthenticated()) {
+          statusDot.className = "w-2 h-2 bg-green-500 rounded-full";
+          statusText.textContent = "Database Connected";
+          statusText.className = "text-green-400";
+        } else {
+          statusDot.className = "w-2 h-2 bg-yellow-500 rounded-full";
+          statusText.textContent = "Initializing...";
+          statusText.className = "text-yellow-400";
+        }
+      };
+
+      const saveAppData = async () => {
         const currentSettings = {
           initialBalance:
             parseFloat(document.getElementById("initialBalance").value) || 0,
@@ -107,37 +152,53 @@
           avgJumpPnL:
             parseFloat(document.getElementById("avgJumpPnL").value) || 0,
         };
-        localStorage.setItem(TRADES_STORAGE_KEY, JSON.stringify(trades));
+        
+        // Always save settings to localStorage (keeping settings local)
         localStorage.setItem(
-          SETTINGS_STORAGE_KEY,
+          getSettingsStorageKey(),
           JSON.stringify(currentSettings)
         );
+        
+        // Trades are automatically saved to database via individual API calls
+        // Keep localStorage as fallback for when database is unavailable
+        localStorage.setItem(getTradesStorageKey(), JSON.stringify(trades));
+        
         // Do NOT persist AI key locally anymore.
       };
 
-      const loadAppData = () => {
+      const loadAppData = async () => {
         let savedTrades = [];
         let savedSettings = null;
 
+        // Load trades from database (user is authenticated since they're on dashboard)
         try {
-          savedTrades =
-            JSON.parse(localStorage.getItem(TRADES_STORAGE_KEY)) || [];
+          showMessageBox("Loading your trades from database...", "info", 1000);
+          savedTrades = await window.tradeService.syncTrades();
+          console.log(`Loaded ${savedTrades.length} trades from database`);
         } catch (e) {
-          console.error(
-            "Could not parse trades from localStorage. Resetting.",
-            e
-          );
-          showMessageBox(
-            "Error loading trades. Data may have been corrupted. Resetting trades.",
-            "error",
-            5000
-          );
-          savedTrades = [];
+          console.error("Could not load trades from database. Using localStorage fallback.", e);
+          // Fallback to localStorage only if database fails
+          try {
+            savedTrades =
+              JSON.parse(localStorage.getItem(getTradesStorageKey())) || [];
+            if (savedTrades.length > 0) {
+              showMessageBox("Using local trades (database unavailable)", "error", 3000);
+            }
+          } catch (localError) {
+            console.error("Could not parse trades from localStorage. Resetting.", localError);
+            showMessageBox(
+              "Error loading trades. Starting fresh.",
+              "error",
+              5000
+            );
+            savedTrades = [];
+          }
         }
 
+        // Load settings from localStorage (keeping settings local)
         try {
           savedSettings = JSON.parse(
-            localStorage.getItem(SETTINGS_STORAGE_KEY)
+            localStorage.getItem(getSettingsStorageKey())
           );
         } catch (e) {
           console.error(
@@ -153,6 +214,15 @@
         }
 
         trades = savedTrades;
+        
+        // Normalize trade data to ensure compatibility between database and localStorage
+        trades = trades.map(trade => ({
+          ...trade,
+          // Ensure both asset and symbol fields are available
+          asset: trade.asset || trade.symbol,
+          symbol: trade.symbol || trade.asset
+        }));
+        
         trades.sort((a, b) => new Date(a.date) - new Date(b.date));
 
         const defaultSettings = {
@@ -512,7 +582,7 @@
                     ${tagsHTML}
                 </td>
                 <td class="px-4 py-3 text-sm text-slate-300 align-top">${
-                  trade.asset
+                  trade.asset || trade.symbol || 'Unknown'
                 }</td>
                 <td class="px-4 py-3 text-sm font-semibold ${
                   trade.pnL >= 0 ? "text-green-400" : "text-red-400"
@@ -537,7 +607,7 @@
                 .join("");
       }
 
-      const addTrade = () => {
+      const addTrade = async () => {
         const date = document.getElementById("tradeDate").value;
         const asset = document.getElementById("tradeAsset").value.trim();
         const pnL = parseFloat(document.getElementById("tradePnL").value);
@@ -579,38 +649,66 @@
               .filter((tag) => tag)
           : [];
 
-        trades.push({
+        const tradeData = {
           id: crypto.randomUUID(),
           date: new Date(date).toISOString(),
-          asset,
+          symbol: asset,
+          time: new Date().toTimeString().slice(0, 5), // Current time HH:MM
           pnL,
           riskAmount,
           rMultiple: pnL / riskAmount,
           outcome,
           tags,
-        });
+        };
+
+        try {
+          // Save to database (user is authenticated since they're on dashboard)
+          const savedTrade = await window.tradeService.addTrade(tradeData);
+          // Add to local array for immediate UI update
+          trades.push({
+            ...tradeData,
+            _id: savedTrade._id, // Store database ID
+            asset: tradeData.symbol // Keep asset for backward compatibility
+          });
+          showMessageBox("Trade saved to database!", "success");
+        } catch (error) {
+          console.error("Error saving trade to database:", error);
+          // Fallback to local storage
+          trades.push({
+            ...tradeData,
+            asset: tradeData.symbol // Keep asset for backward compatibility
+          });
+          showMessageBox("Database error - trade saved locally", "error");
+        }
 
         trades.sort((a, b) => new Date(a.date) - new Date(b.date));
 
         // Update initial balance to reflect new running balance
         updateInitialBalanceAfterTrade();
 
-        saveAppData();
+        await saveAppData();
         updateUI();
-        showMessageBox("Trade added successfully!", "success");
         document.getElementById("tradeAsset").value = "";
         document.getElementById("tradePnL").value = "";
         document.getElementById("tradeTags").value = "";
       };
 
       function showEditModal(tradeId) {
+        console.log("showEditModal called with ID:", tradeId); // Debug log
         const trade = trades.find((t) => t.id === tradeId);
-        if (!trade) return;
+        if (!trade) {
+          console.error("Trade not found:", tradeId, "Available trades:", trades.map(t => t.id));
+          return;
+        }
+        
+        console.log("Editing trade:", trade); // Debug log
+        
         document.getElementById("editTradeId").value = trade.id;
         document.getElementById("editTradeDate").value = formatISODate(
           trade.date
         );
-        document.getElementById("editTradeAsset").value = trade.asset;
+        // Handle both 'asset' and 'symbol' fields (database vs localStorage)
+        document.getElementById("editTradeAsset").value = trade.asset || trade.symbol || '';
         document.getElementById("editTradePnL").value = trade.pnL.toFixed(2);
         document.getElementById("editTradeRiskAmount").value =
           trade.riskAmount.toFixed(2);
@@ -620,8 +718,11 @@
         ).join(", ");
         document.getElementById("editModal").classList.add("active");
       }
+      
+      // Make function globally available
+      window.showEditModal = showEditModal;
 
-      function saveTradeChanges() {
+      async function saveTradeChanges() {
         const id = document.getElementById("editTradeId").value;
         const newDate = document.getElementById("editTradeDate").value;
         const newAsset = document.getElementById("editTradeAsset").value.trim();
@@ -667,22 +768,38 @@
 
         const tradeIndex = trades.findIndex((t) => t.id === id);
         if (tradeIndex !== -1) {
-          trades[tradeIndex] = {
-            ...trades[tradeIndex],
+          const updatedTradeData = {
             date: new Date(newDate).toISOString(),
-            asset: newAsset,
+            symbol: newAsset,
             pnL: newPnL,
             riskAmount: newRiskAmount,
             rMultiple: newRiskAmount > 0 ? newPnL / newRiskAmount : 0,
             outcome: newOutcome,
             tags: newTags,
           };
+
+          try {
+            if (window.tradeService && window.tradeService.token && trades[tradeIndex]._id) {
+              // Update in database
+              await window.tradeService.updateTrade(trades[tradeIndex]._id, updatedTradeData);
+              showMessageBox("Trade updated in database!", "success");
+            }
+          } catch (error) {
+            console.error("Error updating trade in database:", error);
+            showMessageBox("Database error - trade updated locally", "error");
+          }
+
+          // Always update local array
+          trades[tradeIndex] = {
+            ...trades[tradeIndex],
+            ...updatedTradeData,
+            asset: newAsset, // Keep asset for backward compatibility
+          };
         }
         trades.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        saveAppData();
+        await saveAppData();
         updateUI();
-        showMessageBox("Trade updated successfully!", "success");
         document.getElementById("editModal").classList.remove("active");
       }
 
@@ -1728,7 +1845,11 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
       }
 
       async function callGeminiAPI(history) {
-        const token = localStorage.getItem("token");
+        // Get token from both localStorage and sessionStorage
+        const getAuthToken = () => {
+            return localStorage.getItem("token") || sessionStorage.getItem("token");
+        };
+        const token = getAuthToken();
         const resp = await fetch("http://localhost:5000/api/ai/analyze", {
           method: "POST",
           headers: {
@@ -1929,25 +2050,116 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
 
       const deleteTrade = async (id) => {
         if (await showConfirmModal("Delete this trade permanently?")) {
+          const tradeToDelete = trades.find(t => t.id === id);
+          
+          try {
+            // Delete from database (user is authenticated since they're on dashboard)
+            if (tradeToDelete._id) {
+              await window.tradeService.deleteTrade(tradeToDelete._id);
+              showMessageBox("Trade deleted from database!", "success");
+            } else {
+              showMessageBox("Trade deleted locally!", "success");
+            }
+          } catch (error) {
+            console.error("Error deleting trade from database:", error);
+            showMessageBox("Database error - trade removed locally", "error");
+          }
+          
+          // Always remove from local array
           trades = trades.filter((t) => t.id !== id);
           updateInitialBalanceAfterTrade();
-          saveAppData();
+          await saveAppData();
           updateUI();
-          showMessageBox("Trade deleted.", "info");
         }
       };
+      
+      // Make function globally available
+      window.deleteTrade = deleteTrade;
 
       const clearAllTrades = async () => {
         if (trades.length === 0) return;
         if (
           await showConfirmModal("Clear ALL trades? This cannot be undone.")
         ) {
+          // Clear from database (user is authenticated since they're on dashboard)
+          try {
+            for (const trade of trades) {
+              if (trade._id) {
+                await window.tradeService.deleteTrade(trade._id);
+              }
+            }
+            showMessageBox("All trades cleared from database!", "success");
+          } catch (error) {
+            console.error("Error clearing trades from database:", error);
+            showMessageBox("Database error - trades cleared locally", "error");
+          }
+          
           trades = [];
           updateInitialBalanceAfterTrade();
-          saveAppData();
-          loadAppData();
+          await saveAppData();
+          await loadAppData();
           updateUI();
-          showMessageBox("All trades cleared!", "info");
+        }
+      };
+
+      const syncTradesToDatabase = async () => {
+        if (trades.length === 0) {
+          showMessageBox("No trades to sync!", "info");
+          return;
+        }
+
+        const tradesWithoutDbId = trades.filter(trade => !trade._id);
+        
+        if (tradesWithoutDbId.length === 0) {
+          showMessageBox("All trades are already in database!", "info");
+          return;
+        }
+
+        if (!await showConfirmModal(`Sync ${tradesWithoutDbId.length} trades to database?`)) {
+          return;
+        }
+
+        try {
+          showMessageBox("Syncing trades to database...", "info", 2000);
+          
+          // Prepare trades for database (convert to API format)
+          const tradesToSync = tradesWithoutDbId.map(trade => ({
+            symbol: trade.asset || trade.symbol,
+            date: trade.date,
+            time: trade.time || new Date().toTimeString().slice(0, 5),
+            outcome: trade.outcome,
+            pnL: trade.pnL,
+            rMultiple: trade.rMultiple,
+            tags: trade.tags || [],
+            riskAmount: trade.riskAmount
+          }));
+
+          // Bulk import to database
+          const savedTrades = await window.tradeService.bulkImportTrades(tradesToSync);
+          
+          // Update local trades with database IDs
+          let syncedCount = 0;
+          savedTrades.forEach(savedTrade => {
+            const localTradeIndex = trades.findIndex(t => 
+              !t._id && 
+              t.pnL === savedTrade.pnL && 
+              new Date(t.date).getTime() === new Date(savedTrade.date).getTime()
+            );
+            
+            if (localTradeIndex !== -1) {
+              trades[localTradeIndex]._id = savedTrade._id;
+              trades[localTradeIndex].symbol = savedTrade.symbol;
+              syncedCount++;
+            }
+          });
+
+          showMessageBox(`Successfully synced ${syncedCount} trades to database!`, "success");
+          await saveAppData();
+          updateUI();
+          
+        } catch (error) {
+          console.error("Error syncing trades to database:", error);
+          showMessageBox("Failed to sync trades to database", "error");
         }
       };
 
@@ -2317,8 +2529,21 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
         }
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        loadAppData();
+      document.addEventListener("DOMContentLoaded", async () => {
+        // Initialize trade service with existing auth token
+        // Get token from both localStorage and sessionStorage
+        const getAuthToken = () => {
+            return localStorage.getItem("token") || sessionStorage.getItem("token");
+        };
+        const token = getAuthToken();
+        if (token && window.tradeService) {
+          window.tradeService.setToken(token);
+        }
+        
+        // Update connection status
+        updateConnectionStatus();
+        
+        await loadAppData();
         setVarModeUI(settings.varMode);
         setTradesPerSeriesModeUI(settings.tradesPerSeriesMode);
         setTailModeUI(settings.tailMode);
@@ -2333,6 +2558,9 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
         document
           .getElementById("clearAllTradesBtn")
           .addEventListener("click", clearAllTrades);
+        document
+          .getElementById("syncToDbBtn")
+          .addEventListener("click", syncTradesToDatabase);
         document
           .getElementById("runSimulationBtn")
           .addEventListener("click", () => {
@@ -2356,6 +2584,17 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
               reader.readAsText(file);
               e.target.value = "";
             }
+          });
+
+        // Edit modal event listeners
+        document
+          .getElementById("editSave")
+          .addEventListener("click", saveTradeChanges);
+        
+        document
+          .getElementById("editCancel")
+          .addEventListener("click", () => {
+            document.getElementById("editModal").classList.remove("active");
           });
 
         document
