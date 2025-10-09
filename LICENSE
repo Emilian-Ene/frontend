@@ -1,17 +1,44 @@
-MIT License
+TOPC PROPRIETARY LICENSE
 
-Copyright (c) 2025 Emilian-Ene
+Copyright (c) 2025 Ionut Emilian Ene / TOPC (Trading Outcome Probability Calculator)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+IMPORTANT: READ CAREFULLY BEFORE USING THIS SOFTWARE
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This software and associated documentation files (the "Software") are proprietary 
+and confidential to TOPC and Ionut Emilian Ene ("Author"). 
 
+PERMITTED USES:
+- View the source code for educational and learning purposes only
+- Fork the repository for personal study and reference
+- Create pull requests to contribute improvements to the original project
+
+PROHIBITED USES:
+❌ Commercial use, sale, or distribution of the Software
+❌ Creating derivative works or modified versions for public use
+❌ Copying, cloning, or replicating the website design, layout, or branding
+❌ Using the TOPC name, logo, or branding in any other project
+❌ Hosting, deploying, or running copies of this website
+❌ Redistributing or sharing the Software with third parties
+❌ Using the Software as a template or base for other projects
+❌ Reverse engineering the Software for competitive purposes
+
+SPECIFIC RESTRICTIONS:
+1. This license does NOT grant permission to copy or replicate the TOPC website
+2. The trading algorithms, UI design, and business logic are proprietary
+3. Any use of the TOPC brand, name, or visual identity is strictly prohibited
+4. Commercial trading platforms based on this code are not permitted
+5. Educational institutions may reference the code with proper attribution only
+
+ATTRIBUTION:
+If referencing this code for educational purposes, you must include:
+"Code reference from TOPC (Trading Outcome Probability Calculator) 
+by Ionut Emilian Ene - https://github.com/Emilian-Ene/frontend"
+
+LEGAL NOTICE:
+Unauthorized copying, distribution, or use of this Software outside the scope 
+of this license is strictly prohibited and may result in legal action.
+
+DISCLAIMER:
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,3 +46,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+CONTACT:
+For licensing inquiries or permissions beyond this license, contact:
+Ionut Emilian Ene via GitHub: https://github.com/Emilian-Ene
+
+Last Updated: October 9, 2025

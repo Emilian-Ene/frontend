@@ -4,7 +4,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge)](https://your-vercel-url.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/Emilian-Ene/frontend)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)](LICENSE)
 
 ## 🚀 **Overview**
 
@@ -208,7 +208,16 @@ vercel
 
 ## 📄 **License**
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under a **Custom Proprietary License** - see the [LICENSE](LICENSE) file for details.
+
+### **⚠️ Important License Notice:**
+- ✅ **Educational viewing** and learning permitted
+- ✅ **Contributing** via pull requests welcome
+- ❌ **Copying, cloning, or replicating** this website is prohibited
+- ❌ **Commercial use** without permission is strictly forbidden
+- ❌ **TOPC branding** usage is not allowed
+
+For licensing inquiries or special permissions, please contact via GitHub.
 
 ## 📞 **Support**
 
