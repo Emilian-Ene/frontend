@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-            const res = await fetch('http://localhost:5000/api/profile', {
+            const res = await fetch('https://topc-backend.onrender.com/api/profile', {
                 method: 'PUT',
                 headers,
                 body: JSON.stringify(updatedData),
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         const apiKey = document.getElementById("googleAiKey").value;
         try {
-            const res = await fetch('http://localhost:5000/api/profile', {
+            const res = await fetch('https://topc-backend.onrender.com/api/profile', {
                 method: 'PUT',
                 headers,
                 body: JSON.stringify({ googleAiKey: apiKey }),
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const confirmed = await showConfirmModal("Are you sure you want to delete your API key? This action cannot be undone.");
         if (confirmed) {
             try {
-                const res = await fetch('http://localhost:5000/api/profile', {
+                const res = await fetch('https://topc-backend.onrender.com/api/profile', {
                     method: 'PUT',
                     headers,
                     body: JSON.stringify({ googleAiKey: '' }), // Set the key to an empty string
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const confirmed = await showConfirmModal("Are you sure you want to delete your account? This action cannot be undone.");
         if (confirmed) {
             try {
-                const res = await fetch('http://localhost:5000/api/profile', {
+                const res = await fetch('https://topc-backend.onrender.com/api/profile', {
                     method: 'DELETE',
                     headers,
                 });
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
             try {
-                const res = await fetch('http://localhost:5000/api/auth/change-password', {
+                const res = await fetch('https://topc-backend.onrender.com/api/auth/change-password', {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json', 'x-auth-token': token },
                     body: JSON.stringify({ currentPassword, newPassword })

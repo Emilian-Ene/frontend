@@ -58,7 +58,7 @@ const fetchUserData = async () => {
     }
 
     try {
-        const res = await fetch('http://localhost:5000/api/profile', {
+    const res = await fetch('https://topc-backend.onrender.com/api/profile', {
             headers: { "x-auth-token": token }
         });
 

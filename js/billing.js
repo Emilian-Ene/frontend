@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fetch and populate billing data
     const populateBillingData = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/profile', { headers });
+            const res = await fetch('https://topc-backend.onrender.com/api/profile', { headers });
             if (!res.ok) {
                 localStorage.removeItem("token");
                 window.location.href = "login.html";

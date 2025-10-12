@@ -1850,7 +1850,7 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
             return localStorage.getItem("token") || sessionStorage.getItem("token");
         };
         const token = getAuthToken();
-        const resp = await fetch("http://localhost:5000/api/ai/analyze", {
+  const resp = await fetch("https://topc-backend.onrender.com/api/ai/analyze", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

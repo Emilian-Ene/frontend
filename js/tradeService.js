@@ -5,7 +5,7 @@
 
 class TradeService {
   constructor() {
-    this.baseURL = 'http://localhost:5000/api'; // Update this for production
+  this.baseURL = 'https://topc-backend.onrender.com/api'; // Updated for production
     this.token = this.getAuthToken(); // Use same token logic as auth.js
   }
 
