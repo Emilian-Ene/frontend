@@ -54,7 +54,15 @@
           "name": "Can I import trades from a CSV file?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Click 'Import from CSV'. Required columns: Date, Asset, P&L, Risk(1R). Optional: Tags (semicolon-separated). Date format: DD/MM/YYYY HH:mm. CSV trades are saved to localStorage initially - use 'Sync to DB' to save them to the database permanently."
+            "text": "Yes. Click 'Import from CSV'. Required columns: Date, Asset, P&L, Risk(1R). Optional: Tags (semicolon-separated). Date format: DD/MM/YYYY HH:mm. Imported trades are automatically saved to the database. Invalid rows are skipped and reported."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I export my trades to CSV?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Click 'Export to CSV' to download all your trades in CSV format. The file includes Date, Asset, P&L, Risk(1R), Outcome, and Tags columns."
           }
         },
         {
@@ -67,10 +75,10 @@
         },
         {
           "@type": "Question",
-          "name": "What does the database connection status mean?",
+          "name": "How is my data stored?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Green dot = connected to database, your trades are saved. Red dot = offline mode, trades saved locally only. Check your internet connection."
+            "text": "All trades are automatically saved to your secure database account when you're logged in. A local backup is also kept in your browser's localStorage for offline access."
           }
         },
         {
@@ -435,9 +443,19 @@
               ><i class="fa-solid fa-chevron-right chev"></i>
             </button>
             <div class="faq-a">
-              Yes. Click “Import from CSV”. Required columns: Date, Asset, P&L,
+              Yes. Click "Import from CSV". Required columns: Date, Asset, P&L,
               Risk(1R). Optional: Tags (semicolon-separated). Date format:
-              DD/MM/YYYY HH:mm. Invalid rows are skipped and reported.
+              DD/MM/YYYY HH:mm. Imported trades are automatically saved to the database. Invalid rows are skipped and reported.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-text"
+                ><span class="badge">CSV</span> Can I export my trades to CSV?</span
+              ><i class="fa-solid fa-chevron-right chev"></i>
+            </button>
+            <div class="faq-a">
+              Yes. Click "Export to CSV" to download all your trades in CSV format. The file includes Date, Asset, P&L, Risk(1R), Outcome, and Tags columns. Perfect for backup or analysis in Excel/Google Sheets.
             </div>
           </div>
           <div class="faq-item">
@@ -455,15 +473,11 @@
           <div class="faq-item">
             <button class="faq-q">
               <span class="q-text"
-                ><span class="badge">Database</span> What does the database
-                connection status mean?</span
+                ><span class="badge">Database</span> How is my data stored?</span
               ><i class="fa-solid fa-chevron-right chev"></i>
             </button>
             <div class="faq-a">
-              The connection badge in the Trade Journal header shows whether
-              you're connected to the database. "Local Storage" means data is
-              saved locally, while "Connected" means data can be synced to the
-              database.
+              All trades are automatically saved to your secure database account when you're logged in. A local backup is also kept in your browser's localStorage for offline access. Changes sync automatically.
             </div>
           </div>
           <div class="faq-item">
