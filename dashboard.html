@@ -1599,6 +1599,114 @@
                         0.00
                       </p>
                     </div>
+                    <div class="p-3 bg-slate-900/50 rounded-lg">
+                      <div class="flex items-center justify-between">
+                        <p class="font-medium text-slate-400">
+                          Kelly Criterion
+                        </p>
+                        <span class="tooltip-container"
+                          ><i
+                            class="fas fa-info-circle text-slate-500 hover:text-slate-300"
+                          ></i
+                          ><span class="tooltip-text" style="width: 280px">
+                            Optimal position size percentage for maximum growth. Formula: W - [(1 - W) / R]. Positive values suggest edge exists. Most traders use 25-50% of Kelly (half-Kelly) for safety.
+                          </span></span
+                        >
+                      </div>
+                      <p id="statKellyCriterion" class="font-bold text-purple-400">
+                        0.00%
+                      </p>
+                    </div>
+                    <div class="p-3 bg-slate-900/50 rounded-lg">
+                      <div class="flex items-center justify-between">
+                        <p class="font-medium text-slate-400">
+                          Payoff Ratio
+                        </p>
+                        <span class="tooltip-container"
+                          ><i
+                            class="fas fa-info-circle text-slate-500 hover:text-slate-300"
+                          ></i
+                          ><span class="tooltip-text" style="width: 280px">
+                            Average profit on winning trades divided by average loss on losing trades. Similar to Risk-Reward but uses monetary values. Higher is better (>1.5 is good).
+                          </span></span
+                        >
+                      </div>
+                      <p id="statPayoffRatio" class="font-bold text-blue-400">
+                        0.00
+                      </p>
+                    </div>
+                    <div class="p-3 bg-slate-900/50 rounded-lg">
+                      <div class="flex items-center justify-between">
+                        <p class="font-medium text-slate-400">
+                          Largest Win
+                        </p>
+                        <span class="tooltip-container"
+                          ><i
+                            class="fas fa-info-circle text-slate-500 hover:text-slate-300"
+                          ></i
+                          ><span class="tooltip-text">
+                            The single most profitable trade in your history. Helps identify outlier wins.
+                          </span></span
+                        >
+                      </div>
+                      <p id="statLargestWin" class="font-bold text-green-400">
+                        £0.00
+                      </p>
+                    </div>
+                    <div class="p-3 bg-slate-900/50 rounded-lg">
+                      <div class="flex items-center justify-between">
+                        <p class="font-medium text-slate-400">
+                          Largest Loss
+                        </p>
+                        <span class="tooltip-container"
+                          ><i
+                            class="fas fa-info-circle text-slate-500 hover:text-slate-300"
+                          ></i
+                          ><span class="tooltip-text">
+                            The single worst losing trade in your history. Helps identify outlier losses and risk management issues.
+                          </span></span
+                        >
+                      </div>
+                      <p id="statLargestLoss" class="font-bold text-red-400">
+                        £0.00
+                      </p>
+                    </div>
+                    <div class="p-3 bg-slate-900/50 rounded-lg">
+                      <div class="flex items-center justify-between">
+                        <p class="font-medium text-slate-400">
+                          Omega Ratio
+                        </p>
+                        <span class="tooltip-container"
+                          ><i
+                            class="fas fa-info-circle text-slate-500 hover:text-slate-300"
+                          ></i
+                          ><span class="tooltip-text" style="width: 280px">
+                            Probability-weighted ratio of gains vs losses. More sophisticated than Sharpe Ratio as it considers full distribution. >1.0 required, >1.3 is excellent.
+                          </span></span
+                        >
+                      </div>
+                      <p id="statOmegaRatio" class="font-bold text-blue-400">
+                        0.00
+                      </p>
+                    </div>
+                    <div class="p-3 bg-slate-900/50 rounded-lg">
+                      <div class="flex items-center justify-between">
+                        <p class="font-medium text-slate-400">
+                          MAR Ratio
+                        </p>
+                        <span class="tooltip-container"
+                          ><i
+                            class="fas fa-info-circle text-slate-500 hover:text-slate-300"
+                          ></i
+                          ><span class="tooltip-text" style="width: 280px">
+                            Return divided by Maximum Drawdown. Similar to Calmar Ratio. Shows return per unit of risk. >0.5 is acceptable, >1.0 is good.
+                          </span></span
+                        >
+                      </div>
+                      <p id="statMarRatio" class="font-bold text-blue-400">
+                        0.00
+                      </p>
+                    </div>
                     <div class="p-3 bg-slate-900/50 rounded-lg md:col-span-2">
                       <div class="flex items-center justify-between">
                         <p class="font-medium text-slate-400">

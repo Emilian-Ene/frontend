@@ -529,6 +529,27 @@
           }
         }
 
+        // Kelly Criterion Calculation
+        // Formula: W - [(1 - W) / R] where W = win rate, R = avg win/avg loss ratio
+        const payoffRatio = avgLossPerLoss > 0 ? avgProfitPerWin / avgLossPerLoss : 0;
+        const kellyCriterion = winRate > 0 && payoffRatio > 0 
+          ? winRate - ((1 - winRate) / payoffRatio)
+          : 0;
+
+        // Largest Single Win and Loss
+        const largestWin = wins.length > 0 ? Math.max(...wins.map(t => t.pnL)) : 0;
+        const largestLoss = losses.length > 0 ? Math.min(...losses.map(t => t.pnL)) : 0;
+
+        // Omega Ratio Calculation (probability-weighted gains/losses at threshold = 0)
+        const threshold = 0;
+        const gainsAboveThreshold = allPnLs.filter(p => p > threshold).reduce((sum, p) => sum + (p - threshold), 0);
+        const lossesBelowThreshold = allPnLs.filter(p => p < threshold).reduce((sum, p) => sum + Math.abs(p - threshold), 0);
+        const omegaRatio = lossesBelowThreshold > 0 ? gainsAboveThreshold / lossesBelowThreshold : 0;
+
+        // MAR Ratio Calculation (annual return / max drawdown)
+        // Assuming returns are already annualized or we use total return as proxy
+        const marRatio = maxDrawdown > 0 ? netPnL / maxDrawdown : 0;
+
         currentStats = {
           totalTrades,
           winningTrades: winningTradesCount,
@@ -570,6 +591,12 @@
           sqn,
           zScore, // Added
           maxDrawdownDurationDays: maxDrawdownDuration,
+          kellyCriterion,
+          payoffRatio,
+          largestWin,
+          largestLoss,
+          omegaRatio,
+          marRatio,
           fatTailInfo: {
             count: fatTailTrades.length,
             probability:
@@ -886,6 +913,10 @@
             switch (key) {
               case "winRate":
               case "breakEvenWinRate":
+                formattedValue = formatNumber(value * 100, "0.00%", {
+                  suffix: "%",
+                });
+                break;
               case "kellyCriterion":
                 formattedValue = formatNumber(value * 100, "0.00%", {
                   suffix: "%",
@@ -899,6 +930,8 @@
               case "downsideDeviationPnL":
               case "historicalMaxDrawdown":
               case "evPerTrade":
+              case "largestWin":
+              case "largestLoss":
                 formattedValue = formatNumber(value, "£0.00", { prefix: "£" });
                 break;
               case "totalR":
@@ -920,6 +953,9 @@
               case "sortinoRatio":
               case "calmarRatio":
               case "recoveryFactor":
+              case "payoffRatio":
+              case "omegaRatio":
+              case "marRatio":
                 formattedValue = formatNumber(value, "0.00");
                 break;
               case "zScore":
