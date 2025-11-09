@@ -1,0 +1,588 @@
+/* --- MARKOV PREDICTIONS STYLES --- */
+/* Adapted for TOPC Dashboard Dark Theme */
+
+:root {
+  --color-primary: #6366f1;
+  --color-primary-light: #4f46e5;
+  --color-accent: #f59e0b;
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-label: #64748b;
+  --color-border: #334155;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- DASHBOARD LAYOUT --- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+  max-width: 90rem;
+  margin: auto;
+  padding: 1rem;
+}
+@media (min-width: 640px) {
+  .dashboard-grid {
+    padding: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 4fr 8fr;
+  }
+}
+.form-column,
+.log-column {
+  width: 100%;
+}
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+.form-column .section-title:first-child,
+.log-column .section-title:first-child {
+  margin-top: 0;
+}
+
+/* --- FLOATING LABEL INPUTS --- */
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.input-field {
+  display: block;
+  width: 100%;
+  padding: 1.5rem 1rem 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: var(--color-surface);
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+  appearance: none;
+  transition: border-color 0.2s;
+  color: var(--color-text);
+}
+.input-field:focus {
+  outline: none;
+  box-shadow: none;
+}
+.input-label {
+  position: absolute;
+  font-size: 1rem;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  transform-origin: 0;
+  transition: all 0.3s;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+.input-field:focus,
+.input-field:not(:placeholder-shown) {
+  border-color: var(--color-primary);
+}
+.input-field:focus ~ .input-label,
+.input-field:not(:placeholder-shown) ~ .input-label {
+  transform: translateY(-0.625rem) scale(0.75);
+  color: var(--color-primary);
+}
+
+/* --- SELECTABLE CARDS --- */
+.type-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.type-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: var(--color-surface);
+}
+@media (min-width: 640px) {
+  .type-card {
+    flex-direction: row;
+  }
+}
+.type-card:hover {
+  border-color: var(--color-primary-light);
+}
+input[type="radio"]:checked + .type-card {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+.type-card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  color: white;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+@media (min-width: 640px) {
+  .type-card-icon {
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+}
+
+/* --- BUTTON STYLES --- */
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+#submit-button {
+  background-color: var(--color-primary);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+#submit-button:hover {
+  opacity: 0.9;
+}
+#submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+#submit-button.is-success {
+  background-color: #22c55e;
+}
+#cancel-edit-button {
+  background-color: #64748b;
+  width: auto;
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+#cancel-edit-button:hover {
+  opacity: 0.9;
+}
+
+/* --- LOG ENTRY STYLES --- */
+.log-entry {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s;
+  background-color: var(--color-surface);
+  animation: fadeIn 0.5s ease-out forwards;
+}
+.log-entry:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+.log-entry-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  color: white;
+  font-size: 1.25rem;
+}
+.log-entry .description {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+.log-entry .date-time {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+.log-entry-actions {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding-left: 0.5rem;
+}
+@media (min-width: 640px) {
+  .log-entry-actions {
+    flex-direction: row;
+  }
+}
+.action-button {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  color: #94a3b8;
+  opacity: 0.6;
+  transition: all 0.2s;
+}
+.action-button:hover {
+  opacity: 1;
+}
+.action-button.view-button:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+.action-button.edit-button:hover {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+.action-button.delete-button:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+#emptyState {
+  text-align: center;
+  padding: 2.5rem;
+  margin-top: 1.25rem;
+  border: 2px dashed var(--color-border);
+  border-radius: 0.5rem;
+}
+
+/* --- MODAL STYLES --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out forwards;
+}
+.modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  background-color: var(--color-surface);
+  animation: zoomIn 0.3s ease-out forwards;
+}
+.modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  color: #94a3b8;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.modal-close-button:hover {
+  background-color: rgba(148, 163, 184, 0.1);
+  color: var(--color-text);
+}
+.modal-body h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+.modal-body p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-secondary);
+}
+.modal-body .modal-description {
+  font-size: 1.125rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.modal-button {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.modal-button-confirm {
+  background-color: #dc2626;
+  color: white;
+}
+.modal-button-confirm:hover {
+  background-color: #b91c1c;
+}
+.modal-button-cancel {
+  background-color: #475569;
+  color: white;
+}
+.modal-button-cancel:hover {
+  background-color: #334155;
+}
+.modal-button-ok {
+  background-color: var(--color-primary);
+  color: white;
+}
+.modal-button-ok:hover {
+  background-color: var(--color-primary-light);
+}
+.hidden {
+  display: none;
+}
+
+/* --- STATISTICS & FREQUENCY CHARTS --- */
+.statistics-section {
+  background-color: var(--color-surface);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+}
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 350px;
+}
+
+/* --- STATISTICS TABS --- */
+.stats-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+  margin-bottom: 1rem;
+}
+.stats-tab {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-bottom: 3px solid transparent;
+  transform: translateY(2px);
+  transition: all 0.2s ease-in-out;
+}
+.stats-tab:hover {
+  color: var(--color-text);
+}
+.stats-tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* --- PROBABILITY STYLES --- */
+.prob-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+#probabilities-container .prob-title:first-child {
+  margin-top: 0;
+}
+.prob-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+}
+.prob-grid.day-grid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.prob-card {
+  background-color: rgba(30, 41, 59, 0.5);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  text-align: center;
+}
+.prob-card .value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.prob-card .label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+.prob-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.prob-chart-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+.sub-prob-section {
+  margin-top: 1.25rem;
+}
+.sub-prob-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+/* --- MARKOV CHAIN STYLES --- */
+#markov-info {
+  font-style: italic;
+}
+.markov-card {
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.markov-card .value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+}
+.markov-card .label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+.markov-card.gift {
+  border-color: rgba(34, 197, 94, 0.4);
+}
+.markov-card.gift .value {
+  color: #22c55e;
+}
+.markov-card.tribute {
+  border-color: rgba(239, 68, 68, 0.4);
+}
+.markov-card.tribute .value {
+  color: #ef4444;
+}
+
+.prediction-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.prediction-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text);
+}
+
+.prediction-title .icon-gift {
+  color: #22c55e;
+}
+.prediction-title .icon-tribute {
+  color: #ef4444;
+}
+
+.prediction-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.prediction-card {
+  background-color: rgba(30, 41, 59, 0.5);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prediction-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+.prediction-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.prediction-card-result {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+.prediction-card-prob {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+.prediction-chart-container {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  margin-top: 1rem;
+}
