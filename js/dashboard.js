@@ -233,9 +233,13 @@
         // Normalize trade data to ensure compatibility between database and localStorage
         trades = trades.map(trade => ({
           ...trade,
+          // MongoDB uses _id, but we need id for consistency
+          id: trade.id || trade._id,
           // Ensure both asset and symbol fields are available
           asset: trade.asset || trade.symbol,
-          symbol: trade.symbol || trade.asset
+          symbol: trade.symbol || trade.asset,
+          // Calculate riskAmount if missing (for old trades without this field)
+          riskAmount: trade.riskAmount || (trade.rMultiple && trade.pnL ? Math.abs(trade.pnL / trade.rMultiple) : 0)
         }));
         
         trades.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -728,10 +732,10 @@
         );
         // Handle both 'asset' and 'symbol' fields (database vs localStorage)
         document.getElementById("editTradeAsset").value = trade.asset || trade.symbol || '';
-        document.getElementById("editTradePnL").value = trade.pnL.toFixed(2);
+        document.getElementById("editTradePnL").value = (trade.pnL || 0).toFixed(2);
         document.getElementById("editTradeRiskAmount").value =
-          trade.riskAmount.toFixed(2);
-        document.getElementById("editTradeOutcome").value = trade.outcome;
+          (trade.riskAmount || 0).toFixed(2);
+        document.getElementById("editTradeOutcome").value = trade.outcome || 'Win';
         document.getElementById("editTradeTags").value = (
           trade.tags || []
         ).join(", ");
