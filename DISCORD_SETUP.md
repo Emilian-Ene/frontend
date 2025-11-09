@@ -5,12 +5,15 @@
 ### 1. Create Discord Server (if you don't have one)
 - Go to Discord and create a new server
 - Name it "TOPC Trading Community" or similar
-- Set up channels:
-  - #welcome
-  - #general-chat
-  - #reviews-and-feedback
-  - #support
-  - #trading-tips
+- Set up recommended channels:
+  - #welcome (read-only announcements)
+  - #rules (community guidelines)
+  - #announcements (updates from TOPC team)
+  - #general-chat (community discussion)
+  - #how-to (ask questions and get help)
+  - #reviews-and-feedback (share your TOPC experience)
+  - #trading-strategies (discuss trading approaches)
+  - #success-stories (share your wins)
 
 ### 2. Create Invite Link
 - In Discord, click your server name
@@ -92,3 +95,18 @@ You can update the stats in the review section (line 703-717):
 **File Modified:** `index.html`
 **Locations:** 3 places (header, mobile menu, review section)
 **Status:** Ready to deploy after adding Discord invite link
+
+---
+
+## 📝 Discord Channel Descriptions
+
+### #how-to Channel Description:
+```
+Ask questions about TOPC features, get help with CSV imports, troubleshoot issues, and learn how to use our 32+ trading metrics. Community members and TOPC team will help you!
+```
+
+**Short version (if character limit):**
+```
+Get help with TOPC tools, CSV imports, metrics, and features. Ask anything!
+```
+
