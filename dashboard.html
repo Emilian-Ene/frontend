@@ -499,7 +499,7 @@
                 <i class="fas fa-book-open text-blue-500"></i>Trade Journal
               </div>
               <!-- Database Connection Status -->
-              <div id="dbStatus" class="flex items-center gap-2 text-xs">
+              <div id="dbStatus" class="hidden flex items-center gap-2 text-xs">
                 <div
                   id="dbStatusDot"
                   class="w-2 h-2 bg-gray-500 rounded-full"
@@ -663,13 +663,6 @@
               <h2 class="text-2xl font-bold text-white flex items-center gap-3">
                 <i class="fas fa-list-ul text-blue-500"></i>Trade History
               </h2>
-              <button
-                id="syncToDbBtn"
-                class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition duration-200 text-sm flex items-center gap-2"
-                title="Sync all trades to database"
-              >
-                <i class="fas fa-sync-alt"></i>Sync to DB
-              </button>
             </div>
             <div
               class="max-h-96 overflow-y-auto rounded-lg border border-slate-700"
@@ -697,7 +690,7 @@
                 id="clearAllTradesBtn"
                 class="px-4 py-2 bg-red-600/20 text-red-400 border border-red-500/30 rounded-lg font-semibold hover:bg-red-600/40 hover:text-red-300 transition duration-200 text-sm"
               >
-                <i class="fas fa-trash-alt mr-2"></i>Clear All
+                <i class="fas fa-trash-alt mr-2"></i>Delete All Trades
               </button>
             </div>
           </section>

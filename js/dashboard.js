@@ -122,9 +122,21 @@
       };
 
       const saveAppData = async () => {
+        // IMPORTANT: Don't read initialBalance from the input field!
+        // The field shows the RUNNING balance (initial + P&L), but we need to preserve
+        // the ORIGINAL initial balance in settings
+        // Only read from input if there are no trades (meaning user is setting initial balance)
+        
+        let initialBalanceToSave = settings.initialBalance || 0;
+        
+        if (trades.length === 0) {
+          // No trades yet, so the field value IS the actual initial balance
+          initialBalanceToSave = parseFloat(document.getElementById("initialBalance").value) || 0;
+        }
+        // If trades exist, keep the existing settings.initialBalance (don't update it)
+        
         const currentSettings = {
-          initialBalance:
-            parseFloat(document.getElementById("initialBalance").value) || 0,
+          initialBalance: initialBalanceToSave,
           activeFilters: activeFilters,
           varMode: document.querySelector(
             "#varModeSelector .var-mode-btn.active"
@@ -152,6 +164,9 @@
           avgJumpPnL:
             parseFloat(document.getElementById("avgJumpPnL").value) || 0,
         };
+        
+        // Update the settings object with the new values
+        settings = currentSettings;
         
         // Always save settings to localStorage (keeping settings local)
         localStorage.setItem(
@@ -314,9 +329,13 @@
       });
 
       // Function to update initial balance with running balance after adding trades
+      // Function to update initial balance with running balance after adding trades
       function updateInitialBalanceAfterTrade() {
+        // Always show the running balance in the field (for display purposes)
+        // But DON'T update settings.initialBalance - that stays as the original starting balance
+        
         if (trades.length === 0) {
-          // If no trades, reset to original initial balance from settings
+          // If no trades, show the original initial balance from settings
           document.getElementById("initialBalance").value = (settings.initialBalance || 0).toFixed(2);
           return;
         }
@@ -328,7 +347,7 @@
         const originalInitialBalance = settings.initialBalance || 0;
         const currentRunningBalance = originalInitialBalance + totalPnL;
         
-        // Update the initial balance field to show current running balance
+        // Update the initial balance field to show current running balance (display only)
         document.getElementById("initialBalance").value = currentRunningBalance.toFixed(2);
       }
 
@@ -1972,7 +1991,7 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
         return null; // Return null if parsing fails
       }
 
-      function importTradesFromCSV(csvText) {
+      async function importTradesFromCSV(csvText) {
         const newTrades = [];
         let errors = 0;
         const lines = csvText.split(/\r?\n/).slice(1); // Skip header row
@@ -2019,7 +2038,9 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
           newTrades.push({
             id: crypto.randomUUID(),
             date: date.toISOString(),
-            asset,
+            symbol: asset,
+            asset: asset,
+            time: new Date(date).toTimeString().slice(0, 5),
             pnL,
             riskAmount: finalRiskAmount,
             rMultiple: finalRMultiple,
@@ -2029,16 +2050,57 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
         });
 
         if (newTrades.length > 0) {
-          trades.push(...newTrades);
+          try {
+            // Save to database automatically (same logic as Add Trade button)
+            showMessageBox(`Saving ${newTrades.length} trades to database...`, "info", 2000);
+            
+            const savedTrades = await window.tradeService.bulkImportTrades(
+              newTrades.map(trade => ({
+                symbol: trade.symbol,
+                date: trade.date,
+                time: trade.time,
+                outcome: trade.outcome,
+                pnL: trade.pnL,
+                rMultiple: trade.rMultiple,
+                tags: trade.tags,
+                riskAmount: trade.riskAmount
+              }))
+            );
+            
+            // Add saved trades to local array with database IDs
+            savedTrades.forEach(savedTrade => {
+              const matchingTrade = newTrades.find(t => 
+                t.pnL === savedTrade.pnL && 
+                new Date(t.date).getTime() === new Date(savedTrade.date).getTime()
+              );
+              if (matchingTrade) {
+                trades.push({
+                  ...matchingTrade,
+                  _id: savedTrade._id
+                });
+              }
+            });
+            
+            showMessageBox(
+              `Import complete! Saved ${savedTrades.length} trades to database. Skipped ${errors} rows.`,
+              "success",
+              5000
+            );
+          } catch (error) {
+            console.error("Error saving imported trades to database:", error);
+            // Fallback to local storage
+            trades.push(...newTrades);
+            showMessageBox(
+              `Import complete (local only). Added ${newTrades.length} trades. Database error. Skipped ${errors} rows.`,
+              "error",
+              5000
+            );
+          }
+          
           trades.sort((a, b) => new Date(a.date) - new Date(b.date));
           updateInitialBalanceAfterTrade();
-          saveAppData();
+          await saveAppData();
           updateUI();
-          showMessageBox(
-            `Import complete. Added ${newTrades.length} trades. Skipped ${errors} rows.`,
-            "success",
-            5000
-          );
         } else {
           showMessageBox(
             `Import failed. Added 0 trades. Skipped ${errors} rows. Please check CSV format.`,
@@ -2079,87 +2141,34 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
       const clearAllTrades = async () => {
         if (trades.length === 0) return;
         if (
-          await showConfirmModal("Clear ALL trades? This cannot be undone.")
+          await showConfirmModal("Delete ALL trades from database and UI? This cannot be undone.")
         ) {
-          // Clear from database (user is authenticated since they're on dashboard)
           try {
+            // Delete from database first (user is authenticated since they're on dashboard)
             for (const trade of trades) {
               if (trade._id) {
                 await window.tradeService.deleteTrade(trade._id);
               }
             }
-            showMessageBox("All trades cleared from database!", "success");
-          } catch (error) {
-            console.error("Error clearing trades from database:", error);
-            showMessageBox("Database error - trades cleared locally", "error");
-          }
-          
-          trades = [];
-          updateInitialBalanceAfterTrade();
-          await saveAppData();
-          await loadAppData();
-          updateUI();
-        }
-      };
-
-      const syncTradesToDatabase = async () => {
-        if (trades.length === 0) {
-          showMessageBox("No trades to sync!", "info");
-          return;
-        }
-
-        const tradesWithoutDbId = trades.filter(trade => !trade._id);
-        
-        if (tradesWithoutDbId.length === 0) {
-          showMessageBox("All trades are already in database!", "info");
-          return;
-        }
-
-        if (!await showConfirmModal(`Sync ${tradesWithoutDbId.length} trades to database?`)) {
-          return;
-        }
-
-        try {
-          showMessageBox("Syncing trades to database...", "info", 2000);
-          
-          // Prepare trades for database (convert to API format)
-          const tradesToSync = tradesWithoutDbId.map(trade => ({
-            symbol: trade.asset || trade.symbol,
-            date: trade.date,
-            time: trade.time || new Date().toTimeString().slice(0, 5),
-            outcome: trade.outcome,
-            pnL: trade.pnL,
-            rMultiple: trade.rMultiple,
-            tags: trade.tags || [],
-            riskAmount: trade.riskAmount
-          }));
-
-          // Bulk import to database
-          const savedTrades = await window.tradeService.bulkImportTrades(tradesToSync);
-          
-          // Update local trades with database IDs
-          let syncedCount = 0;
-          savedTrades.forEach(savedTrade => {
-            const localTradeIndex = trades.findIndex(t => 
-              !t._id && 
-              t.pnL === savedTrade.pnL && 
-              new Date(t.date).getTime() === new Date(savedTrade.date).getTime()
-            );
             
-            if (localTradeIndex !== -1) {
-              trades[localTradeIndex]._id = savedTrade._id;
-              trades[localTradeIndex].symbol = savedTrade.symbol;
-              syncedCount++;
-            }
-          });
-
-          showMessageBox(`Successfully synced ${syncedCount} trades to database!`, "success");
-          await saveAppData();
-          updateUI();
-          
-        } catch (error) {
-          console.error("Error syncing trades to database:", error);
-          showMessageBox("Failed to sync trades to database", "error");
+            // Then clear local array
+            trades = [];
+            updateInitialBalanceAfterTrade();
+            await saveAppData();
+            updateUI();
+            
+            showMessageBox("All trades deleted from database and UI!", "success");
+          } catch (error) {
+            console.error("Error deleting trades from database:", error);
+            
+            // Still clear UI even if database fails
+            trades = [];
+            updateInitialBalanceAfterTrade();
+            await saveAppData();
+            updateUI();
+            
+            showMessageBox("Database error - trades deleted from UI only", "error");
+          }
         }
       };
 
@@ -2559,9 +2568,6 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
           .getElementById("clearAllTradesBtn")
           .addEventListener("click", clearAllTrades);
         document
-          .getElementById("syncToDbBtn")
-          .addEventListener("click", syncTradesToDatabase);
-        document
           .getElementById("runSimulationBtn")
           .addEventListener("click", () => {
             saveAppData();
@@ -2579,8 +2585,8 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
             const file = e.target.files[0];
             if (file) {
               const reader = new FileReader();
-              reader.onload = (event) =>
-                importTradesFromCSV(event.target.result);
+              reader.onload = async (event) =>
+                await importTradesFromCSV(event.target.result);
               reader.readAsText(file);
               e.target.value = "";
             }
@@ -2600,11 +2606,23 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
         document
           .getElementById("initialBalance")
           .addEventListener("change", () => {
-            settings.initialBalance = parseFloat(
-              document.getElementById("initialBalance").value
-            );
-            saveAppData();
-            updateUI();
+            // Only allow changing initial balance when there are NO trades
+            // Otherwise, the displayed value is a calculated running balance
+            if (trades.length === 0) {
+              settings.initialBalance = parseFloat(
+                document.getElementById("initialBalance").value
+              );
+              saveAppData();
+              updateUI();
+            } else {
+              // If trades exist, restore the running balance display and warn user
+              updateInitialBalanceAfterTrade();
+              showMessageBox(
+                "Cannot change initial balance after adding trades. Delete all trades first.",
+                "error",
+                3000
+              );
+            }
           });
 
         document
