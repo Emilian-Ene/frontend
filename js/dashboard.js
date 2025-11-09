@@ -2114,6 +2114,47 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
         }
       }
 
+      function exportTradesToCSV() {
+        if (trades.length === 0) {
+          showMessageBox("No trades to export!", "error");
+          return;
+        }
+
+        // Create CSV header
+        const header = "Date,Asset,P&L,Risk(1R),Outcome,Tags\n";
+        
+        // Create CSV rows
+        const rows = trades.map(trade => {
+          const date = new Date(trade.date);
+          const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()} ${trade.time || date.toTimeString().slice(0, 5)}`;
+          const asset = trade.asset || trade.symbol || '';
+          const pnl = trade.pnL.toFixed(2);
+          const risk = (trade.riskAmount || 0).toFixed(2);
+          const outcome = trade.outcome || (trade.pnL > 0 ? 'Win' : 'Loss');
+          const tags = (trade.tags || []).join(';');
+          
+          return `${formattedDate},${asset},${pnl},${risk},${outcome},${tags}`;
+        }).join('\n');
+
+        // Combine header and rows
+        const csvContent = header + rows;
+
+        // Create blob and download
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        
+        link.setAttribute('href', url);
+        link.setAttribute('download', `trades_export_${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showMessageBox(`Exported ${trades.length} trades to CSV!`, "success");
+      }
+
       const deleteTrade = async (id) => {
         if (await showConfirmModal("Delete this trade permanently?")) {
           const tradeToDelete = trades.find(t => t.id === id);
@@ -2583,6 +2624,9 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
           .addEventListener("click", () =>
             document.getElementById("csvFileInput").click()
           );
+        document
+          .getElementById("exportCsvBtn")
+          .addEventListener("click", exportTradesToCSV);
         document
           .getElementById("csvFileInput")
           .addEventListener("change", (e) => {
