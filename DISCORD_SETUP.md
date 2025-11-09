@@ -23,7 +23,18 @@
 - Set "Max number of uses" to "No limit"
 - Copy the invite link (e.g., https://discord.gg/ABC123XYZ)
 
-### 3. Update Your Website
+### 3. Add Server Description (In Discord Community Settings)
+**Paste this in the Server Description field:**
+```
+Join the TOPC Trading Community! Get professional trading tools, share strategies, receive support, and connect with traders. Free analytics, risk management tools, and AI-powered insights. Leave reviews, ask questions, and improve your trading together!
+```
+
+**How to add:**
+1. In Discord, go to Server Settings > Community > Server Description
+2. Paste the text above in the description box
+3. Click "Save Changes" (green button at bottom)
+
+### 4. Update Your Website
 Replace `YOUR_DISCORD_INVITE` in **index.html** with your actual Discord invite code:
 
 **Line 678:** Discord Review Section button
