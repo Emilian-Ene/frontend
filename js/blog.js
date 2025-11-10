@@ -912,6 +912,9 @@ print(results.describe())</code></pre>
     // Update content
     document.getElementById('article-content').innerHTML = article.content;
     
+    // Enhance code blocks with copy button
+    enhanceCodeBlocks();
+    
     // Generate Table of Contents
     generateTableOfContents();
     
@@ -962,6 +965,63 @@ function highlightCurrentCategory(categoryName) {
             currentCategoryLink.classList.add('text-blue-400', 'font-semibold');
         }
     }
+}
+
+function enhanceCodeBlocks() {
+    const codeBlocks = document.querySelectorAll('.blog-post-content pre code');
+    
+    codeBlocks.forEach((codeBlock) => {
+        const pre = codeBlock.parentElement;
+        
+        // Detect language (simple detection based on content)
+        let language = 'Code';
+        const codeText = codeBlock.textContent;
+        
+        if (codeText.includes('def ') || codeText.includes('import ') || codeText.includes('class ') && codeText.includes(':')) {
+            language = 'Python';
+        } else if (codeText.includes('function') || codeText.includes('const ') || codeText.includes('let ')) {
+            language = 'JavaScript';
+        } else if (codeText.includes('SELECT') || codeText.includes('FROM')) {
+            language = 'SQL';
+        }
+        
+        // Create wrapper
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-block-wrapper';
+        
+        // Create header
+        const header = document.createElement('div');
+        header.className = 'code-block-header';
+        
+        // Language label
+        const langLabel = document.createElement('span');
+        langLabel.className = 'code-language';
+        langLabel.textContent = language;
+        
+        // Copy button
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-code-btn';
+        copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+        copyBtn.onclick = function() {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        };
+        
+        header.appendChild(langLabel);
+        header.appendChild(copyBtn);
+        
+        // Wrap the pre element
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(header);
+        wrapper.appendChild(pre);
+    });
 }
 
 function generateTableOfContents() {

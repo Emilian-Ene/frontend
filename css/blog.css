@@ -449,6 +449,69 @@
   border-radius: 0.5rem;
   overflow-x: auto;
   margin: 1.5rem 0;
+  position: relative;
+}
+
+.blog-post-content pre code {
+  background: transparent;
+  padding: 0;
+  color: var(--slate-300);
+  display: block;
+  line-height: 1.6;
+}
+
+/* Code block header */
+.code-block-wrapper {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--slate-700);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  border-bottom: 1px solid var(--slate-600);
+}
+
+.code-language {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--slate-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.copy-code-btn {
+  background: var(--slate-600);
+  border: 1px solid var(--slate-500);
+  color: var(--slate-300);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.copy-code-btn:hover {
+  background: var(--slate-500);
+  color: white;
+}
+
+.copy-code-btn.copied {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+
+.code-block-wrapper pre {
+  margin: 0;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .blog-post-content img {
