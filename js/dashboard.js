@@ -1785,6 +1785,10 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
+            interaction: {
+              mode: 'index',
+              intersect: false,
+            },
             plugins: { 
               legend: { 
                 display: true,
@@ -1797,7 +1801,34 @@
                   usePointStyle: true,
                   pointStyle: 'line'
                 }
-              }, 
+              },
+              tooltip: {
+                enabled: true,
+                mode: 'index',
+                intersect: false,
+                backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                titleColor: '#e2e8f0',
+                bodyColor: '#cbd5e1',
+                borderColor: '#475569',
+                borderWidth: 1,
+                padding: 12,
+                displayColors: true,
+                callbacks: {
+                  title: function(context) {
+                    return 'Trade #' + context[0].label;
+                  },
+                  label: function(context) {
+                    let label = context.dataset.label || '';
+                    if (label) {
+                      label += ': ';
+                    }
+                    if (context.parsed.y !== null) {
+                      label += '£' + context.parsed.y.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                    }
+                    return label;
+                  }
+                }
+              },
               title: { display: false } 
             },
             scales: {
