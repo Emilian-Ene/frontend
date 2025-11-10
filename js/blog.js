@@ -9,7 +9,39 @@ document.addEventListener('DOMContentLoaded', function() {
         initBlogHome();
     }
 
+    // Back to Top button functionality
+    initBackToTop();
+
 });
+
+// ============================================
+// BACK TO TOP BUTTON
+// ============================================
+
+function initBackToTop() {
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    if (backToTopBtn) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.opacity = '1';
+                backToTopBtn.style.pointerEvents = 'auto';
+            } else {
+                backToTopBtn.style.opacity = '0';
+                backToTopBtn.style.pointerEvents = 'none';
+            }
+        });
+
+        // Scroll to top when clicked
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
 
 // ============================================
 // BLOG HOME PAGE FUNCTIONALITY
@@ -902,6 +934,17 @@ function generateTableOfContents() {
 function loadRelatedArticles(relatedSlugs, allArticles) {
     const container = document.getElementById('related-articles');
     
+    // Image mapping for articles
+    const articleImages = {
+        'risk-management-basics': 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop',
+        'understanding-sqn': 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop',
+        'position-sizing': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop',
+        'trading-psychology': 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
+        'monte-carlo': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop',
+        'expectancy': 'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop',
+        'backtesting': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop'
+    };
+    
     container.innerHTML = relatedSlugs.map(slug => {
         const article = allArticles[slug];
         if (!article) return '';
@@ -909,6 +952,7 @@ function loadRelatedArticles(relatedSlugs, allArticles) {
         return `
             <article class="article-card" onclick="window.location.href='blog-post.html?article=${slug}'">
                 <div class="article-image">
+                    <img src="${articleImages[slug] || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop'}" alt="${article.title}">
                     <span class="category-badge">${article.category}</span>
                 </div>
                 <div class="article-content">

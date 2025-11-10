@@ -17,23 +17,21 @@
     <nav class="bg-slate-900/95 backdrop-blur-sm border-b border-slate-800 sticky top-0 z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-lg flex items-center justify-center">
-                        <span class="text-slate-900 font-bold text-xl">T</span>
-                    </div>
-                    <span class="text-xl font-bold text-white">TOPC</span>
-                </a>
 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-slate-300 hover:text-white transition">Home</a>
-                    <a href="dashboard.html" class="text-slate-300 hover:text-white transition">Dashboard</a>
-                    <a href="testimonials.html" class="text-slate-300 hover:text-white transition">Testimonials</a>
+                <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-300">
+                    <a href="faq.html" class="hover:text-white">FAQ</a>
+                    <a href="testimonials.html" class="hover:text-white">Testimonials</a>
                     <a href="blog.html" class="text-amber-400 font-semibold">Blog</a>
-                    <a href="about.html" class="text-slate-300 hover:text-white transition">About</a>
-                    <a href="faq.html" class="text-slate-300 hover:text-white transition">FAQ</a>
-                    <a href="my-profile.html" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition">Client Area</a>
+                    <a href="about.html" class="hover:text-white flex items-center gap-1">About us</a>
+                </div>
+
+                <!-- Right Side -->
+                <div class="ml-auto flex items-center gap-4">
+                    <a href="index.html" class="hidden md:inline-flex items-baseline gap-1.5 text-blue-400 hover:text-blue-300 font-semibold">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -43,14 +41,11 @@
             </div>
 
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden pb-4">
-                <a href="index.html" class="block py-2 text-slate-300 hover:text-white transition">Home</a>
-                <a href="dashboard.html" class="block py-2 text-slate-300 hover:text-white transition">Dashboard</a>
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <a href="faq.html" class="block py-2 text-slate-300 hover:text-white transition">FAQ</a>
                 <a href="testimonials.html" class="block py-2 text-slate-300 hover:text-white transition">Testimonials</a>
                 <a href="blog.html" class="block py-2 text-amber-400 font-semibold">Blog</a>
-                <a href="about.html" class="block py-2 text-slate-300 hover:text-white transition">About</a>
-                <a href="faq.html" class="block py-2 text-slate-300 hover:text-white transition">FAQ</a>
-                <a href="my-profile.html" class="block py-2 mt-2 px-4 bg-blue-600 text-white rounded-lg text-center">Client Area</a>
+                <a href="about.html" class="block py-2 text-slate-300 hover:text-white transition">About us</a>
             </div>
         </div>
     </nav>
@@ -195,12 +190,12 @@
                 </div>
 
                 <!-- Newsletter Signup -->
-                <div class="sidebar-section bg-gradient-to-br from-blue-600 to-blue-700 border-blue-500">
+                <div class="sidebar-section bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700">
                     <h3 class="text-white">Stay Updated</h3>
-                    <p class="text-blue-100 text-sm mb-4">Get the latest trading insights delivered to your inbox.</p>
+                    <p class="text-slate-300 text-sm mb-4">Get the latest trading insights delivered to your inbox.</p>
                     <form id="sidebar-newsletter-form" class="space-y-3">
-                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:border-white/40">
-                        <button type="submit" class="w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded-lg bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        <button type="submit" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition">
                             Subscribe
                         </button>
                     </form>
@@ -211,60 +206,108 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 mt-20">
-        <div class="container mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                
-                <!-- Company Info -->
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-lg flex items-center justify-center">
-                            <span class="text-slate-900 font-bold text-xl">T</span>
-                        </div>
-                        <span class="text-xl font-bold text-white">TOPC</span>
-                    </div>
-                    <p class="text-slate-400 text-sm">Professional trading analytics platform for serious traders.</p>
+    <footer class="border-t border-slate-800 bg-slate-900/90 text-slate-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <!-- Top: All Buttons + Newsletter -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start text-center"
+        >
+          <div>
+            <h4 class="text-sm font-bold tracking-wide text-slate-400 mb-4">
+              COMING SOON: iOS & ANDROID APPS
+            </h4>
+            <p class="text-sm text-slate-400 mb-4 text-center">
+              Mobile apps are in development. Stay tuned for updates!
+            </p>
+            <div class="flex gap-4 flex-wrap justify-center">
+              <button
+                disabled
+                class="inline-flex items-center gap-3 rounded-md border border-slate-700 px-4 h-12 opacity-50 cursor-not-allowed"
+              >
+                <i class="fab fa-apple text-2xl"></i>
+                <div class="leading-tight">
+                  <div class="text-[10px] text-slate-400">Coming to</div>
+                  <div class="text-sm font-semibold">App Store</div>
                 </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="index.html" class="text-slate-400 hover:text-white transition">Home</a></li>
-                        <li><a href="dashboard.html" class="text-slate-400 hover:text-white transition">Dashboard</a></li>
-                        <li><a href="blog.html" class="text-slate-400 hover:text-white transition">Blog</a></li>
-                        <li><a href="about.html" class="text-slate-400 hover:text-white transition">About</a></li>
-                    </ul>
+              </button>
+              <button
+                disabled
+                class="inline-flex items-center gap-3 rounded-md border border-slate-700 px-4 h-12 opacity-50 cursor-not-allowed"
+              >
+                <i class="fab fa-google-play text-xl"></i>
+                <div class="leading-tight">
+                  <div class="text-[10px] text-slate-400">Coming to</div>
+                  <div class="text-sm font-semibold">Google Play</div>
                 </div>
-
-                <!-- Legal -->
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="terms.html" class="text-slate-400 hover:text-white transition">Terms of Service</a></li>
-                        <li><a href="privacy.html" class="text-slate-400 hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="cookie-policy.html" class="text-slate-400 hover:text-white transition">Cookie Policy</a></li>
-                        <li><a href="imprint.html" class="text-slate-400 hover:text-white transition">Imprint</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Contact</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li class="text-slate-400"><i class="fas fa-envelope mr-2"></i> support@topc-trading.com</li>
-                        <li class="text-slate-400"><i class="fas fa-map-marker-alt mr-2"></i> Vienna, Austria</li>
-                    </ul>
-                </div>
-
+              </button>
+              <a
+                href="https://www.paypal.com/donate/?hosted_button_id=UMH6455D8JHR2"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-md bg-amber-600 hover:bg-amber-700 text-white font-semibold px-4 h-12 transition-colors"
+              >
+                <i class="fas fa-heart text-red-500"></i>
+                <span>Donate via PayPal</span>
+              </a>
             </div>
-
-            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-slate-500 text-sm">
-                <p>&copy; 2024 TOPC. All rights reserved.</p>
+            <p class="text-xs text-slate-400 mt-3">
+              Help us keep TOPC free for everyone • Every contribution matters!
+            </p>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold tracking-wide text-slate-400">
+              STAY UPDATED WITH OUR NEWSLETTER!
+            </h4>
+            <p class="text-sm text-slate-400 mt-2 text-center">
+              Be part of our community - get updates on new features and trading insights!
+            </p>
+            <div class="mt-4 flex gap-3 justify-center">
+              <input
+                type="email"
+                placeholder="Email"
+                class="flex-1 max-w-xs h-12 rounded-md bg-slate-800 border border-slate-700 px-4 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                class="h-12 px-5 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-bold"
+              >
+                SUBSCRIBE
+              </button>
             </div>
+          </div>
         </div>
+
+        <!-- Legal links -->
+        <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+          <a href="cookie-policy.html" class="hover:text-white">Cookies</a>
+          <a href="imprint.html" class="hover:text-white">Imprint</a>
+          <a href="terms.html" class="hover:text-white">Terms & Conditions</a>
+          <a href="privacy.html" class="hover:text-white">Privacy Policy</a>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="mt-8 text-xs text-slate-400 leading-relaxed">
+          All information provided on this site is intended solely for
+          educational purposes related to trading on financial markets and does
+          not serve in any way as a specific investment recommendation, business
+          recommendation, investment opportunity analysis or similar general
+          recommendation regarding the trading of investment instruments. TOPC
+          only provides services of simulated trading and educational tools for
+          traders. TOPC does not act as a
+          broker and does not accept any deposits.
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-8 text-sm text-slate-500">
+          2025 © Copyright - TOPC Made with
+          <span class="text-rose-400">❤</span> for trading
+        </div>
+      </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white w-12 h-12 rounded-full shadow-lg transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center justify-center">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="js/nav.js"></script>
     <script src="js/blog.js"></script>
