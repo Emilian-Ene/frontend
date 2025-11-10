@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Blog - TOPC | Expert Insights & Education</title>
+    <meta name="description" content="Learn trading strategies, risk management, psychology, and analytics from TOPC experts. Educational articles for traders of all levels.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950">
+    
+    <!-- Navigation (same as other pages) -->
+    <nav class="bg-slate-900/95 backdrop-blur-sm border-b border-slate-800 sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-lg flex items-center justify-center">
+                        <span class="text-slate-900 font-bold text-xl">T</span>
+                    </div>
+                    <span class="text-xl font-bold text-white">TOPC</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-slate-300 hover:text-white transition">Home</a>
+                    <a href="dashboard.html" class="text-slate-300 hover:text-white transition">Dashboard</a>
+                    <a href="testimonials.html" class="text-slate-300 hover:text-white transition">Testimonials</a>
+                    <a href="blog.html" class="text-amber-400 font-semibold">Blog</a>
+                    <a href="about.html" class="text-slate-300 hover:text-white transition">About</a>
+                    <a href="faq.html" class="text-slate-300 hover:text-white transition">FAQ</a>
+                    <a href="my-profile.html" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition">Client Area</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="index.html" class="block py-2 text-slate-300 hover:text-white transition">Home</a>
+                <a href="dashboard.html" class="block py-2 text-slate-300 hover:text-white transition">Dashboard</a>
+                <a href="testimonials.html" class="block py-2 text-slate-300 hover:text-white transition">Testimonials</a>
+                <a href="blog.html" class="block py-2 text-amber-400 font-semibold">Blog</a>
+                <a href="about.html" class="block py-2 text-slate-300 hover:text-white transition">About</a>
+                <a href="faq.html" class="block py-2 text-slate-300 hover:text-white transition">FAQ</a>
+                <a href="my-profile.html" class="block py-2 mt-2 px-4 bg-blue-600 text-white rounded-lg text-center">Client Area</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="container mx-auto px-4">
+            <h1>Trading Knowledge Hub</h1>
+            <p>Expert insights, strategies, and education to help you become a better trader</p>
+            
+            <!-- Search Bar -->
+            <div class="blog-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="blog-search-input" placeholder="Search articles...">
+            </div>
+
+            <!-- Category Filters -->
+            <div class="category-filters">
+                <button class="category-pill active" data-category="all">All Articles</button>
+                <button class="category-pill" data-category="fundamentals">Trading Fundamentals</button>
+                <button class="category-pill" data-category="risk">Risk Management</button>
+                <button class="category-pill" data-category="psychology">Trading Psychology</button>
+                <button class="category-pill" data-category="technical">Technical Analysis</button>
+                <button class="category-pill" data-category="analytics">Analytics & Metrics</button>
+                <button class="category-pill" data-category="strategies">Strategies</button>
+                <button class="category-pill" data-category="tools">Tools & Software</button>
+                <button class="category-pill" data-category="market">Market Insights</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Articles Section -->
+            <div class="lg:col-span-2">
+                
+                <!-- Featured Article -->
+                <div class="featured-article" id="featured-article">
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop" alt="Risk Management">
+                    </div>
+                    <div class="featured-content">
+                        <span class="featured-badge">Featured</span>
+                        <h2>Mastering Risk Management: The Foundation of Successful Trading</h2>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> Dec 20, 2024</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                            <span><i class="far fa-user"></i> Sarah Chen</span>
+                        </div>
+                        <p>Discover how professional traders protect their capital and maximize long-term profitability through proper risk management techniques.</p>
+                        <a href="blog-post.html?article=risk-management-basics" class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-semibold">
+                            Read Article <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Latest Articles Grid -->
+                <div class="mt-8">
+                    <h2 class="text-2xl font-bold text-white mb-6">Latest Articles</h2>
+                    <div class="articles-grid" id="articles-grid">
+                        
+                        <!-- Article Card 1 -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=understanding-sqn'">
+                            <div class="article-image">
+                                <span class="category-badge">Analytics & Metrics</span>
+                                <img src="https://images.unsplash.com/photo-1642790551116-18e150f248e5?w=400&h=300&fit=crop" alt="SQN Metric">
+                            </div>
+                            <div class="article-content">
+                                <h3>Understanding System Quality Number (SQN)</h3>
+                                <p class="article-excerpt">Learn how to use the System Quality Number to evaluate and compare your trading strategies objectively.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Dec 18, 2024</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 2 -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=position-sizing'">
+                            <div class="article-image">
+                                <span class="category-badge">Risk Management</span>
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Position Sizing">
+                            </div>
+                            <div class="article-content">
+                                <h3>Position Sizing: How Much Should You Risk Per Trade?</h3>
+                                <p class="article-excerpt">A comprehensive guide to calculating optimal position sizes based on your risk tolerance and account size.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Dec 15, 2024</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 3 -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=trading-psychology'">
+                            <div class="article-image">
+                                <span class="category-badge">Trading Psychology</span>
+                                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop" alt="Trading Psychology">
+                            </div>
+                            <div class="article-content">
+                                <h3>The Psychology of Trading: Overcoming Emotional Biases</h3>
+                                <p class="article-excerpt">Explore the psychological challenges traders face and practical techniques to maintain discipline and objectivity.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Dec 12, 2024</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 4 -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=monte-carlo'">
+                            <div class="article-image">
+                                <span class="category-badge">Analytics & Metrics</span>
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="Monte Carlo">
+                            </div>
+                            <div class="article-content">
+                                <h3>Monte Carlo Simulations for Trading Strategy Validation</h3>
+                                <p class="article-excerpt">Use Monte Carlo methods to test the robustness of your trading strategies and understand potential outcomes.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Dec 10, 2024</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 5 -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=expectancy'">
+                            <div class="article-image">
+                                <span class="category-badge">Trading Fundamentals</span>
+                                <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop" alt="Expectancy">
+                            </div>
+                            <div class="article-content">
+                                <h3>Trading Expectancy: The Key Metric for Long-Term Success</h3>
+                                <p class="article-excerpt">Understand how to calculate and use expectancy to determine if your trading strategy is profitable over time.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Dec 8, 2024</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 6 -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=backtesting'">
+                            <div class="article-image">
+                                <span class="category-badge">Tools & Software</span>
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="Backtesting">
+                            </div>
+                            <div class="article-content">
+                                <h3>Backtesting Best Practices: Avoiding Common Pitfalls</h3>
+                                <p class="article-excerpt">Learn how to backtest your strategies properly and avoid overfitting, look-ahead bias, and other common mistakes.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Dec 5, 2024</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-8">
+                    <button id="load-more-btn" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border border-slate-700 transition font-semibold">
+                        Load More Articles
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="blog-sidebar">
+                
+                <!-- Popular Posts -->
+                <div class="sidebar-section">
+                    <h3>Popular This Month</h3>
+                    
+                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=risk-management-basics'">
+                        <div class="post-number">1</div>
+                        <div class="post-info">
+                            <h4>Mastering Risk Management: The Foundation of Successful Trading</h4>
+                            <span class="post-date">Dec 20, 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=understanding-sqn'">
+                        <div class="post-number">2</div>
+                        <div class="post-info">
+                            <h4>Understanding System Quality Number (SQN)</h4>
+                            <span class="post-date">Dec 18, 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=trading-psychology'">
+                        <div class="post-number">3</div>
+                        <div class="post-info">
+                            <h4>The Psychology of Trading: Overcoming Emotional Biases</h4>
+                            <span class="post-date">Dec 12, 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=position-sizing'">
+                        <div class="post-number">4</div>
+                        <div class="post-info">
+                            <h4>Position Sizing: How Much Should You Risk Per Trade?</h4>
+                            <span class="post-date">Dec 15, 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=expectancy'">
+                        <div class="post-number">5</div>
+                        <div class="post-info">
+                            <h4>Trading Expectancy: The Key Metric for Long-Term Success</h4>
+                            <span class="post-date">Dec 8, 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="sidebar-section">
+                    <h3>Browse by Category</h3>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm" data-category="fundamentals">
+                            <i class="fas fa-book mr-2"></i> Trading Fundamentals
+                        </a>
+                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm" data-category="risk">
+                            <i class="fas fa-shield-alt mr-2"></i> Risk Management
+                        </a>
+                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm" data-category="psychology">
+                            <i class="fas fa-brain mr-2"></i> Trading Psychology
+                        </a>
+                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm" data-category="technical">
+                            <i class="fas fa-chart-line mr-2"></i> Technical Analysis
+                        </a>
+                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm" data-category="analytics">
+                            <i class="fas fa-calculator mr-2"></i> Analytics & Metrics
+                        </a>
+                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm" data-category="strategies">
+                            <i class="fas fa-chess mr-2"></i> Strategies
+                        </a>
+                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm" data-category="tools">
+                            <i class="fas fa-tools mr-2"></i> Tools & Software
+                        </a>
+                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm" data-category="market">
+                            <i class="fas fa-globe mr-2"></i> Market Insights
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div class="sidebar-section bg-gradient-to-br from-blue-600 to-blue-700 border-blue-500">
+                    <h3 class="text-white">Stay Updated</h3>
+                    <p class="text-blue-100 text-sm mb-4">Get the latest trading insights delivered to your inbox.</p>
+                    <form id="sidebar-newsletter-form" class="space-y-3">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:border-white/40">
+                        <button type="submit" class="w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 mt-20">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-amber-500 to-yellow-400 rounded-lg flex items-center justify-center">
+                            <span class="text-slate-900 font-bold text-xl">T</span>
+                        </div>
+                        <span class="text-xl font-bold text-white">TOPC</span>
+                    </div>
+                    <p class="text-slate-400 text-sm">Professional trading analytics platform for serious traders.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-slate-400 hover:text-white transition">Home</a></li>
+                        <li><a href="dashboard.html" class="text-slate-400 hover:text-white transition">Dashboard</a></li>
+                        <li><a href="blog.html" class="text-slate-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="about.html" class="text-slate-400 hover:text-white transition">About</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="terms.html" class="text-slate-400 hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="text-slate-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="cookie-policy.html" class="text-slate-400 hover:text-white transition">Cookie Policy</a></li>
+                        <li><a href="imprint.html" class="text-slate-400 hover:text-white transition">Imprint</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="text-slate-400"><i class="fas fa-envelope mr-2"></i> support@topc-trading.com</li>
+                        <li class="text-slate-400"><i class="fas fa-map-marker-alt mr-2"></i> Vienna, Austria</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-slate-500 text-sm">
+                <p>&copy; 2024 TOPC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/blog.js"></script>
+
+</body>
+</html>
