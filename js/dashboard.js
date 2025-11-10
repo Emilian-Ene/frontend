@@ -92,6 +92,25 @@
         });
       };
 
+      const showProgressModal = (title, message, progress = 0) => {
+        const modal = document.getElementById("progressModal");
+        document.getElementById("progressTitle").textContent = title;
+        document.getElementById("progressMessage").textContent = message;
+        document.getElementById("progressBar").style.width = progress + "%";
+        document.getElementById("progressPercent").textContent = progress + "%";
+        modal.classList.add("active");
+      };
+
+      const updateProgressModal = (message, progress) => {
+        document.getElementById("progressMessage").textContent = message;
+        document.getElementById("progressBar").style.width = progress + "%";
+        document.getElementById("progressPercent").textContent = progress + "%";
+      };
+
+      const hideProgressModal = () => {
+        document.getElementById("progressModal").classList.remove("active");
+      };
+
       const formatISODate = (date) => {
         if (!date) return "";
         const d = new Date(date);
@@ -2224,11 +2243,25 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
         if (
           await showConfirmModal("Delete ALL trades from database and UI? This cannot be undone.")
         ) {
+          const totalTrades = trades.length;
+          
           try {
+            // Show progress modal
+            showProgressModal("Deleting Trades", `Deleting 0 of ${totalTrades} trades...`, 0);
+            
             // Delete from database first (user is authenticated since they're on dashboard)
-            for (const trade of trades) {
+            for (let i = 0; i < trades.length; i++) {
+              const trade = trades[i];
               if (trade._id) {
                 await window.tradeService.deleteTrade(trade._id);
+              }
+              
+              // Update progress every 10 trades to avoid UI lag
+              if (i % 10 === 0 || i === trades.length - 1) {
+                const progress = Math.round(((i + 1) / totalTrades) * 100);
+                updateProgressModal(`Deleted ${i + 1} of ${totalTrades} trades...`, progress);
+                // Small delay to let UI update
+                await new Promise(resolve => setTimeout(resolve, 10));
               }
             }
             
@@ -2236,11 +2269,17 @@ Based on ALL the data above, please provide a comprehensive analysis covering:
             trades = [];
             updateInitialBalanceAfterTrade();
             await saveAppData();
+            
+            // Hide progress and update UI
+            hideProgressModal();
             updateUI();
             
             showMessageBox("All trades deleted from database and UI!", "success");
           } catch (error) {
             console.error("Error deleting trades from database:", error);
+            
+            // Hide progress modal
+            hideProgressModal();
             
             // Still clear UI even if database fails
             trades = [];
