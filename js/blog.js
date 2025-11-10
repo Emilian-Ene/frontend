@@ -49,6 +49,15 @@ function initBackToTop() {
 
 function initBlogHome() {
     
+    // Check for category parameter in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('category');
+    
+    if (categoryParam) {
+        // Filter articles based on URL parameter
+        filterArticles(categoryParam);
+    }
+    
     // Search functionality
     const searchInput = document.getElementById('blog-search-input');
     if (searchInput) {
@@ -158,6 +167,32 @@ function filterArticles(category) {
             card.style.display = 'none';
         }
     });
+    
+    // Update active state for category filters
+    document.querySelectorAll('.category-filter').forEach(filter => {
+        filter.classList.remove('text-blue-400', 'font-semibold');
+        filter.classList.add('text-slate-400');
+        
+        if (filter.dataset.category === category) {
+            filter.classList.remove('text-slate-400');
+            filter.classList.add('text-blue-400', 'font-semibold');
+        }
+    });
+    
+    // Update category pills at the top
+    document.querySelectorAll('.category-pill').forEach(pill => {
+        pill.classList.remove('active');
+        if (pill.dataset.category === category) {
+            pill.classList.add('active');
+        }
+    });
+}
+
+// Helper function for sidebar category filtering
+function filterByCategory(category) {
+    filterArticles(category);
+    // Scroll to articles section
+    document.querySelector('.articles-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ============================================
@@ -891,8 +926,42 @@ print(results.describe())</code></pre>
     document.getElementById('author-name').textContent = article.author.name;
     document.getElementById('author-bio').textContent = article.author.bio;
     
+    // Highlight current article's category
+    highlightCurrentCategory(article.category);
+    
     // Load related articles
     loadRelatedArticles(article.relatedArticles, articles);
+}
+
+function highlightCurrentCategory(categoryName) {
+    // Map category names to category data attributes
+    const categoryMap = {
+        'Trading Fundamentals': 'fundamentals',
+        'Risk Management': 'risk',
+        'Trading Psychology': 'psychology',
+        'Technical Analysis': 'technical',
+        'Analytics & Metrics': 'analytics',
+        'Strategies': 'strategies',
+        'Tools & Software': 'tools',
+        'Market Insights': 'market'
+    };
+    
+    const categorySlug = categoryMap[categoryName];
+    
+    if (categorySlug) {
+        // Remove highlight from all categories
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.classList.remove('text-blue-400', 'font-semibold');
+            link.classList.add('text-slate-400');
+        });
+        
+        // Highlight the current category
+        const currentCategoryLink = document.querySelector(`.category-link[data-category="${categorySlug}"]`);
+        if (currentCategoryLink) {
+            currentCategoryLink.classList.remove('text-slate-400');
+            currentCategoryLink.classList.add('text-blue-400', 'font-semibold');
+        }
+    }
 }
 
 function generateTableOfContents() {
