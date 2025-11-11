@@ -4194,7 +4194,14 @@ function generateTableOfContents() {
         link.textContent = heading.textContent;
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const headerOffset = 100; // Account for sticky nav height
+            const elementPosition = heading.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         });
         
         li.appendChild(link);
