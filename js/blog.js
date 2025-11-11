@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Back to Top button functionality
     initBackToTop();
+    
+    // Mobile menu functionality
+    initMobileMenu();
 
 });
 
@@ -1154,4 +1157,19 @@ function copyLink() {
     }).catch(() => {
         alert('Failed to copy link. Please copy it manually: ' + url);
     });
+}
+
+// ============================================
+// MOBILE MENU FUNCTIONALITY
+// ============================================
+
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
 }
