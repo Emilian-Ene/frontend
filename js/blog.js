@@ -57,8 +57,24 @@ function initBlogHome() {
     const categoryParam = urlParams.get('category');
     
     if (categoryParam) {
-        // Filter articles based on URL parameter
-        filterArticles(categoryParam);
+        // Filter articles based on URL parameter and scroll to them
+        setTimeout(() => {
+            filterArticles(categoryParam);
+            // Scroll to articles section with offset for sticky header
+            setTimeout(() => {
+                const articlesGrid = document.querySelector('.articles-grid');
+                if (articlesGrid) {
+                    const headerOffset = 100;
+                    const elementPosition = articlesGrid.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100);
+        }, 100);
     }
     
     // Search functionality
@@ -194,8 +210,20 @@ function filterArticles(category) {
 // Helper function for sidebar category filtering
 function filterByCategory(category) {
     filterArticles(category);
-    // Scroll to articles section
-    document.querySelector('.articles-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Scroll to articles section with offset for sticky header
+    setTimeout(() => {
+        const articlesGrid = document.querySelector('.articles-grid');
+        if (articlesGrid) {
+            const headerOffset = 100; // Offset for sticky header
+            const elementPosition = articlesGrid.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    }, 100);
 }
 
 // ============================================
