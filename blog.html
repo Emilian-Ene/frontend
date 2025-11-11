@@ -138,6 +138,7 @@
                 <button class="category-pill" data-category="technical">Technical Analysis</button>
                 <button class="category-pill" data-category="analytics">Analytics & Metrics</button>
                 <button class="category-pill" data-category="strategies">Strategies</button>
+                <button class="category-pill" data-category="analysis">Trading Analysis</button>
                 <button class="category-pill" data-category="tools">Tools & Software</button>
                 <button class="category-pill" data-category="market">Market Insights</button>
             </div>
@@ -146,40 +147,187 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Popular Posts and Categories Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             
-            <!-- Articles Section -->
-            <div class="lg:col-span-2">
-                
-                <!-- Featured Article -->
-                <div class="featured-article" id="featured-article">
-                    <div class="featured-image">
-                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop" alt="Risk Management">
-                    </div>
-                    <div class="featured-content">
-                        <span class="featured-badge">Featured</span>
-                        <h2>Mastering Risk Management: The Foundation of Successful Trading</h2>
-                        <div class="article-meta">
-                            <span><i class="far fa-calendar"></i> Dec 20, 2024</span>
-                            <span><i class="far fa-clock"></i> 8 min read</span>
-                            <span><i class="far fa-user"></i> Sarah Chen</span>
-                        </div>
-                        <p>Discover how professional traders protect their capital and maximize long-term profitability through proper risk management techniques.</p>
-                        <a href="blog-post.html?article=risk-management-basics" class="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition font-semibold">
-                            Read Article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
+            <!-- Popular Posts -->
+            <div class="sidebar-section">
+                <h3>Popular This Month</h3>
+                <div id="popular-posts-container">
+                    <!-- Populated dynamically by JavaScript -->
                 </div>
+            </div>
 
-                <!-- Latest Articles Grid -->
-                <div class="mt-8">
-                    <h2 class="text-2xl font-bold text-white mb-6">Latest Articles</h2>
-                    <div class="articles-grid" id="articles-grid">
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <h3>Browse by Category</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="fundamentals" onclick="filterByCategory('fundamentals'); return false;">
+                        <i class="fas fa-book text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Trading Fundamentals</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="risk" onclick="filterByCategory('risk'); return false;">
+                        <i class="fas fa-shield-alt text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Risk Management</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="psychology" onclick="filterByCategory('psychology'); return false;">
+                        <i class="fas fa-brain text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Trading Psychology</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="technical" onclick="filterByCategory('technical'); return false;">
+                        <i class="fas fa-chart-line text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Technical Analysis</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="analytics" onclick="filterByCategory('analytics'); return false;">
+                        <i class="fas fa-calculator text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Analytics & Metrics</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="strategies" onclick="filterByCategory('strategies'); return false;">
+                        <i class="fas fa-chess text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Strategies</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="analysis" onclick="filterByCategory('analysis'); return false;">
+                        <i class="fas fa-chart-bar text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Trading Analysis</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="tools" onclick="filterByCategory('tools'); return false;">
+                        <i class="fas fa-tools text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Tools & Software</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="market" onclick="filterByCategory('market'); return false;">
+                        <i class="fas fa-globe text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Market Insights</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Article (Full Width) -->
+        <div class="featured-article mb-8" id="featured-article">
+            <div class="featured-image">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop" alt="Risk Management">
+            </div>
+            <div class="featured-content">
+                <span class="featured-badge">Featured</span>
+                <h2>Mastering Risk Management: The Foundation of Successful Trading</h2>
+                <div class="article-meta">
+                    <span><i class="far fa-calendar"></i> Dec 20, 2024</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
+                    <span><i class="far fa-user"></i> Jennifer Williams</span>
+                </div>
+                <p>Discover how professional traders protect their capital and maximize long-term profitability through proper risk management techniques.</p>
+                <a href="blog-post.html?article=risk-management-basics" class="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition font-semibold">
+                    Read Article <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Latest Articles Grid (4 columns) -->
+        <div>
+            <h2 class="text-2xl font-bold text-white mb-6">Latest Articles</h2>
+            <div class="articles-grid" id="articles-grid">
                         
+                        <!-- Liquidity Concepts Article -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=liquidity-concepts'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=400&h=300&fit=crop" alt="Market liquidity and order flow">
+                                <span class="category-badge">Technical Analysis</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Understanding Liquidity: The Hidden Force Behind Market Movements</h3>
+                                <p class="article-excerpt">Discover how liquidity drives price action, where institutional traders hunt stops, and how to trade with liquidity awareness for better entries and exits.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Nov 11, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Market Makers Article -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=market-makers'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Market makers and institutional trading">
+                                <span class="category-badge">Market Insights</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Understanding Market Makers: How They Move Price & Why Retail Loses</h3>
+                                <p class="article-excerpt">Learn how market makers operate, manipulate price, and why retail traders consistently lose. Discover strategies to trade alongside them instead of against them.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Oct 15, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Market Cycles Article -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=market-cycles'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Market cycles and sentiment">
+                                <span class="category-badge">Market Insights</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Market Cycles & Sentiment: Reading the Crowd to Find Your Edge</h3>
+                                <p class="article-excerpt">Master the four phases of market cycles, understand crowd psychology, and use sentiment indicators like VIX and put/call ratios to time your entries.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Sep 22, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Forex Sessions Article -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=forex-sessions'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Forex trading sessions">
+                                <span class="category-badge">Market Insights</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Forex Trading Sessions: When & Why Markets Move</h3>
+                                <p class="article-excerpt">Learn the best times to trade each currency pair, understand Asian, London, and New York sessions, and maximize your edge by trading during peak liquidity.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Aug 8, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Economic Calendar Article -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=economic-calendar'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Economic calendar and news trading">
+                                <span class="category-badge">Market Insights</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Trading the Economic Calendar: News Events That Move Markets</h3>
+                                <p class="article-excerpt">Understand which economic releases matter, how to trade around NFP, FOMC, and CPI, and protect your account from explosive news volatility.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Jul 18, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Intermarket Analysis Article -->
+                        <article class="article-card" onclick="window.location.href='blog-post.html?article=intermarket-analysis'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Intermarket analysis and correlations">
+                                <span class="category-badge">Market Insights</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Intermarket Analysis: How Different Markets Influence Each Other</h3>
+                                <p class="article-excerpt">Discover how stocks, bonds, commodities, and currencies influence each other. Use intermarket correlations to confirm trades and predict market moves.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Jun 5, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
                         <!-- Article Card 1 -->
                         <article class="article-card" onclick="window.location.href='blog-post.html?article=understanding-sqn'">
                             <div class="article-image">
-                                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop" alt="SQN Metric">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="SQN Metric">
                                 <span class="category-badge">Analytics & Metrics</span>
                             </div>
                             <div class="article-content">
@@ -195,7 +343,7 @@
                         <!-- Article Card 2 -->
                         <article class="article-card" onclick="window.location.href='blog-post.html?article=position-sizing'">
                             <div class="article-image">
-                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Position Sizing">
+                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop" alt="Position Sizing">
                                 <span class="category-badge">Risk Management</span>
                             </div>
                             <div class="article-content">
@@ -240,8 +388,56 @@
                             </div>
                         </article>
 
-                        <!-- Article Card 5 -->
-                        <article class="article-card" onclick="window.location.href='blog-post.html?article=expectancy'">
+                        <!-- Article Card 9 - Hidden by default -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=trading-psychology'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop" alt="Trading Psychology">
+                                <span class="category-badge">Trading Psychology</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>The Psychology of Trading: Overcoming Emotional Biases</h3>
+                                <p class="article-excerpt">Explore the psychological challenges traders face and practical techniques to maintain discipline and objectivity.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Dec 12, 2024</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 10 - Hidden by default -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=monte-carlo'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="Monte Carlo">
+                                <span class="category-badge">Analytics & Metrics</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Monte Carlo Simulations for Trading Strategy Validation</h3>
+                                <p class="article-excerpt">Use Monte Carlo methods to test the robustness of your trading strategies and understand potential outcomes.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Dec 10, 2024</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Understanding Drawdown -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=understanding-drawdown'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop" alt="Understanding Drawdown">
+                                <span class="category-badge">Trading Fundamentals</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Understanding Drawdown: The Hidden Risk That Destroys Accounts</h3>
+                                <p class="article-excerpt">Master the math of drawdown recovery, learn why losing 50% requires a 100% gain to recover, and discover how professional traders protect against catastrophic losses.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Nov 8, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 11 - Hidden by default -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=expectancy'">
                             <div class="article-image">
                                 <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop" alt="Expectancy">
                                 <span class="category-badge">Trading Fundamentals</span>
@@ -256,10 +452,10 @@
                             </div>
                         </article>
 
-                        <!-- Article Card 6 -->
-                        <article class="article-card" onclick="window.location.href='blog-post.html?article=backtesting'">
+                        <!-- Article Card 12 - Hidden by default -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=backtesting'">
                             <div class="article-image">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop" alt="Backtesting">
+                                <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=400&h=300&fit=crop" alt="Backtesting">
                                 <span class="category-badge">Tools & Software</span>
                             </div>
                             <div class="article-content">
@@ -272,110 +468,197 @@
                             </div>
                         </article>
 
+                        <!-- TradingView -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=tradingview-guide'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=400&h=300&fit=crop" alt="TradingView Platform">
+                                <span class="category-badge">Tools & Software</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>TradingView: The Ultimate Charting Platform for Traders</h3>
+                                <p class="article-excerpt">Master TradingView's powerful features including Pine Script, alerts, multi-timeframe analysis, and social trading tools.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Nov 10, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- IC Markets -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=ic-markets-platform'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=400&h=300&fit=crop" alt="IC Markets Platform">
+                                <span class="category-badge">Tools & Software</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>IC Markets Platform Guide: MT4, MT5 & cTrader Comparison</h3>
+                                <p class="article-excerpt">Explore IC Markets' trading platforms, execution speed, spreads, and features to choose the best setup for your trading style.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Nov 8, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 13 - Hidden by default -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=risk-management-basics'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop" alt="Risk Management">
+                                <span class="category-badge">Risk Management</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Mastering Risk Management: The Foundation of Successful Trading</h3>
+                                <p class="article-excerpt">Discover how professional traders protect their capital and maximize long-term profitability through proper risk management techniques.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Dec 20, 2024</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Strategy Articles - Hidden by default -->
+                        
+                        <!-- Breakout Trading -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=breakout-trading'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop" alt="Breakout Trading Strategy">
+                                <span class="category-badge">Strategies</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Breakout Trading Strategy: Catching Big Moves with Precision</h3>
+                                <p class="article-excerpt">Learn to identify true breakouts, avoid false moves, and use volume confirmation to catch explosive market moves with high probability.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> May 20, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Trend Following -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=trend-following'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop" alt="Trend Following Strategy">
+                                <span class="category-badge">Strategies</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Trend Following: Riding the Wave for Maximum Profits</h3>
+                                <p class="article-excerpt">Master moving averages, trend identification, and trailing stops to ride major market trends and maximize your trading profits.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Apr 15, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Mean Reversion -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=mean-reversion'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop" alt="Mean Reversion Strategy">
+                                <span class="category-badge">Strategies</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Mean Reversion Trading: Profiting from Market Overreactions</h3>
+                                <p class="article-excerpt">Use RSI, Bollinger Bands, and reversal patterns to profit when price stretches too far from its average in range-bound markets.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Mar 10, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Scalping -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=scalping-strategy'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop" alt="Scalping Strategy">
+                                <span class="category-badge">Strategies</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Scalping Strategy: Quick Profits in Fast Markets</h3>
+                                <p class="article-excerpt">Master the art of scalping with optimal timeframes, liquid pairs, tight risk management, and strategies for capturing quick intraday profits.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Feb 5, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Swing Trading -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=swing-trading'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop" alt="Swing Trading Strategy">
+                                <span class="category-badge">Strategies</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Swing Trading: Capturing Multi-Day Price Movements</h3>
+                                <p class="article-excerpt">Learn position holding techniques, technical setups, and how to balance work and trading while capturing multi-day market swings.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Jan 20, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Order Block Trading -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=order-block-trading'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop" alt="Order Block Trading">
+                                <span class="category-badge">Strategies</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Order Block Trading: Following Smart Money</h3>
+                                <p class="article-excerpt">Identify institutional order flow, supply and demand zones, and trade alongside smart money using order block methodology.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Jan 5, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Multi-Timeframe Analysis -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=multi-timeframe-analysis'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop" alt="Multi-Timeframe Analysis">
+                                <span class="category-badge">Trading Analysis</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Multi-Timeframe Analysis: The Complete Guide</h3>
+                                <p class="article-excerpt">Master the top-down approach to analyzing charts across multiple timeframes for better trade entries and higher win rates.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Nov 11, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Volume Profile Analysis -->
+                        <article class="article-card hidden-article" onclick="window.location.href='blog-post.html?article=volume-profile-analysis'">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop" alt="Volume Profile Analysis">
+                                <span class="category-badge">Trading Analysis</span>
+                            </div>
+                            <div class="article-content">
+                                <h3>Volume Profile Analysis: Reading Market Structure</h3>
+                                <p class="article-excerpt">Learn to read volume profile, identify value areas, and use point of control for high-probability trade setups.</p>
+                                <div class="article-footer">
+                                    <span class="text-slate-500 text-sm"><i class="far fa-calendar"></i> Nov 9, 2025</span>
+                                    <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                            </div>
+                        </article>
+
                     </div>
                 </div>
 
-                <!-- Load More Button -->
+                <!-- Load More / Show Less Buttons -->
                 <div class="text-center mt-8">
                     <button id="load-more-btn" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border border-slate-700 transition font-semibold">
                         Load More Articles
                     </button>
+                    <button id="show-less-btn" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border border-slate-700 transition font-semibold" style="display: none;">
+                        Show Less
+                    </button>
                 </div>
-
             </div>
-
-            <!-- Sidebar -->
-            <aside class="blog-sidebar">
-                
-                <!-- Popular Posts -->
-                <div class="sidebar-section">
-                    <h3>Popular This Month</h3>
-                    
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=risk-management-basics'">
-                        <div class="post-number">1</div>
-                        <div class="post-info">
-                            <h4>Mastering Risk Management: The Foundation of Successful Trading</h4>
-                            <span class="post-date">Dec 20, 2024</span>
-                        </div>
-                    </div>
-
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=understanding-sqn'">
-                        <div class="post-number">2</div>
-                        <div class="post-info">
-                            <h4>Understanding System Quality Number (SQN)</h4>
-                            <span class="post-date">Dec 18, 2024</span>
-                        </div>
-                    </div>
-
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=trading-psychology'">
-                        <div class="post-number">3</div>
-                        <div class="post-info">
-                            <h4>The Psychology of Trading: Overcoming Emotional Biases</h4>
-                            <span class="post-date">Dec 12, 2024</span>
-                        </div>
-                    </div>
-
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=position-sizing'">
-                        <div class="post-number">4</div>
-                        <div class="post-info">
-                            <h4>Position Sizing: How Much Should You Risk Per Trade?</h4>
-                            <span class="post-date">Dec 15, 2024</span>
-                        </div>
-                    </div>
-
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=expectancy'">
-                        <div class="post-number">5</div>
-                        <div class="post-info">
-                            <h4>Trading Expectancy: The Key Metric for Long-Term Success</h4>
-                            <span class="post-date">Dec 8, 2024</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Categories -->
-                <div class="sidebar-section">
-                    <h3>Browse by Category</h3>
-                    <div class="space-y-2">
-                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm category-filter" data-category="fundamentals" onclick="filterByCategory('fundamentals'); return false;">
-                            <i class="fas fa-book mr-2"></i> Trading Fundamentals
-                        </a>
-                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm category-filter" data-category="risk" onclick="filterByCategory('risk'); return false;">
-                            <i class="fas fa-shield-alt mr-2"></i> Risk Management
-                        </a>
-                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm category-filter" data-category="psychology" onclick="filterByCategory('psychology'); return false;">
-                            <i class="fas fa-brain mr-2"></i> Trading Psychology
-                        </a>
-                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm category-filter" data-category="technical" onclick="filterByCategory('technical'); return false;">
-                            <i class="fas fa-chart-line mr-2"></i> Technical Analysis
-                        </a>
-                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm category-filter" data-category="analytics" onclick="filterByCategory('analytics'); return false;">
-                            <i class="fas fa-calculator mr-2"></i> Analytics & Metrics
-                        </a>
-                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm category-filter" data-category="strategies" onclick="filterByCategory('strategies'); return false;">
-                            <i class="fas fa-chess mr-2"></i> Strategies
-                        </a>
-                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm category-filter" data-category="tools" onclick="filterByCategory('tools'); return false;">
-                            <i class="fas fa-tools mr-2"></i> Tools & Software
-                        </a>
-                        <a href="#" class="block text-slate-400 hover:text-blue-400 transition text-sm category-filter" data-category="market" onclick="filterByCategory('market'); return false;">
-                            <i class="fas fa-globe mr-2"></i> Market Insights
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Newsletter Signup -->
-                <div class="sidebar-section bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700">
-                    <h3 class="text-white">Stay Updated</h3>
-                    <p class="text-slate-300 text-sm mb-4">Get the latest trading insights delivered to your inbox.</p>
-                    <form id="sidebar-newsletter-form" class="space-y-3">
-                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded-lg bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
-                        <button type="submit" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition">
-                            Subscribe
-                        </button>
-                    </form>
-                </div>
-
-            </aside>
 
         </div>
     </main>

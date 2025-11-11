@@ -9,7 +9,7 @@
     <meta name="title" id="post-meta-title" content="Blog Post - TOPC">
     <meta name="description" id="post-description" content="Read expert trading insights and educational content from TOPC.">
     <meta name="keywords" id="post-keywords" content="trading, risk management, trading strategies, TOPC">
-    <meta name="author" id="post-author" content="TOPC">
+    <meta name="author" id="post-meta-author" content="TOPC">
     <meta name="robots" content="index, follow">
     
     <!-- Canonical URL (will be updated dynamically) -->
@@ -97,10 +97,64 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- Popular Posts and Categories Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             
-            <!-- Article Content -->
-            <article class="lg:col-span-3">
+            <!-- Popular Posts -->
+            <div class="sidebar-section">
+                <h3>Popular This Month</h3>
+                <div id="popular-posts-container">
+                    <!-- Populated dynamically by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <h3>Browse by Category</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <a href="blog.html?category=fundamentals" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="fundamentals">
+                        <i class="fas fa-book text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Trading Fundamentals</span>
+                    </a>
+                    <a href="blog.html?category=risk" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="risk">
+                        <i class="fas fa-shield-alt text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Risk Management</span>
+                    </a>
+                    <a href="blog.html?category=psychology" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="psychology">
+                        <i class="fas fa-brain text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Trading Psychology</span>
+                    </a>
+                    <a href="blog.html?category=technical" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="technical">
+                        <i class="fas fa-chart-line text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Technical Analysis</span>
+                    </a>
+                    <a href="blog.html?category=analytics" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="analytics">
+                        <i class="fas fa-calculator text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Analytics & Metrics</span>
+                    </a>
+                    <a href="blog.html?category=strategies" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="strategies">
+                        <i class="fas fa-chess text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Strategies</span>
+                    </a>
+                    <a href="blog.html?category=analysis" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="analysis">
+                        <i class="fas fa-chart-bar text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Trading Analysis</span>
+                    </a>
+                    <a href="blog.html?category=tools" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="tools">
+                        <i class="fas fa-tools text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Tools & Software</span>
+                    </a>
+                    <a href="blog.html?category=market" class="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-blue-500/50 text-slate-400 hover:text-blue-400 transition category-filter" data-category="market">
+                        <i class="fas fa-globe text-lg w-5 text-center"></i>
+                        <span class="text-sm font-medium">Market Insights</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Post Article (Centered) -->
+        <article class="max-w-4xl mx-auto mb-12">
                 
                 <!-- Post Header -->
                 <div class="blog-post-header">
@@ -163,110 +217,16 @@
                     </div>
                 </div>
 
-                <!-- Related Posts -->
-                <div class="related-posts">
-                    <h3>Related Articles</h3>
-                    <div class="articles-grid" id="related-articles">
-                        <!-- Related articles loaded dynamically -->
-                    </div>
-                </div>
-
             </article>
 
-            <!-- Sidebar -->
-            <aside class="blog-sidebar">
-                
-                <!-- Popular Posts -->
-                <div class="sidebar-section">
-                    <h3>Popular This Month</h3>
-                    
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=risk-management-basics'">
-                        <div class="post-number">1</div>
-                        <div class="post-info">
-                            <h4>Mastering Risk Management: The Foundation of Successful Trading</h4>
-                            <span class="post-date">Dec 20, 2024</span>
-                        </div>
-                    </div>
-
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=understanding-sqn'">
-                        <div class="post-number">2</div>
-                        <div class="post-info">
-                            <h4>Understanding System Quality Number (SQN)</h4>
-                            <span class="post-date">Dec 18, 2024</span>
-                        </div>
-                    </div>
-
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=trading-psychology'">
-                        <div class="post-number">3</div>
-                        <div class="post-info">
-                            <h4>The Psychology of Trading: Overcoming Emotional Biases</h4>
-                            <span class="post-date">Dec 12, 2024</span>
-                        </div>
-                    </div>
-
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=position-sizing'">
-                        <div class="post-number">4</div>
-                        <div class="post-info">
-                            <h4>Position Sizing: How Much Should You Risk Per Trade?</h4>
-                            <span class="post-date">Dec 15, 2024</span>
-                        </div>
-                    </div>
-
-                    <div class="popular-post" onclick="window.location.href='blog-post.html?article=expectancy'">
-                        <div class="post-number">5</div>
-                        <div class="post-info">
-                            <h4>Trading Expectancy: The Key Metric for Long-Term Success</h4>
-                            <span class="post-date">Dec 8, 2024</span>
-                        </div>
-                    </div>
+            <!-- Related Articles Section (Full Width) -->
+            <section class="mt-12">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">Related Articles</h2>
+                <div class="articles-grid" id="related-articles">
+                    <!-- Related articles loaded dynamically (max 4 cards) -->
                 </div>
+            </section>
 
-                <!-- Categories -->
-                <div class="sidebar-section">
-                    <h3>Browse by Category</h3>
-                    <div class="space-y-2" id="category-list">
-                        <a href="blog.html?category=fundamentals" class="block text-slate-400 hover:text-blue-400 transition text-sm category-link" data-category="fundamentals">
-                            <i class="fas fa-book mr-2"></i> Trading Fundamentals
-                        </a>
-                        <a href="blog.html?category=risk" class="block text-slate-400 hover:text-blue-400 transition text-sm category-link" data-category="risk">
-                            <i class="fas fa-shield-alt mr-2"></i> Risk Management
-                        </a>
-                        <a href="blog.html?category=psychology" class="block text-slate-400 hover:text-blue-400 transition text-sm category-link" data-category="psychology">
-                            <i class="fas fa-brain mr-2"></i> Trading Psychology
-                        </a>
-                        <a href="blog.html?category=technical" class="block text-slate-400 hover:text-blue-400 transition text-sm category-link" data-category="technical">
-                            <i class="fas fa-chart-line mr-2"></i> Technical Analysis
-                        </a>
-                        <a href="blog.html?category=analytics" class="block text-slate-400 hover:text-blue-400 transition text-sm category-link" data-category="analytics">
-                            <i class="fas fa-calculator mr-2"></i> Analytics & Metrics
-                        </a>
-                        <a href="blog.html?category=strategies" class="block text-slate-400 hover:text-blue-400 transition text-sm category-link" data-category="strategies">
-                            <i class="fas fa-chess mr-2"></i> Strategies
-                        </a>
-                        <a href="blog.html?category=tools" class="block text-slate-400 hover:text-blue-400 transition text-sm category-link" data-category="tools">
-                            <i class="fas fa-tools mr-2"></i> Tools & Software
-                        </a>
-                        <a href="blog.html?category=market" class="block text-slate-400 hover:text-blue-400 transition text-sm category-link" data-category="market">
-                            <i class="fas fa-globe mr-2"></i> Market Insights
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Newsletter Signup -->
-                <div class="sidebar-section bg-gradient-to-br from-slate-800 to-slate-900 border-slate-700">
-                    <h3 class="text-white">Stay Updated</h3>
-                    <p class="text-slate-300 text-sm mb-4">Get the latest trading insights delivered to your inbox.</p>
-                    <form id="sidebar-newsletter-form" class="space-y-3">
-                        <input type="email" placeholder="Your email" class="w-full px-4 py-2 rounded-lg bg-slate-700/50 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
-                        <button type="submit" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition">
-                            Subscribe
-                        </button>
-                    </form>
-                </div>
-
-            </aside>
-
-        </div>
     </main>
 
     <footer class="border-t border-slate-800 bg-slate-900/90 text-slate-300">
