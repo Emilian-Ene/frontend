@@ -898,8 +898,36 @@ print(results.describe())</code></pre>
 
     // Update page title and meta
     document.title = article.title + ' - TOPC Blog';
-    document.getElementById('post-title').content = article.title;
-    document.getElementById('post-description').content = article.content.substring(0, 150).replace(/<[^>]*>/g, '');
+    
+    // Extract clean description from content
+    const cleanDescription = article.content.substring(0, 160).replace(/<[^>]*>/g, '').trim() + '...';
+    
+    // Update basic meta tags
+    document.getElementById('post-title').textContent = article.title + ' - TOPC Blog';
+    document.getElementById('post-meta-title').setAttribute('content', article.title + ' - TOPC Blog');
+    document.getElementById('post-description').setAttribute('content', cleanDescription);
+    document.getElementById('post-keywords').setAttribute('content', article.tags.join(', '));
+    document.getElementById('post-author').setAttribute('content', article.author.name);
+    
+    // Get article URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleSlug = urlParams.get('article');
+    const articleUrl = `https://topc-trading.com/blog-post.html?article=${articleSlug}`;
+    
+    // Update canonical URL
+    document.getElementById('canonical-url').setAttribute('href', articleUrl);
+    
+    // Update Open Graph tags
+    document.getElementById('og-url').setAttribute('content', articleUrl);
+    document.getElementById('og-title').setAttribute('content', article.title);
+    document.getElementById('og-description').setAttribute('content', cleanDescription);
+    document.getElementById('article-author').setAttribute('content', article.author.name);
+    document.getElementById('article-section').setAttribute('content', article.category);
+    
+    // Update Twitter Card tags
+    document.getElementById('twitter-url').setAttribute('content', articleUrl);
+    document.getElementById('twitter-title').setAttribute('content', article.title);
+    document.getElementById('twitter-description').setAttribute('content', cleanDescription);
     
     // Update header
     document.getElementById('breadcrumb-title').textContent = article.category;
